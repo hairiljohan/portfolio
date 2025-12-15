@@ -4,6 +4,7 @@ import NetworkCheckerPage from "@/components/NetworkCheckerPage";
 import { applyMeta } from "@/utils/meta";
 import { META } from "@/data/meta";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -17,5 +18,6 @@ root.render(
   <React.StrictMode>
     <NetworkCheckerPage />
     <SpeedInsights />
+    <Analytics />
   </React.StrictMode>
 );

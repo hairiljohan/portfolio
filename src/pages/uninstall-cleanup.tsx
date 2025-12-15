@@ -4,6 +4,7 @@ import UninstallCleanupPage from "@/components/UninstallCleanupPage";
 import { applyMeta } from "@/utils/meta";
 import { META } from "@/data/meta";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -17,5 +18,6 @@ root.render(
   <React.StrictMode>
     <UninstallCleanupPage />
     <SpeedInsights />
+    <Analytics />
   </React.StrictMode>
 );
