@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>whydoesthiswork.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#0a0a0a"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f6f6f6"
+    />
+    <meta
+      name="description"
+      content="local ai control surface. it runs. somehow."
+    />
+
+    <!-- Preload & stylesheet (small perf nudge via fetchpriority) -->
+    <link rel="preload" href="./styles.min.css" as="style" />
+    <link rel="stylesheet" href="./styles.min.css" fetchpriority="high" />
+    <link rel="preload" href="./main.min.js" as="script" />
+
+    <script src="./main.min.js" defer></script>
+  </head>
+
+  <body>
+    <noscript>
+      <div class="noscript-warning">This console requires JavaScript.</div>
+    </noscript>
+
+    <a class="skip" href="#mainLog">Skip to content</a>
+
+    <!-- Root console wrapper. data-theme is toggled by JS -->
+    <div class="console-shell" id="console-root" data-theme="dark">
+      <!-- ============================================
+           OVERLAYS
+           ============================================ -->
+      <div id="overlay-root"></div>
+
+      <!-- ============================================
+           HEADER
+           ============================================ -->
+      <header class="top-bar" role="banner">
+        <div class="site-id">
+          <h1 class="site-name">whydoesthiswork.com</h1>
+          <span class="site-sub">local AI stack console</span>
+        </div>
+
+        <button
+          id="themeToggle"
+          class="top-btn"
+          type="button"
+          aria-label="Toggle theme"
+          aria-pressed="true"
+          aria-controls="console-root"
+        >
+          mode: dark
+        </button>
+      </header>
+
+      <!-- ============================================
+           STATUS CARDS
+           ============================================ -->
+      <section
+        class="status-grid"
+        aria-label="System status"
+        id="status-grid"
+      ></section>
+
+      <!-- ============================================
+           LOG PANEL
+           ============================================ -->
+      <main class="log-panel" id="mainLog" tabindex="-1">
+        <pre
+          id="output"
+          role="log"
+          aria-live="polite"
+          aria-atomic="false"
+          aria-relevant="additions"
+        ></pre>
+      </main>
+
+      <!-- ============================================
+           COMMAND BAR
+           ============================================ -->
+      <nav class="cmd-bar" aria-label="Control surface">
+        <div class="cmd-buttons" id="cmd-buttons"></div>
+
+        <label for="cmdline" class="visually-hidden">Command line</label>
+        <input
+          id="cmdline"
+          class="cmd-input"
+          type="text"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          inputmode="text"
+          placeholder="type command and press Enter (e.g. help)"
+        />
+      </nav>
+    </div>
+    <!-- /.console-shell -->
+
+    <!-- Auth (launch code) overlay -->
+    <div id="auth-overlay" class="overlay" hidden aria-hidden="true">
+      <div
+        id="auth-content"
+        class="auth-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="auth-title"
+      >
+        <h2 id="auth-title" class="auth-title">CONFIRM LAUNCH</h2>
+        <div class="auth-sub">Enter launch code:</div>
+
+        <input
+          type="password"
+          class="auth-input"
+          id="auth-input"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+        <div
+          class="auth-error"
+          id="auth-error"
+          role="status"
+          aria-live="polite"
+        >
+          Please enter launch code.
+        </div>
+
+        <div class="auth-actions">
+          <button type="button" class="auth-btn secondary" id="auth-cancel">
+            ABORT
+          </button>
+          <button type="button" class="auth-btn primary" id="auth-ok">
+            LAUNCH
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

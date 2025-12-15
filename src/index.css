@@ -1,0 +1,44 @@
+/* Self-hosted fonts via fontsource */
+@import "@fontsource/inter/latin-300.css"; /* light */
+@import "@fontsource/inter/latin-400.css"; /* normal */
+@import "@fontsource/inter/latin-500.css"; /* medium */
+@import "@fontsource/inter/latin-600.css"; /* semibold */
+@import "@fontsource/inter/latin-800.css"; /* extrabold */
+@import "@fontsource/playfair-display/latin-600.css"; /* semibold */
+@import "@fontsource/playfair-display/latin-600-italic.css"; /* semibold italic */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Fade in the page on initial load */
+.page-fade-in {
+  opacity: 0;
+  animation: pageFadeIn 1.2s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-in {
+    opacity: 1;
+    animation: none;
+  }
+}
