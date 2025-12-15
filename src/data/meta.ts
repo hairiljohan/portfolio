@@ -10,7 +10,7 @@ export type MetaEntry = {
 };
 
 const AUTHOR = "Hairil Johan";
-const FALLBACK_SITE_URL = "https://hairiljohan.com";
+const FALLBACK_SITE_URL = "https://hairiljohan.me";
 
 // Prefer a configured site URL, fall back to Vercel's preview hostname, then the production domain.
 const rawSiteUrl =
