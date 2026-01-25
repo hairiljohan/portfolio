@@ -53,10 +53,6 @@ Defines trusted sources for content:
 
 Headers configured in `vercel.json`
 
-### Netlify
-
-Headers configured in `netlify.toml`
-
 ### Other Platforms (Cloudflare Pages, GitHub Pages, etc.)
 
 Generic headers file in `public/_headers`
