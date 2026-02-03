@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
 import { NAV_ITEMS } from "../constants";
 import { cn } from "../utils/classNames";
 import { textPrimary, mobileMenuOverlay } from "../utils/tw";
@@ -10,7 +10,7 @@ interface MobileMenuProps {
   /** Callback to toggle the menu */
   onToggle: () => void;
   /** Current theme */
-  theme: "light" | "dark";
+  theme: "light" | "dark" | "system";
   /** Callback to toggle theme */
   onToggleTheme: () => void;
   /** Click handler for navigation links */
@@ -101,9 +101,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         <button
           onClick={onToggleTheme}
           className="p-2 text-charcoal dark:text-cream"
-          aria-label="Toggle dark mode"
+          aria-label="Toggle theme mode"
         >
-          {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
+          {theme === "light" ? (
+            <Moon size={24} />
+          ) : theme === "dark" ? (
+            <Sun size={24} />
+          ) : (
+            <Monitor size={24} />
+          )}
         </button>
 
         <button

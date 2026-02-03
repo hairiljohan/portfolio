@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Monitor } from "lucide-react";
 import { NAV_ITEMS } from "../constants";
 import { useCanHover } from "../hooks/useCanHover";
 import { useWindowEvent } from "../hooks/useWindowEvent";
@@ -11,7 +11,8 @@ import MobileMenu from "./MobileMenu";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  type ThemeMode = "light" | "dark" | "system";
+  const [themeMode, setThemeMode] = useState<ThemeMode>("system");
   const canHover = useCanHover();
 
   // Throttle scroll handler to improve performance
@@ -23,35 +24,58 @@ const Navbar: React.FC = () => {
 
   useWindowEvent("scroll", handleScroll, { passive: true });
 
+  const applyThemeMode = (mode: ThemeMode) => {
+    setThemeMode(mode);
+    const resolvedTheme =
+      mode === "system"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : mode;
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+  };
+
   useEffect(() => {
-    // Check initial theme
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getStoredThemeMode = () => {
+      const stored = localStorage.getItem("theme");
+      return stored === "light" || stored === "dark" || stored === "system"
+        ? stored
+        : null;
+    };
+
+    const storedThemeMode = getStoredThemeMode() ?? "system";
+    applyThemeMode(storedThemeMode);
+
+    const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+      const mode = getStoredThemeMode() ?? "system";
+      if (mode === "system") {
+        document.documentElement.classList.toggle("dark", event.matches);
+      }
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleSystemThemeChange);
     } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
+      mediaQuery.addListener(handleSystemThemeChange);
     }
 
     return () => {
       handleScroll.cancel();
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", handleSystemThemeChange);
+      } else {
+        mediaQuery.removeListener(handleSystemThemeChange);
+      }
     };
   }, [handleScroll]);
 
   const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      localStorage.theme = "dark";
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      localStorage.theme = "light";
-      document.documentElement.classList.remove("dark");
-    }
+    const nextMode =
+      themeMode === "light" ? "dark" : themeMode === "dark" ? "system" : "light";
+    localStorage.setItem("theme", nextMode);
+    applyThemeMode(nextMode);
   };
 
   const handleClick = (
@@ -129,9 +153,15 @@ const Navbar: React.FC = () => {
                   "md:hover:bg-white/50 md:dark:hover:bg-white/10"
                 )
               )}
-              aria-label="Toggle dark mode"
+              aria-label="Toggle theme mode"
             >
-              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+              {themeMode === "light" ? (
+                <Moon size={18} />
+              ) : themeMode === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Monitor size={18} />
+              )}
             </button>
 
             <a
@@ -153,7 +183,7 @@ const Navbar: React.FC = () => {
           <MobileMenu
             isOpen={isOpen}
             onToggle={() => setIsOpen(!isOpen)}
-            theme={theme}
+            theme={themeMode}
             onToggleTheme={toggleTheme}
             onNavigate={handleClick}
           />
