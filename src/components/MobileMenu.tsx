@@ -104,9 +104,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           aria-label="Toggle theme mode"
         >
           {theme === "light" ? (
-            <Moon size={24} />
-          ) : theme === "dark" ? (
             <Sun size={24} />
+          ) : theme === "dark" ? (
+            <Moon size={24} />
           ) : (
             <Monitor size={24} />
           )}

@@ -156,9 +156,9 @@ const Navbar: React.FC = () => {
               aria-label="Toggle theme mode"
             >
               {themeMode === "light" ? (
-                <Moon size={18} />
-              ) : themeMode === "dark" ? (
                 <Sun size={18} />
+              ) : themeMode === "dark" ? (
+                <Moon size={18} />
               ) : (
                 <Monitor size={18} />
               )}
