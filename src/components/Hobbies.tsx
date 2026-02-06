@@ -27,7 +27,7 @@ const Hobbies: React.FC = () => {
             key={index}
             tabIndex={0}
             className={cn(
-              "group flex flex-col items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-charcoal"
+              "group flex flex-col items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-charcoal",
             )}
           >
             <div
@@ -35,15 +35,15 @@ const Hobbies: React.FC = () => {
                 "relative w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 flex items-center justify-center mb-6 transition-all duration-500 overflow-hidden group-focus-visible:bg-accent-orange group-focus-visible:scale-110",
                 hoverClass(
                   canHover,
-                  "md:group-hover:bg-accent-orange md:group-hover:scale-110"
-                )
+                  "md:group-hover:bg-accent-orange md:group-hover:scale-110",
+                ),
               )}
             >
               <hobby.icon size={32} className="text-white relative z-10" />
               <div
                 className={cn(
                   "absolute inset-0 bg-gradient-to-tr from-orange-600 to-yellow-500 opacity-0 transition-opacity duration-500 group-focus-visible:opacity-100",
-                  hoverClass(canHover, "md:group-hover:opacity-100")
+                  hoverClass(canHover, "md:group-hover:opacity-100"),
                 )}
               />
             </div>
@@ -51,7 +51,7 @@ const Hobbies: React.FC = () => {
             <h3
               className={cn(
                 "text-xl font-medium mb-2 transition-colors duration-300 group-focus-visible:text-accent-orange",
-                hoverClass(canHover, "md:group-hover:text-accent-orange")
+                hoverClass(canHover, "md:group-hover:text-accent-orange"),
               )}
             >
               {hobby.name}
@@ -59,17 +59,17 @@ const Hobbies: React.FC = () => {
 
             <div
               className={cn(
-                "h-auto overflow-hidden transition-all duration-500 group-focus-visible:h-auto",
-                hoverClass(canHover, "md:h-0 md:group-hover:h-auto")
+                "h-auto overflow-hidden transition-[max-height] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] md:max-h-0 md:group-focus-visible:max-h-96",
+                hoverClass(canHover, "md:group-hover:max-h-96"),
               )}
             >
               <p
                 className={cn(
-                  "text-center text-white/60 text-base leading-relaxed max-w-[280px] px-5 py-4 bg-white/5 md:bg-white/10 rounded-2xl opacity-100 transition-all duration-500 delay-75 group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
+                  "text-center text-white/60 text-base leading-relaxed max-w-[280px] px-5 py-4 bg-white/5 md:bg-white/10 rounded-2xl opacity-100 transition-all duration-850 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
                   hoverClass(
                     canHover,
-                    "md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0"
-                  )
+                    "md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0",
+                  ),
                 )}
               >
                 {hobby.description}
