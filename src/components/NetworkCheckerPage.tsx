@@ -1,61 +1,23 @@
 import React from "react";
-import type { LucideIcon } from "lucide-react";
-import { Activity, Radio, Shield, Wifi } from "lucide-react";
+import { Wifi } from "lucide-react";
 import BackButton from "./BackButton";
 import DetailPillRow from "./DetailPillRow";
 import { Card } from "./Card";
-import { headingMd, headingXl, textSecondary } from "../utils/tw";
+import { headingMd, headingXl, textSecondary, captionBase } from "../utils/tw";
 import { HOME_SHOWCASE_LINK } from "../utils/navigation";
+import {
+  screenshotSrc,
+  iconSrc,
+  wifiSrc,
+  pills,
+  highlights,
+} from "../data/networkCheckerData";
 
 const NetworkCheckerPage: React.FC = () => {
-  const showcaseLink = HOME_SHOWCASE_LINK;
-  const screenshotSrc = "/assets/network-checker/gbe.webp";
-  const iconSrc = "/assets/network-checker/icon.webp";
-  const wifiSrc = "/assets/network-checker/wifi.webp";
-  const captionClass =
-    "p-4 text-sm text-charcoal/60 dark:text-cream/70 bg-cream-dark/50 dark:bg-charcoal/60 leading-relaxed";
-  const pills = [
-    { label: "Mac utility" },
-    { label: "Link speed checker", variant: "accent" as const },
-    { label: "Shell script + Automator" },
-  ];
-  type HighlightItem = {
-    icon: LucideIcon;
-    iconClass: string;
-    title: string;
-    description: string;
-  };
-  const highlights: HighlightItem[] = [
-    {
-      icon: Activity,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Shell script core",
-      description:
-        "A bash script reads the current network interface and link speed, then maps it to simple labels like 10 Mbps, 100 Mbps, 1 Gbps, and Wi‑Fi.",
-    },
-    {
-      icon: Shield,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "Dock vs Wi‑Fi sanity check",
-      description:
-        "It helps me confirm if my Mac is actually using the wired Ethernet from the dock or if it silently fell back to Wi‑Fi.",
-    },
-    {
-      icon: Radio,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "Future‑proof speeds",
-      description:
-        "I extended it to include 2.5G, 5G, and 10G Ethernet so it is ready if I upgrade my network later.",
-    },
-  ];
-
   return (
     <div className="bg-cream dark:bg-charcoal text-charcoal dark:text-cream min-h-screen">
       <div className="max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <BackButton href={showcaseLink} className="mb-10" />
+        <BackButton href={HOME_SHOWCASE_LINK} className="mb-10" />
 
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-4">
@@ -153,7 +115,7 @@ const NetworkCheckerPage: React.FC = () => {
                     decoding="async"
                   />
                 </div>
-                <figcaption className={captionClass}>
+                <figcaption className={captionBase}>
                   <p className="font-semibold">
                     Top: Example output from the utility when my docked Mac is
                     using Thunderbolt Ethernet at a full 1 Gbps.
@@ -179,7 +141,7 @@ const NetworkCheckerPage: React.FC = () => {
                       decoding="async"
                     />
                   </div>
-                  <figcaption className={captionClass}>
+                  <figcaption className={captionBase}>
                     I generated this icon with ChatGPT, exported it as a PNG,
                     converted it to an ICNS file, and use it as the custom app
                     icon for the Network Checker utility.

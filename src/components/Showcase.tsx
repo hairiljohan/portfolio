@@ -1,6 +1,6 @@
 import React from "react";
 import SectionWrapper from "./SectionWrapper";
-import { PROJECTS } from "../constants";
+import { PROJECTS } from "../data/projects";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCanHover } from "../hooks/useCanHover";
 import { useCarousel } from "../hooks/useCarousel";
@@ -25,7 +25,7 @@ const Showcase: React.FC = () => {
           <p
             className={cn(
               "text-charcoal/50 dark:text-cream/50 max-w-xl text-lg",
-              textPrimaryAnimated
+              textPrimaryAnimated,
             )}
           >
             A friendly little corner to explore my projects and trinkets. A mix
@@ -38,6 +38,9 @@ const Showcase: React.FC = () => {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
+        role="region"
+        aria-label="Project showcase carousel"
+        aria-roledescription="carousel"
         className="flex gap-6 md:gap-8 overflow-x-auto pb-8 pt-4 px-2 snap-x snap-mandatory no-scrollbar"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
@@ -75,8 +78,8 @@ const Showcase: React.FC = () => {
                 "group relative flex-shrink-0 w-[85vw] md:w-[600px] h-[400px] md:h-[500px] snap-center rounded-card overflow-hidden cursor-pointer bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-charcoal",
                 hoverClass(
                   canHover,
-                  "md:hover:border-accent-orange/50 md:dark:hover:border-accent-orange/50 md:hover:shadow-xl"
-                )
+                  "md:hover:border-accent-orange/50 md:dark:hover:border-accent-orange/50 md:hover:shadow-xl",
+                ),
               )}
             >
               {/* Large Background Icon for visual interest */}
@@ -85,8 +88,8 @@ const Showcase: React.FC = () => {
                   "absolute right-[-10%] bottom-[-10%] opacity-[0.03] dark:opacity-[0.05] transition-all duration-700 pointer-events-none group-focus-visible:opacity-[0.08] group-focus-visible:scale-110",
                   hoverClass(
                     canHover,
-                    "md:group-hover:opacity-[0.08] md:dark:group-hover:opacity-[0.1] md:group-hover:scale-110"
-                  )
+                    "md:group-hover:opacity-[0.08] md:dark:group-hover:opacity-[0.1] md:group-hover:scale-110",
+                  ),
                 )}
               >
                 <project.icon size={400} strokeWidth={1} />
@@ -99,8 +102,8 @@ const Showcase: React.FC = () => {
                     "w-32 h-32 md:w-40 md:h-40 rounded-full bg-cream-dark/30 dark:bg-white/10 flex items-center justify-center text-charcoal dark:text-cream transition-all duration-500 group-focus-visible:scale-110 group-focus-visible:bg-accent-orange group-focus-visible:text-white",
                     hoverClass(
                       canHover,
-                      "md:group-hover:scale-110 md:group-hover:bg-accent-orange md:group-hover:text-white"
-                    )
+                      "md:group-hover:scale-110 md:group-hover:bg-accent-orange md:group-hover:text-white",
+                    ),
                   )}
                 >
                   <project.icon size={64} strokeWidth={1.5} />
@@ -120,8 +123,8 @@ const Showcase: React.FC = () => {
                         "text-charcoal/70 dark:text-cream/70 text-lg mb-3 font-medium leading-tight max-w-[90%] opacity-100 transition-all duration-500 mt-6 md:mt-8 group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
                         hoverClass(
                           canHover,
-                          "md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0"
-                        )
+                          "md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0",
+                        ),
                       )}
                     >
                       {project.description}
@@ -136,8 +139,8 @@ const Showcase: React.FC = () => {
                         "w-12 h-12 rounded-full bg-charcoal dark:bg-cream text-white dark:text-charcoal flex items-center justify-center opacity-100 scale-100 transition-all duration-300 shadow-lg group-focus-visible:opacity-100 group-focus-visible:scale-100",
                         hoverClass(
                           canHover,
-                          "md:opacity-0 md:scale-75 md:group-hover:opacity-100 md:group-hover:scale-100"
-                        )
+                          "md:opacity-0 md:scale-75 md:group-hover:opacity-100 md:group-hover:scale-100",
+                        ),
                       )}
                     >
                       <ArrowUpRight size={20} />
@@ -163,8 +166,8 @@ const Showcase: React.FC = () => {
               actionButtonBase,
               hoverClass(
                 canHover,
-                "md:hover:bg-gray-50 md:dark:hover:bg-white/20"
-              )
+                "md:hover:bg-gray-50 md:dark:hover:bg-white/20",
+              ),
             )}
             aria-label="Scroll left"
           >
@@ -176,8 +179,8 @@ const Showcase: React.FC = () => {
               actionButtonBase,
               hoverClass(
                 canHover,
-                "md:hover:bg-gray-50 md:dark:hover:bg-white/20"
-              )
+                "md:hover:bg-gray-50 md:dark:hover:bg-white/20",
+              ),
             )}
             aria-label="Scroll right"
           >

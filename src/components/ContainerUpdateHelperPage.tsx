@@ -1,120 +1,33 @@
 import React from "react";
-import type { LucideIcon } from "lucide-react";
-import { ClipboardList, PackagePlus, RefreshCw, Sparkles } from "lucide-react";
+import { PackagePlus } from "lucide-react";
 import BackButton from "./BackButton";
 import DetailPillRow from "./DetailPillRow";
 import { Card } from "./Card";
-import { headingMd, headingXl, textSecondary } from "../utils/tw";
+import {
+  headingMd,
+  headingXl,
+  textSecondary,
+  captionBase,
+  surfaceBase,
+} from "../utils/tw";
 import { HOME_SHOWCASE_LINK } from "../utils/navigation";
+import {
+  pills,
+  introParagraph,
+  workflowParagraph,
+  owuiCaption,
+  searxngCaption,
+  groupedImages,
+  workflowCards,
+  defaultWorkflowContainer,
+  defaultWorkflowDescription,
+} from "../data/containerUpdateHelperData";
 
 const ContainerUpdateHelperPage: React.FC = () => {
-  const showcaseLink = HOME_SHOWCASE_LINK;
-  const introParagraph =
-    "I built this small utility after I started working with Docker containers. Updating a container normally means running several terminal commands: stop the container, remove it, pull the new image, and run it again. Doing this by hand becomes repetitive when you update containers often.";
-
-  const workflowParagraph =
-    "I used Script Editor on macOS to build a simple tool that turns each step into a one-button action. Each button runs a complete part of the update process—stop, remove, pull, and run—without needing to type commands or remember flags. It makes my update workflow faster and reduces mistakes when I am updating my containers.";
-
-  const owuiCaption =
-    "Snapshots from the OpenWebUI update flow. The helper walks through stop, remove, pull, and run so I can refresh that container with a couple of clicks instead of a long command chain.";
-
-  const searxngCaption =
-    "Snapshots from the SearXNG update flow. I use the same buttons to cycle the container, but I can pause between steps to confirm the new image starts cleanly before moving on.";
-
-  const galleryImages = [
-    {
-      file: "owui update.webp",
-      alt: "Update helper showing Owui pull and restart flow",
-    },
-    { file: "owui.webp", alt: "Owui container ready state inside the helper" },
-    { file: "searxng update.webp", alt: "SearXNG container update snapshot" },
-    { file: "searxng.webp", alt: "SearXNG status card post-update" },
-  ].map((image) => ({
-    ...image,
-    src: `/updater/${encodeURIComponent(image.file)}`,
-  }));
-
-  const groupedImages = [
-    {
-      id: "owui",
-      images: galleryImages.slice(0, 2),
-    },
-    {
-      id: "searxng",
-      images: galleryImages.slice(2, 4),
-    },
-  ];
-
-  const captionClass =
-    "p-4 text-sm text-charcoal/60 dark:text-cream/70 bg-cream-dark/50 dark:bg-charcoal/60 leading-relaxed";
-  const galleryCardClass =
-    "p-4 md:p-6 space-y-4 shadow-lg border border-charcoal/10 dark:border-white/10";
-  const pills = [
-    { label: "Homelab" },
-    { label: "Containers", variant: "accent" as const },
-    { label: "Update helper" },
-  ];
-  const surfaceClass =
-    "border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5";
-  const defaultWorkflowContainer = "p-5";
-  const defaultWorkflowDescription =
-    "text-sm md:text-base text-charcoal/70 dark:text-cream/70";
-  type WorkflowCard = {
-    icon: LucideIcon;
-    iconClass: string;
-    title: string;
-    description: string[];
-    containerClass?: string;
-    descriptionClass?: string;
-    label?: string;
-    stackedHeader?: boolean;
-    descriptionInHeader?: boolean;
-    headerWrapperClass?: string;
-  };
-  const workflowCards: WorkflowCard[] = [
-    {
-      icon: RefreshCw,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Rolling updates",
-      description: [
-        "I still run updates container-by-container, but each phase now lives behind a button. I can stop and remove the old container, pull the latest image, and start it again without retyping the full command chain.",
-      ],
-      descriptionInHeader: true,
-    },
-    {
-      icon: ClipboardList,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "Checks",
-      description: [
-        "Having the steps broken into separate buttons makes it easy to pause between actions, double-check container state, and confirm that the new image starts cleanly before I move on.",
-      ],
-      descriptionInHeader: true,
-    },
-    {
-      icon: Sparkles,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Work in progress",
-      label: "Status",
-      description: [
-        "Right now this helper focuses on a handful of containers I update most often, wrapping the usual Docker commands in simple Script Editor actions.",
-        "I plan to keep refining it as my homelab grows—adding better prompts, safety checks, and small quality-of-life improvements so updates stays stable.",
-      ],
-      containerClass: "p-6 space-y-4 min-h-[320px]",
-      descriptionClass:
-        "text-sm text-charcoal/70 dark:text-cream/70 leading-relaxed",
-      stackedHeader: false,
-      descriptionInHeader: false,
-      headerWrapperClass: "flex items-center gap-3",
-    },
-  ];
-
   return (
     <div className="bg-cream dark:bg-charcoal text-charcoal dark:text-cream min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <BackButton href={showcaseLink} className="mb-10" />
+        <BackButton href={HOME_SHOWCASE_LINK} className="mb-10" />
 
         <div className="space-y-8 md:space-y-10">
           <div className="space-y-4">
@@ -184,7 +97,7 @@ const ContainerUpdateHelperPage: React.FC = () => {
                   return (
                     <Card
                       key={card.title}
-                      className={`${surfaceClass} ${containerClass}`}
+                      className={`${surfaceBase} ${containerClass}`}
                     >
                       {headerWrapperClass ? (
                         <div className={headerWrapperClass}>
@@ -229,7 +142,7 @@ const ContainerUpdateHelperPage: React.FC = () => {
                 <Card
                   key={group.id}
                   as="figure"
-                  className={`${galleryCardClass} flex flex-col`}
+                  className="p-4 md:p-6 space-y-4 shadow-lg border border-charcoal/10 dark:border-white/10 flex flex-col"
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
                     {group.images.map((image) => (
@@ -247,7 +160,7 @@ const ContainerUpdateHelperPage: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                  <figcaption className={captionClass}>
+                  <figcaption className={captionBase}>
                     {group.id === "owui" ? owuiCaption : searxngCaption}
                   </figcaption>
                 </Card>

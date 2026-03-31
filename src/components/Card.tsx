@@ -18,51 +18,7 @@ interface CardProps {
   as?: "div" | "article" | "section" | "figure";
 }
 
-interface CardSectionProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-type CardComponent = React.FC<CardProps> & {
-  Content: React.FC<CardSectionProps>;
-  Header: React.FC<CardSectionProps>;
-  Footer: React.FC<CardSectionProps>;
-};
-
-/**
- * Flexible base Card component with composition pattern
- *
- * Features:
- * - Multiple variants for different use cases
- * - Optional hover effects
- * - Composable - children control internal layout
- * - Type-safe props
- *
- * @example
- * // Simple card
- * <Card variant="elevated">
- *   <h3>Title</h3>
- *   <p>Content</p>
- * </Card>
- *
- * @example
- * // Interactive card with hover
- * <Card
- *   variant="interactive"
- *   hover
- *   hoverClassName="md:hover:scale-105"
- *   onClick={() => console.log('clicked')}
- * >
- *   <CardContent />
- * </Card>
- *
- * @example
- * // Custom styled card
- * <Card className="h-80 w-full bg-gradient-to-br from-blue-500">
- *   <CustomContent />
- * </Card>
- */
-export const Card: CardComponent = ({
+export const Card: React.FC<CardProps> = ({
   children,
   className = "",
   variant = "default",
@@ -71,10 +27,8 @@ export const Card: CardComponent = ({
   onClick,
   as: Component = "div",
 }) => {
-  // Base styles for all cards
   const baseStyles = "rounded-3xl overflow-hidden transition-all duration-500";
 
-  // Variant-specific styles
   const variantStyles = {
     default: "bg-white dark:bg-white/5",
     bordered:
@@ -85,7 +39,6 @@ export const Card: CardComponent = ({
       "bg-white dark:bg-white/5 border border-transparent cursor-pointer",
   };
 
-  // Apply hover styles if enabled
   const hoverStyles = hover && hoverClassName ? hoverClassName : "";
 
   return (
@@ -95,7 +48,7 @@ export const Card: CardComponent = ({
         variantStyles[variant],
         hoverStyles,
         onClick && "cursor-pointer",
-        className
+        className,
       )}
       onClick={onClick}
     >
@@ -103,35 +56,5 @@ export const Card: CardComponent = ({
     </Component>
   );
 };
-
-const CardContent: React.FC<CardSectionProps> = ({
-  children,
-  className = "",
-}) => <div className={cn("p-6 md:p-8", className)}>{children}</div>;
-
-const CardHeader: React.FC<CardSectionProps> = ({
-  children,
-  className = "",
-}) => <div className={cn("p-6 md:p-8 pb-0", className)}>{children}</div>;
-
-const CardFooter: React.FC<CardSectionProps> = ({
-  children,
-  className = "",
-}) => <div className={cn("p-6 md:p-8 pt-0", className)}>{children}</div>;
-
-/**
- * Card.Content - Container for card content with padding
- */
-Card.Content = CardContent;
-
-/**
- * Card.Header - Header section for cards
- */
-Card.Header = CardHeader;
-
-/**
- * Card.Footer - Footer section for cards
- */
-Card.Footer = CardFooter;
 
 export default Card;

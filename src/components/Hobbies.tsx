@@ -1,6 +1,6 @@
 import React from "react";
 import SectionWrapper from "./SectionWrapper";
-import { HOBBIES } from "../constants";
+import { HOBBIES } from "../data/hobbies";
 import { useCanHover } from "../hooks/useCanHover";
 import { cn, hoverClass } from "../utils/classNames";
 import { headingLg } from "../utils/tw";

@@ -1,6 +1,6 @@
 import React from "react";
 import SectionWrapper from "./SectionWrapper";
-import { SKILLS } from "../constants";
+import { SKILLS } from "../data/skills";
 import { useCanHover } from "../hooks/useCanHover";
 import { cn, hoverClass } from "../utils/classNames";
 import { headingLg, textPrimaryAnimated } from "../utils/tw";
@@ -20,10 +20,11 @@ const Skills: React.FC = () => {
         <p
           className={cn(
             "text-charcoal/50 dark:text-cream/50 text-base italic",
-            textPrimaryAnimated
+            textPrimaryAnimated,
           )}
         >
-          Hover to find out more
+          <span className="hidden md:inline">Hover or focus</span>
+          <span className="md:hidden">Tap</span> to find out more
         </p>
       </div>
 
@@ -36,8 +37,8 @@ const Skills: React.FC = () => {
               "group relative h-80 w-full rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 bg-white dark:bg-white/5 border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-charcoal",
               hoverClass(
                 canHover,
-                "md:hover:shadow-2xl md:hover:shadow-accent-blue/10 md:hover:border-gray-100 md:dark:hover:border-white/10"
-              )
+                "md:hover:shadow-2xl md:hover:shadow-accent-blue/10 md:hover:border-gray-100 md:dark:hover:border-white/10",
+              ),
             )}
           >
             {/* Default State */}
@@ -46,8 +47,8 @@ const Skills: React.FC = () => {
                 "absolute inset-0 flex flex-col items-center justify-center p-8 transition-all duration-500 group-focus-visible:opacity-10 group-focus-visible:scale-95",
                 hoverClass(
                   canHover,
-                  "md:group-hover:opacity-10 md:group-hover:scale-95"
-                )
+                  "md:group-hover:opacity-10 md:group-hover:scale-95",
+                ),
               )}
             >
               <div
@@ -60,7 +61,7 @@ const Skills: React.FC = () => {
               <h3
                 className={cn(
                   "text-2xl font-bold text-center",
-                  textPrimaryAnimated
+                  textPrimaryAnimated,
                 )}
               >
                 {skill.title}
@@ -73,8 +74,8 @@ const Skills: React.FC = () => {
                 "absolute inset-0 flex flex-col items-center justify-center p-8 opacity-100 translate-y-0 transition-all duration-300 bg-white/50 dark:bg-zinc-900/90 backdrop-blur-sm group-focus-visible:opacity-100 group-focus-visible:translate-y-0",
                 hoverClass(
                   canHover,
-                  "md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0"
-                )
+                  "md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0",
+                ),
               )}
             >
               <div

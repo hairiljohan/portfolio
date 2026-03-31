@@ -3,7 +3,6 @@
 @import "@fontsource/inter/latin-400.css"; /* normal */
 @import "@fontsource/inter/latin-500.css"; /* medium */
 @import "@fontsource/inter/latin-600.css"; /* semibold */
-@import "@fontsource/inter/latin-800.css"; /* extrabold */
 @import "@fontsource/playfair-display/latin-600.css"; /* semibold */
 @import "@fontsource/playfair-display/latin-600-italic.css"; /* semibold italic */
 
@@ -33,6 +32,43 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* Hero animation keyframes */
+@keyframes heroSpinCw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes heroSpinCcw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes heroBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+@keyframes heroFloatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-60vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh);
+    opacity: 0;
   }
 }
 

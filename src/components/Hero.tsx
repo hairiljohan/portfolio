@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
       ([entry]) => {
         setShouldBounce(entry.isIntersecting && entry.intersectionRatio > 0.1);
       },
-      { threshold: [0, 0.1, 0.25, 0.5, 1] }
+      { threshold: [0, 0.1, 0.25, 0.5, 1] },
     );
 
     observer.observe(node);
@@ -56,9 +56,10 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="absolute bottom-28 left-6 md:left-12 flex items-center gap-4 text-sm font-medium text-charcoal/40 dark:text-cream/40 transition-colors duration-300 z-10">
-          <span className={bounceClass}>
+          <span className={bounceClass} aria-hidden="true">
             <ArrowDown size={20} />
           </span>
+          <span className="sr-only">Scroll down to explore more content</span>
           Scroll to explore
         </div>
       </div>

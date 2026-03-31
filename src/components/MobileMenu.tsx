@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
-import { NAV_ITEMS } from "../constants";
+import { NAV_ITEMS } from "../data/navItems";
 import { cn } from "../utils/classNames";
 import { textPrimary, mobileMenuOverlay } from "../utils/tw";
 
@@ -46,8 +46,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
     const focusable = Array.from(
       overlay.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
     ).filter((el) => !el.hasAttribute("aria-hidden"));
 
     // Focus the first focusable item when opening
@@ -131,7 +131,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           mobileMenuOverlay,
           isOpen
             ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            : "opacity-0 pointer-events-none",
         )}
         aria-hidden={!isOpen}
         tabIndex={-1}

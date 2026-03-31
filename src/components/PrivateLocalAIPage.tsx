@@ -1,107 +1,31 @@
 import React from "react";
-import { GlobeLock, Server, Shield, Smartphone } from "lucide-react";
+import { GlobeLock } from "lucide-react";
 import BackButton from "./BackButton";
 import DetailPillRow from "./DetailPillRow";
 import { Card } from "./Card";
-import { headingMd, headingXl, textSecondary } from "../utils/tw";
+import {
+  headingMd,
+  headingXl,
+  textSecondary,
+  captionBase,
+  surfaceBase,
+} from "../utils/tw";
 import { HOME_SHOWCASE_LINK } from "../utils/navigation";
+import {
+  pills,
+  whatList,
+  whyList,
+  buildingBlocks,
+  media,
+} from "../data/privateLocalAIData";
 
 const PrivateLocalAIPage: React.FC = () => {
-  const showcaseLink = HOME_SHOWCASE_LINK;
-  const captionClass =
-    "p-4 text-sm text-charcoal/60 dark:text-cream/70 bg-cream-dark/50 dark:bg-charcoal/60 leading-relaxed";
-  const surfaceClass =
-    "border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5 shadow-lg";
-  const toSrc = (file: string) => `/custom/${encodeURIComponent(file)}`;
-  const pills = [
-    { label: "Homelab" },
-    { label: "Local AI", variant: "accent" as const },
-    { label: "Caddy + Tailscale" },
-  ];
-  const whatList = [
-    "Caddy running locally: A lightweight reverse proxy always on, so my apps are reachable by domain instead of port numbers.",
-    "Caddyfile routing: Simple rules mapping friendly hostnames to local services (e.g., whydoesthiswork.home → 127.0.0.1), plus other local tools like ComfyUI.",
-    "Pi-hole local DNS records: Custom .home domains point to my machine’s Tailscale IP, so names resolve anywhere on my network automatically.",
-    "Desktop access: Open WebUI loads through the custom domain just like a hosted site, while still running on my machine.",
-    "Mobile access: The same domain works on my phone and iPad via Tailscale, so I can use my local models anywhere.",
-  ];
-  const whyList = [
-    "Better UX for local dev: No more remembering ports or typing localhost. I just go to a domain.",
-    "Private by default: Tailscale keeps the AI instance off the public web. Only my devices on the tailnet can reach it.",
-    "No router issues: No port‑forwarding or firewall exposure — just encrypted device‑to‑device access.",
-    "Feels like a real product: Stable URL, clean routing, and consistent access across desktop and mobile.",
-  ];
-  const buildingBlocks = [
-    {
-      icon: Shield,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Private overlay first",
-      description:
-        "Tailscale keeps every service behind the tailnet, so the .home domains only exist for devices I trust.",
-    },
-    {
-      icon: Server,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "Caddy reverse proxy",
-      description:
-        "Routes whydoesthiswork.home and other hostnames to local ports, letting me forget about 127.0.0.1:3000 entirely.",
-    },
-    {
-      icon: GlobeLock,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "DNS that follows me",
-      description:
-        "Pi‑hole holds the DNS records for each .home address and points them to my Tailscale IP so they resolve on any device.",
-    },
-    {
-      icon: Smartphone,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "No-public deployment",
-      description:
-        "Caddy, Pi-hole, and Tailscale let me use my local AI models from my mobile devices over a private domain without exposing anything to the public internet.",
-    },
-  ];
-  const media = {
-    desktop: {
-      src: toSrc("dekstop screenshot.webp"),
-      alt: "Open WebUI running through a custom .home domain on desktop",
-      caption:
-        "Open WebUI loading through my custom domain instead of localhost: the reverse proxy makes it feel like a hosted app even though it is still local.",
-    },
-    mobile: {
-      src: toSrc("mobile screenshot.webp"),
-      alt: "Open WebUI reachable via the same .home domain on mobile",
-      caption:
-        "The same domain resolves on my phone through Tailscale, so I can chat with local models without exposing anything publicly.",
-    },
-    caddyControl: {
-      src: toSrc("cadddy control.webp"),
-      alt: "Caddy admin showing local sites and listeners",
-      caption:
-        "A small macOS Script Editor wrapper I built around a shell script. It lets me launch or stop Caddy with one click and check my reverse‑proxy status without opening Terminal.",
-    },
-    caddyfile: {
-      src: toSrc("caddyfile.webp"),
-      alt: "Caddyfile snippet mapping hostnames to local services",
-      caption:
-        "Simple Caddyfile rules map each hostname to 127.0.0.1 targets, keeping the routing readable and easy to tweak.",
-    },
-    pihole: {
-      src: toSrc("pihole.webp"),
-      alt: "Pi-hole local DNS records pointing to Tailscale IP",
-      caption:
-        "Pi‑hole carries the local DNS records so whydoesthiswork.home and the rest resolve to my Tailscale IP from any device.",
-    },
-  };
+  const surfaceWithShadow = `${surfaceBase} shadow-lg`;
 
   return (
     <div className="bg-cream dark:bg-charcoal text-charcoal dark:text-cream min-h-screen">
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <BackButton href={showcaseLink} className="mb-10" />
+        <BackButton href={HOME_SHOWCASE_LINK} className="mb-10" />
 
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-4">
@@ -168,7 +92,7 @@ const PrivateLocalAIPage: React.FC = () => {
                 <aside className="w-full md:w-auto">
                   <Card
                     as="figure"
-                    className={`${surfaceClass} flex flex-col max-w-sm w-full`}
+                    className={`${surfaceWithShadow} flex flex-col max-w-sm w-full`}
                   >
                     <div className="bg-cream-dark/60 dark:bg-charcoal/60 flex items-center justify-center px-3 py-4">
                       <img
@@ -179,7 +103,7 @@ const PrivateLocalAIPage: React.FC = () => {
                         decoding="async"
                       />
                     </div>
-                    <figcaption className={captionClass}>
+                    <figcaption className={captionBase}>
                       {media.mobile.caption}
                     </figcaption>
                   </Card>
@@ -192,7 +116,7 @@ const PrivateLocalAIPage: React.FC = () => {
                       return (
                         <Card
                           key={card.title}
-                          className={`${surfaceClass} p-6 md:p-7 flex items-start gap-4 w-full`}
+                          className={`${surfaceWithShadow} p-6 md:p-7 flex items-start gap-4 w-full`}
                         >
                           <div className={card.iconClass}>
                             <Icon size={20} />
@@ -226,7 +150,7 @@ const PrivateLocalAIPage: React.FC = () => {
                   <Card
                     key={item.alt}
                     as="figure"
-                    className={`${surfaceClass} flex flex-col`}
+                    className={`${surfaceWithShadow} flex flex-col`}
                   >
                     <div className="relative w-full bg-cream-dark/60 dark:bg-charcoal/60 aspect-[4/3] max-h-[520px] overflow-hidden">
                       <img
@@ -237,7 +161,7 @@ const PrivateLocalAIPage: React.FC = () => {
                         decoding="async"
                       />
                     </div>
-                    <figcaption className={captionClass}>
+                    <figcaption className={captionBase}>
                       {item.caption}
                     </figcaption>
                   </Card>
@@ -248,7 +172,7 @@ const PrivateLocalAIPage: React.FC = () => {
                 <h3 className={headingMd}>Caddy Control</h3>
                 <Card
                   as="figure"
-                  className={`${surfaceClass} flex flex-col max-w-xl mx-auto`}
+                  className={`${surfaceWithShadow} flex flex-col max-w-xl mx-auto`}
                 >
                   <div className="bg-cream-dark/60 dark:bg-charcoal/60 flex items-center justify-center p-3">
                     <img
@@ -259,7 +183,7 @@ const PrivateLocalAIPage: React.FC = () => {
                       decoding="async"
                     />
                   </div>
-                  <figcaption className={captionClass}>
+                  <figcaption className={captionBase}>
                     {media.caddyControl.caption}
                   </figcaption>
                 </Card>

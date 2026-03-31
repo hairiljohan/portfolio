@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Sun, Moon, Monitor } from "lucide-react";
-import { NAV_ITEMS } from "../constants";
+import { NAV_ITEMS } from "../data/navItems";
 import { useCanHover } from "../hooks/useCanHover";
 import { useWindowEvent } from "../hooks/useWindowEvent";
 import { cn, hoverClass } from "../utils/classNames";
@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
 
   useWindowEvent("scroll", handleScroll, { passive: true });
 
-  const applyThemeMode = (mode: ThemeMode) => {
+  const applyThemeMode = useCallback((mode: ThemeMode) => {
     setThemeMode(mode);
     const resolvedTheme =
       mode === "system"
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           : "light"
         : mode;
     document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
-  };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -69,18 +69,22 @@ const Navbar: React.FC = () => {
         mediaQuery.removeListener(handleSystemThemeChange);
       }
     };
-  }, [handleScroll]);
+  }, [handleScroll, applyThemeMode]);
 
   const toggleTheme = () => {
     const nextMode =
-      themeMode === "light" ? "dark" : themeMode === "dark" ? "system" : "light";
+      themeMode === "light"
+        ? "dark"
+        : themeMode === "dark"
+          ? "system"
+          : "light";
     localStorage.setItem("theme", nextMode);
     applyThemeMode(nextMode);
   };
 
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
     setIsOpen(false);
@@ -98,98 +102,94 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <>
-      <nav
-        className={`sticky top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled ? "py-4" : "py-6 md:py-8"
-        }`}
-      >
-        <div
-          className={`${sectionContainer} flex items-center justify-between`}
+    <nav
+      className={`sticky top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? "py-4" : "py-6 md:py-8"
+      }`}
+    >
+      <div className={`${sectionContainer} flex items-center justify-between`}>
+        {/* Logo */}
+        <a
+          href="#hero"
+          onClick={(e) => handleClick(e, "#hero")}
+          className={cn(
+            "text-2xl font-bold font-serif tracking-tight z-50 relative",
+            textPrimary,
+          )}
         >
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => handleClick(e, "#hero")}
+          HJ<span className="text-accent-orange">.</span>
+        </a>
+
+        {/* Desktop Nav */}
+        <div
+          className={`hidden md:flex items-center gap-1 rounded-full px-2 py-2 transition-all duration-300 ${
+            scrolled
+              ? "bg-white/70 dark:bg-charcoal/70 backdrop-blur-xl shadow-sm border border-white/20 dark:border-white/5"
+              : "bg-transparent"
+          }`}
+        >
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleClick(e, item.href)}
+              className={cn(
+                "px-5 py-2 text-sm font-medium text-charcoal/70 dark:text-cream/70 rounded-full transition-colors",
+                hoverClass(
+                  canHover,
+                  "md:hover:text-charcoal md:dark:hover:text-cream md:hover:bg-white/50 md:dark:hover:bg-white/10",
+                ),
+              )}
+            >
+              {item.label}
+            </a>
+          ))}
+
+          <button
+            onClick={toggleTheme}
             className={cn(
-              "text-2xl font-bold font-serif tracking-tight z-50 relative",
-              textPrimary
+              "p-2 rounded-full text-charcoal/70 dark:text-cream/70 transition-colors",
+              hoverClass(
+                canHover,
+                "md:hover:bg-white/50 md:dark:hover:bg-white/10",
+              ),
+            )}
+            aria-label="Toggle theme mode"
+          >
+            {themeMode === "light" ? (
+              <Sun size={18} />
+            ) : themeMode === "dark" ? (
+              <Moon size={18} />
+            ) : (
+              <Monitor size={18} />
+            )}
+          </button>
+
+          <a
+            href="#contact"
+            onClick={(e) => handleClick(e, "#contact")}
+            className={cn(
+              "ml-2 px-5 py-2 text-sm font-medium bg-charcoal dark:bg-cream text-white dark:text-charcoal rounded-full transition-colors",
+              hoverClass(
+                canHover,
+                "md:hover:bg-accent-orange md:dark:hover:bg-accent-orange md:dark:hover:text-white",
+              ),
             )}
           >
-            HJ<span className="text-accent-orange">.</span>
+            Let's Connect
           </a>
-
-          {/* Desktop Nav */}
-          <div
-            className={`hidden md:flex items-center gap-1 rounded-full px-2 py-2 transition-all duration-300 ${
-              scrolled
-                ? "bg-white/70 dark:bg-charcoal/70 backdrop-blur-xl shadow-sm border border-white/20 dark:border-white/5"
-                : "bg-transparent"
-            }`}
-          >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={cn(
-                  "px-5 py-2 text-sm font-medium text-charcoal/70 dark:text-cream/70 rounded-full transition-colors",
-                  hoverClass(
-                    canHover,
-                    "md:hover:text-charcoal md:dark:hover:text-cream md:hover:bg-white/50 md:dark:hover:bg-white/10"
-                  )
-                )}
-              >
-                {item.label}
-              </a>
-            ))}
-
-            <button
-              onClick={toggleTheme}
-              className={cn(
-                "p-2 rounded-full text-charcoal/70 dark:text-cream/70 transition-colors",
-                hoverClass(
-                  canHover,
-                  "md:hover:bg-white/50 md:dark:hover:bg-white/10"
-                )
-              )}
-              aria-label="Toggle theme mode"
-            >
-              {themeMode === "light" ? (
-                <Sun size={18} />
-              ) : themeMode === "dark" ? (
-                <Moon size={18} />
-              ) : (
-                <Monitor size={18} />
-              )}
-            </button>
-
-            <a
-              href="#contact"
-              onClick={(e) => handleClick(e, "#contact")}
-              className={cn(
-                "ml-2 px-5 py-2 text-sm font-medium bg-charcoal dark:bg-cream text-white dark:text-charcoal rounded-full transition-colors",
-                hoverClass(
-                  canHover,
-                  "md:hover:bg-accent-orange md:dark:hover:bg-accent-orange md:dark:hover:text-white"
-                )
-              )}
-            >
-              Let's Connect
-            </a>
-          </div>
-
-          {/* Mobile Menu */}
-          <MobileMenu
-            isOpen={isOpen}
-            onToggle={() => setIsOpen(!isOpen)}
-            theme={themeMode}
-            onToggleTheme={toggleTheme}
-            onNavigate={handleClick}
-          />
         </div>
-      </nav>
-    </>
+
+        {/* Mobile Menu */}
+        <MobileMenu
+          isOpen={isOpen}
+          onToggle={() => setIsOpen(!isOpen)}
+          theme={themeMode}
+          onToggleTheme={toggleTheme}
+          onNavigate={handleClick}
+        />
+      </div>
+    </nav>
   );
 };
 

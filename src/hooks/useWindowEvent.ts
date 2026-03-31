@@ -5,6 +5,8 @@ type EventTargetWithAdd = Pick<
   "addEventListener" | "removeEventListener"
 >;
 
+const DEFAULT_OPTIONS: AddEventListenerOptions = { passive: true };
+
 /**
  * Adds an event listener to a target and cleans it up on unmount.
  * Defaults to passive listeners.
@@ -12,10 +14,10 @@ type EventTargetWithAdd = Pick<
 export const useWindowEvent = (
   event: string,
   handler: EventListenerOrEventListenerObject,
-  options: AddEventListenerOptions | boolean = { passive: true },
+  options: AddEventListenerOptions | boolean = DEFAULT_OPTIONS,
   target: EventTargetWithAdd | undefined = typeof window !== "undefined"
     ? window
-    : undefined
+    : undefined,
 ) => {
   useEffect(() => {
     if (!target) return;

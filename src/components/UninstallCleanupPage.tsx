@@ -1,88 +1,23 @@
 import React from "react";
-import type { LucideIcon } from "lucide-react";
-import { ShieldCheck, Sparkles, Timer, Trash2 } from "lucide-react";
+import { Timer } from "lucide-react";
 import BackButton from "./BackButton";
 import DetailPillRow from "./DetailPillRow";
 import { Card } from "./Card";
-import { headingMd, headingXl, textSecondary } from "../utils/tw";
+import { headingMd, headingXl, textSecondary, surfaceBase } from "../utils/tw";
 import { HOME_SHOWCASE_LINK } from "../utils/navigation";
+import {
+  gifSrc,
+  pills,
+  handleDescriptionClass,
+  handleCards,
+  footerCards,
+} from "../data/uninstallCleanupData";
 
 const UninstallCleanupPage: React.FC = () => {
-  const showcaseLink = HOME_SHOWCASE_LINK;
-  const gifSrc = "/cleaner/public.gif";
-  const gifCardClass =
-    "rounded-[32px] overflow-hidden border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5 shadow-2xl";
-  const pills = [
-    { label: "Utility" },
-    { label: "Cleanup", variant: "accent" as const },
-    { label: "Terminal helper" },
-  ];
-  const surfaceClass =
-    "border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5";
-  const handleDescriptionClass = "text-sm text-charcoal/70 dark:text-cream/70";
-  type InfoCard = {
-    icon: LucideIcon;
-    iconClass: string;
-    title: string;
-    description: string | string[];
-    label?: string;
-    descriptionClass?: string;
-  };
-  const handleCards: InfoCard[] = [
-    {
-      icon: Trash2,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Leftover files",
-      description:
-        "Searches for files and folders whose names still contain the app name long after it has been dragged to the trash.",
-    },
-    {
-      icon: ShieldCheck,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      title: "Safe checks",
-      description:
-        "Keeps the human in the loop: results are meant to be reviewed with ChatGPT or manually before anything is deleted.",
-    },
-    {
-      icon: Sparkles,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      title: "Finishing pass",
-      description:
-        "Helps me leave fewer traces behind so that repeated installs and uninstalls do not slowly clutter the system.",
-    },
-  ];
-  const footerCards: InfoCard[] = [
-    {
-      icon: Trash2,
-      iconClass:
-        "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center",
-      label: "Stack",
-      title: "macOS Script Editor · shell · ChatGPT",
-      description:
-        "Script Editor gives me a small native prompt, the shell does the heavy lifting with a single reusable command.",
-      descriptionClass:
-        "text-sm text-charcoal/70 dark:text-cream/70 leading-relaxed",
-    },
-    {
-      icon: ShieldCheck,
-      iconClass:
-        "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center",
-      label: "Status",
-      title: "Personal utility",
-      description:
-        "This is a personal tool I use on my own Mac when I am uninstalling apps. It is not polished for public release, but it already makes cleanup feel calmer and more deliberate.",
-      descriptionClass:
-        "text-sm text-charcoal/70 dark:text-cream/70 leading-relaxed",
-    },
-  ];
-
   return (
     <div className="bg-cream dark:bg-charcoal text-charcoal dark:text-cream min-h-screen">
       <div className="max-w-5xl mx-auto px-6 md:px-12 py-12 md:py-16">
-        <BackButton href={showcaseLink} className="mb-10" />
+        <BackButton href={HOME_SHOWCASE_LINK} className="mb-10" />
 
         <div className="space-y-6 md:space-y-8">
           <div className="space-y-4">
@@ -99,7 +34,7 @@ const UninstallCleanupPage: React.FC = () => {
             </p>
           </div>
 
-          <figure className={`${gifCardClass} max-w-5xl mx-auto`}>
+          <figure className="rounded-[32px] overflow-hidden border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5 shadow-2xl max-w-5xl mx-auto">
             <div className="bg-cream-dark/60 dark:bg-charcoal/60 w-full aspect-[16/9] md:aspect-[2/1] flex items-center justify-center">
               <img
                 src={gifSrc}
@@ -149,7 +84,7 @@ const UninstallCleanupPage: React.FC = () => {
                   return (
                     <Card
                       key={card.title}
-                      className={`${surfaceClass} p-5 flex items-start gap-3`}
+                      className={`${surfaceBase} p-5 flex items-start gap-3`}
                     >
                       <div className={card.iconClass}>
                         <Icon size={20} />
@@ -213,7 +148,7 @@ const UninstallCleanupPage: React.FC = () => {
                 return (
                   <Card
                     key={card.title}
-                    className={`${surfaceClass} p-6 space-y-4 shadow-lg`}
+                    className={`${surfaceBase} p-6 space-y-4 shadow-lg`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={card.iconClass}>

@@ -10,25 +10,6 @@ export const textPrimaryAnimated =
 /** Secondary/muted text color with dark mode support */
 export const textSecondary = "text-charcoal/60 dark:text-cream/60";
 
-/** Tertiary/subtle text color with dark mode support */
-export const textTertiary = "text-charcoal/40 dark:text-cream/40";
-
-// ===== Background Utilities =====
-
-/** Primary background with dark mode support and smooth transitions */
-export const bgPrimary = "bg-cream dark:bg-charcoal transition-colors";
-
-/** Primary background with extended transition duration (300ms) */
-export const bgPrimaryAnimated =
-  "bg-cream dark:bg-charcoal transition-colors duration-300";
-
-/** Card background with subtle dark mode variant */
-export const bgCard = "bg-white dark:bg-white/5";
-
-/** Card background with border and transitions */
-export const bgCardBordered =
-  "bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 transition-all duration-500";
-
 // ===== Typography =====
 
 /** Large section heading (h2) */
@@ -47,12 +28,6 @@ export const headingSm =
   "text-3xl md:text-4xl font-bold text-charcoal dark:text-cream font-serif";
 
 // ===== Layout =====
-
-/** Standard section container padding */
-export const containerPadding = "px-6 md:px-12";
-
-/** Section wrapper max width */
-export const containerMaxWidth = "max-w-7xl mx-auto";
 
 /** Full section container */
 export const sectionContainer = "px-6 md:px-12 max-w-7xl mx-auto";
@@ -76,15 +51,20 @@ export const badgeBase =
 export const mobileMenuOverlay =
   "fixed inset-0 bg-cream/95 dark:bg-charcoal/95 backdrop-blur-3xl z-40 md:hidden flex flex-col items-center justify-center space-y-8 transition-opacity duration-300";
 
-// ===== Cards =====
+// ===== Shared Detail Page Classes =====
 
-/** Base card with rounded corners */
-export const cardBase =
-  "rounded-3xl overflow-hidden transition-all duration-500";
+/** Accent icon circle (w-10 h-10) */
+export const iconCircleAccent =
+  "w-10 h-10 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center";
 
-/** Large card with border radius */
-export const cardLg = "rounded-card-lg";
+/** Neutral icon circle (w-10 h-10) */
+export const iconCircleNeutral =
+  "w-10 h-10 rounded-full bg-charcoal/5 dark:bg-white/10 flex items-center justify-center";
 
-/** Card with hover shadow effect */
-export const cardHoverShadow =
-  "rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 bg-white dark:bg-white/5 border border-transparent";
+/** Caption text for figure elements */
+export const captionBase =
+  "p-4 text-sm text-charcoal/60 dark:text-cream/70 bg-cream-dark/50 dark:bg-charcoal/60 leading-relaxed";
+
+/** Surface card base with border */
+export const surfaceBase =
+  "border border-charcoal/10 dark:border-white/10 bg-white dark:bg-white/5";

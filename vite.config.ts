@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [react()],
     build: {
+      target: "es2020",
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, "index.html"),
@@ -18,10 +19,15 @@ export default defineConfig(({ mode }) => {
           networkChecker: path.resolve(__dirname, "network-checker.html"),
           containerUpdateHelper: path.resolve(
             __dirname,
-            "container-update-helper.html"
+            "container-update-helper.html",
           ),
           uninstallCleanup: path.resolve(__dirname, "uninstall-cleanup.html"),
           privateLocalAI: path.resolve(__dirname, "private-local-ai.html"),
+        },
+        output: {
+          manualChunks: {
+            "vendor-react": ["react", "react-dom"],
+          },
         },
       },
     },
