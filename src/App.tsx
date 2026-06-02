@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import { useSafeTimers } from "./hooks/useSafeTimers";
+import CustomCursor from "./components/CustomCursor";
 
 // Lazy load components below the fold for better initial load performance
 const Skills = lazy(() => import("./components/Skills"));
@@ -64,6 +65,7 @@ const App: React.FC = () => {
         isLoaded ? "opacity-100" : "opacity-0"
       }`}
     >
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

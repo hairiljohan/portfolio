@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import UninstallCleanupPage from "@/components/UninstallCleanupPage";
+import CustomCursor from "@/components/CustomCursor";
 import { applyMeta } from "@/utils/meta";
 import { META } from "@/data/meta";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -16,6 +17,7 @@ applyMeta(META.uninstallCleanup);
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
+    <CustomCursor />
     <UninstallCleanupPage />
     <SpeedInsights />
     <Analytics />

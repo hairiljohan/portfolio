@@ -78,3 +78,89 @@
     animation: none;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-enabled,
+  html.custom-cursor-enabled body,
+  html.custom-cursor-enabled * {
+    cursor: none;
+  }
+
+  html.custom-cursor-enabled input,
+  html.custom-cursor-enabled textarea,
+  html.custom-cursor-enabled [contenteditable],
+  html.custom-cursor-enabled [data-native-cursor] {
+    cursor: text;
+  }
+
+  html.custom-cursor-enabled select {
+    cursor: default;
+  }
+
+  html.custom-cursor-enabled .custom-cursor {
+    cursor: none;
+  }
+}
+
+.custom-cursor {
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2147483647;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0);
+  transition: opacity 160ms ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor.is-native {
+  opacity: 0;
+}
+
+.custom-cursor__ring,
+.custom-cursor__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+.custom-cursor__ring {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(26, 26, 26, 0.5);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.dark .custom-cursor__ring {
+  border-color: rgba(249, 244, 239, 0.55);
+}
+
+.custom-cursor__dot {
+  width: 6px;
+  height: 6px;
+  background: #ea580c;
+  box-shadow: 0 0 14px rgba(234, 88, 12, 0.35);
+}
+
+.custom-cursor.is-interactive .custom-cursor__ring {
+  width: 46px;
+  height: 46px;
+  border-color: #ea580c;
+  background: rgba(234, 88, 12, 0.08);
+}
