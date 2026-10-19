@@ -7,7 +7,8 @@ Status: agreed direction; implementation has not started.
 - Work and commit on `codex/portfolio-redesign`.
 - `main` is the Vercel production branch. Do not commit redesign work directly to it.
 - Local edits and commits do not trigger Git deployments.
-- Push the redesign branch when an online preview is wanted; under the standard Vercel Git integration this creates a preview deployment.
+- Automatic Git deployments are disabled for `codex/portfolio-redesign` in `vercel.json`; pushing this branch with that configuration will not automatically create a preview deployment.
+- Request a manual preview deployment or explicitly re-enable automatic deployments when an online preview is wanted. Other branches, including `main`, retain their existing deployment behavior.
 - Merge into `main` only when the redesign is ready and release is explicitly requested. That merge triggers the production deployment.
 - Creating this branch and committing the plan do not push, merge, or publish anything.
 

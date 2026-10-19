@@ -1,4 +1,9 @@
 {
+  "git": {
+    "deploymentEnabled": {
+      "codex/portfolio-redesign": false
+    }
+  },
   "builds": [
     {
       "src": "package.json",
