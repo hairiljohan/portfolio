@@ -4,6 +4,15 @@
   --background: var(--color-background);
   --foreground: var(--color-text);
   --surface: var(--color-surface-raised);
+  --surface-raised: var(--color-background);
+  --space-6: 1.5rem;
+  --space-8: 2.75rem;
+  --text-lg: 1.125rem;
+  --font-body: inherit;
+  --tracking-body: -0.02em;
+  --shadow-floating: -12px 0 48px rgb(0 0 0 / 12%);
+  --duration-fast: 160ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --surface-muted: var(--color-surface);
   --text-secondary: var(--color-text-muted);
   --text-muted: var(--color-text-muted);

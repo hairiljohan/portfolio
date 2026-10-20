@@ -1,93 +1,77 @@
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
 import MenuButton from "./MenuButton";
+import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "../arc/drawer/drawer";
+import { MenuIcon } from "../arc/icon-morph/icon-morph";
 import SegmentedControl from "../arc/segmented-control/segmented-control";
 import { SharedLayoutBg } from "../beui/shared-layout-bg";
 import { useTheme, type ThemeMode } from "../../hooks/useTheme";
 import styles from "./Header.module.css";
+
+const links = [["About", "#about"], ["Work", "#showcase"], ["Contact", "#contact"]];
+const themeOptions = [
+  { value: "system", label: "System" },
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
+];
+
 export default function Header({ home = false }: { home?: boolean }) {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useTheme();
   const href = (hash: string) => (home ? hash : `/${hash}`);
   useEffect(() => {
-    if (!open) return;
-    const close = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        trigger.current?.focus();
-      }
-    };
     const media = matchMedia("(min-width: 701px)");
-    const onResize = () => {
-      if (media.matches) setOpen(false);
-    };
-    window.addEventListener("keydown", close);
+    const onResize = () => { if (media.matches) setOpen(false); };
     media.addEventListener("change", onResize);
-    return () => {
-      window.removeEventListener("keydown", close);
-      media.removeEventListener("change", onResize);
-    };
-  }, [open]);
+    return () => media.removeEventListener("change", onResize);
+  }, []);
+  const themePicker = (
+    <SegmentedControl label="Color theme" options={themeOptions} value={theme}
+      onValueChange={(value) => setTheme(value as ThemeMode)} />
+  );
   return (
     <>
-      <a className="skip-link" href="#main">
-        Skip to content
-      </a>
+      <a className="skip-link" href="#main">Skip to content</a>
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
-          <a
-            className={styles.logo}
-            href={href("#hero")}
-            aria-label="Hairil Johan, home"
-          >
-            hj<span>.</span>
-          </a>
+          <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home">hj<span>.</span></a>
           <div className={`${styles.controls} arc-controls`}>
-            <MenuButton
-              ref={trigger}
-              className={styles.menu}
-              aria-label="Menu"
-              aria-expanded={open}
-              aria-controls="main-navigation"
-              onClick={() => setOpen(!open)}
-            >
-              {open ? (
-                <X size={18} aria-hidden="true" />
-              ) : (
-                <Menu size={18} aria-hidden="true" />
-              )}
-              <span className={styles.menuLabel}>Menu</span>
-            </MenuButton>
-            <nav
-              id="main-navigation"
-              aria-label="Main"
-              className={`${styles.nav} ${open ? styles.open : ""}`}
-            >
+            <Drawer open={open} onOpenChange={setOpen}>
+              <DrawerTrigger asChild>
+                <MenuButton ref={trigger} className={styles.menu} aria-label="Menu"
+                  onPointerDown={(event) => {
+                    // Focusing a sticky control can scroll Safari/Chromium's page.
+                    if (event.button === 0) event.currentTarget.focus({ preventScroll: true });
+                  }}>
+                  <MenuIcon state={open} size={22} />
+                  <span>Menu</span>
+                </MenuButton>
+              </DrawerTrigger>
+              <DrawerContent title="Menu" description="Explore Hairil Johan’s portfolio." side="right"
+                className={`arc-controls ${styles.mobileDrawer}`}
+                onCloseAutoFocus={(event) => {
+                  event.preventDefault();
+                  trigger.current?.focus({ preventScroll: true });
+                }}>
+                <nav aria-label="Mobile">
+                  <ul className={styles.mobileLinks}>
+                    {links.map(([label, hash]) => (
+                      <li key={hash}><DrawerClose asChild><a href={href(hash)}>{label}</a></DrawerClose></li>
+                    ))}
+                  </ul>
+                </nav>
+                <div className={styles.mobileTheme}>
+                  <p>Appearance</p>
+                  {themePicker}
+                </div>
+              </DrawerContent>
+            </Drawer>
+            <nav aria-label="Main" className={styles.nav}>
               <SharedLayoutBg as="ul" className={styles.navLinks} inset={10}>
-                {[
-                  ["Work", "#showcase"],
-                  ["About", "#about"],
-                  ["Contact", "#contact"],
-                ].map(([label, hash]) => (
-                  <li key={hash}>
-                    <a href={href(hash)} onClick={() => setOpen(false)}>
-                      {label}
-                    </a>
-                  </li>
-                ))}
+                {links.map(([label, hash]) => <li key={hash}><a href={href(hash)}>{label}</a></li>)}
               </SharedLayoutBg>
             </nav>
-            <SegmentedControl
-              label="Color theme"
-              options={[
-                { value: "system", label: "System" },
-                { value: "light", label: "Light" },
-                { value: "dark", label: "Dark" },
-              ]}
-              value={theme}
-              onValueChange={(value) => setTheme(value as ThemeMode)}
-            />
+            <div className={styles.desktopTheme}>{themePicker}</div>
           </div>
         </div>
       </header>

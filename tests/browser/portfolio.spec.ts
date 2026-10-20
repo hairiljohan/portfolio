@@ -33,12 +33,12 @@ test("homepage exposes five project links and preserves section anchors", async 
     .click();
   await expect(page).toHaveURL(/#showcase$/);
 });
-test("mobile disclosure closes with Escape and restores focus", async ({
+test("mobile drawer closes with Escape and restores focus", async ({
   page, browserName,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  const trigger = page.getByRole("button", { name: "Menu", exact: true });
+  const trigger = page.getByRole("button", { name: "Menu", exact: true, includeHidden: true });
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
   await expect(page.getByRole("navigation", { name: "Main" })).toBeHidden();
   await trigger.focus();
@@ -48,8 +48,8 @@ test("mobile disclosure closes with Escape and restores focus", async ({
   await page.keyboard.press(browserName === "webkit" && process.platform === "darwin" ? "Alt+Tab" : "Tab");
   await expect(
     page
-      .getByRole("navigation", { name: "Main" })
-      .getByRole("link", { name: "Work", exact: true }),
+      .getByRole("navigation", { name: "Mobile" })
+      .getByRole("link", { name: "About", exact: true }),
   ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(trigger).toBeFocused();
