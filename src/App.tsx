@@ -6,26 +6,27 @@ import { PROJECTS } from "./data/projects";
 import { SKILLS } from "./data/skills";
 import { HOBBIES } from "./data/hobbies";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect } from "react";
 import styles from "./components/Home.module.css";
 export default function App() {
+  useEffect(() => {
+    // WebKit can restore a hash URL before React has mounted its target.
+    // Preserve a restored scroll position, but recover a missed anchor at the top.
+    const frame = requestAnimationFrame(() => {
+      if (window.location.hash && window.scrollY === 0) {
+        document
+          .getElementById(window.location.hash.slice(1))
+          ?.scrollIntoView({ behavior: "instant" });
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <>
       <Header home />
       <main id="main">
         <Hero />
-        <section
-          id="showcase"
-          className="container"
-          aria-labelledby="work-title"
-        >
-          <div className={styles.workHeading}>
-            <h2 id="work-title">Selected projects</h2>
-            <p>Experiments, useful tools, and things I’m learning.</p>
-          </div>
-          {PROJECTS.map((project, index) => (
-            <ProjectPreview key={project.id} project={project} index={index} />
-          ))}
-        </section>
         <section
           id="about"
           className={`container section ${styles.about}`}
@@ -86,6 +87,19 @@ export default function App() {
               </article>
             ))}
           </div>
+        </section>
+        <section
+          id="showcase"
+          className="container"
+          aria-labelledby="work-title"
+        >
+          <div className={styles.workHeading}>
+            <h2 id="work-title">Selected projects</h2>
+            <p>Experiments, useful tools, and things I’m learning.</p>
+          </div>
+          {PROJECTS.map((project, index) => (
+            <ProjectPreview key={project.id} project={project} index={index} />
+          ))}
         </section>
         <section
           id="contact"

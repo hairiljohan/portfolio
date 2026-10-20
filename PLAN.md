@@ -30,7 +30,9 @@ Baseline screenshots are in `/tmp/portfolio-baseline`, final screenshots in `/tm
 
 Run `npm run dev` for local review. Browser testing requires the Playwright Chromium and WebKit binaries. The remaining release work is to inspect an explicitly requested hosted preview and approve production publication. Nothing in this record authorizes a push, deployment, or merge into `main`.
 
-The sections below preserve the original agreed plan; source line references describe the pre-redesign baseline.
+Follow-up: moved About, skills, and interests ahead of Selected projects at the user's request. The introduction remains first and contact remains last. Added a mount-time anchor fallback for WebKit when back navigation restores a hash URL before its target is rendered; existing nonzero scroll positions remain intact.
+
+The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 
 ## Branch and deployment workflow
 
@@ -78,9 +80,9 @@ Removing Tailwind is a maintainability preference, not an automatic performance 
 Use this order:
 
 1. Introduction
-2. Selected projects
-3. About
-4. Skills and interests
+2. About
+3. Skills and interests
+4. Selected projects
 5. Contact
 
 Keep the hero left-aligned, with your name, a concise introduction, and “View projects” and “Get in touch” links. Use authentic project screenshots as the main visual material. Preserve existing section anchors even where sections move. The current composition is in `src/App.tsx:68`.
