@@ -33,7 +33,7 @@ test("homepage exposes five project links and preserves section anchors", async 
     .click();
   await expect(page).toHaveURL(/#showcase$/);
 });
-test("mobile drawer closes with Escape and restores focus", async ({
+test("mobile bottom sheet closes with Escape and restores focus", async ({
   page, browserName,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });

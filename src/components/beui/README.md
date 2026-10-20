@@ -31,3 +31,21 @@ is used here.
 
 Motion is shared with the existing Arc UI controls. `clsx` is the only added
 package; Tailwind is not reinstated.
+
+## Bottom Sheet — 21 October 2026
+
+Source: https://beui.dev/components/motion/bottom-sheet, obtained from the public
+MCP with its focus-trap, presence-gate, touch, easing, and utility helpers.
+
+The mobile menu uses a content-sized sheet with a downward drag handle, backdrop
+and Escape dismissal, and an explicit close button. Existing theme and navigation
+controls remain. Tailwind utility styles were translated to CSS Modules; shared
+helpers were preserved rather than overwritten. The touch helper exports the
+local class hook, with touch CSS colocated in the sheet module.
+
+Portfolio adaptations add an accessible trigger target ID, close button, dynamic
+viewport sizing and safe-area padding. The application root is inert while open.
+The fixed-body scroll lock runs in a layout effect and restores the position
+instantly; same-page links flush closing before native anchor navigation so the
+lock cannot overwrite their destination. Focus returns without scrolling.
+The backdrop and sheet use a short opacity fade with reduced motion.

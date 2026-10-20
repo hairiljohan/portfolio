@@ -14,7 +14,7 @@ The original plan below has been implemented across the homepage and all five pr
 
 ### Local verification
 
-`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. The browser suite now includes 54 tests across Chromium and WebKit, covering the Arc controls, beUI interactions, and homepage reload position.
+`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. The browser suite now includes 56 tests across Chromium and WebKit, covering the Arc controls, beUI interactions, and homepage reload position.
 
 Browser coverage includes all six routes, both themes, 360/390/768/1024/1440px widths, mobile landscape, 200% text scaling, reduced motion, persisted/system themes, blocked storage, original hashes and browser back, mobile disclosure keyboard traversal and Escape focus restoration, image loading, and the embedded console command flow. Axe checks pass on the portfolio pages in both themes and engines; the unchanged legacy iframe is excluded from automated accessibility scanning. Cleanup video playback was also checked directly.
 
@@ -39,6 +39,8 @@ Follow-up: added all three requested beUI components. Shared Layout Background h
 Follow-up — 21 October 2026: slowed the hero name reveal to approximately 1.4s, including its lead-in and word stagger. Ordinary homepage visits and reloads now start at the hero instead of restoring a scrolled position. Explicit section hashes and browser history traversal retain their existing behavior. A Chromium regression test reproduced the reload issue before the fix; both browser engines pass it after the fix.
 
 Follow-up — 21 October 2026: replaced the mobile disclosure with Arc UI’s right-side Drawer and morphing MenuIcon. About, Work, and Contact use large links with the existing theme selector below. Added Radix Dialog, scoped portal theme tokens, and scroll-safe focus restoration. Desktop navigation remains inline. Browser coverage includes mobile touch navigation from project pages, both themes, modal accessibility, reduced/full motion, close and Escape focus return, scroll preservation, and resize cleanup.
+
+Follow-up — 21 October 2026: replaced the Arc mobile Drawer with the requested beUI Bottom Sheet, retaining Arc’s animated hamburger and theme selector. The sheet sizes to its content, supports downward drag dismissal, and provides an explicit close button. Adapted beUI source to CSS Modules, inert background content, dynamic viewport height, safe-area padding, and scroll-safe anchor navigation. Removed the superseded Arc Drawer and Radix Dialog dependency. Browser tests cover drag dismissal and short-screen scrolling in addition to the existing menu flows.
 
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 

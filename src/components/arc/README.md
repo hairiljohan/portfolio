@@ -19,22 +19,9 @@ Usage: the header wraps these controls in `.arc-controls`. The button controls
 mobile navigation; the segmented control selects System, Light, or Dark through
 the existing persisted theme hook. Navigation links remain anchors.
 
-## Mobile drawer — 21 October 2026
+## Mobile menu icon — 21 October 2026
 
-Added Drawer and Icon Morph from the public registry after inspecting them with
-`shadcn view`:
-
-- https://uiarc.dev/r/drawer.json
-- https://uiarc.dev/r/icon-morph.json
-
-Their source and CSS Modules retain the upstream implementations. Drawer adds
-`@radix-ui/react-dialog` for modal focus management, scroll locking, and Escape
-handling, and reuses the existing Motion dependency. Only `MenuIcon` is imported
-from the icon collection; unused icons can be tree-shaken.
-
-The portalled drawer receives `.arc-controls` directly so its theme tokens remain
-available outside the header. The header supplies large semantic navigation links,
-a theme selector, and a no-scroll focus return callback for the sticky trigger.
-At desktop widths the drawer closes and the inline navigation and theme selector
-remain available. The source uses its upstream header drag-to-dismiss behavior;
-reduced motion uses an opacity fade and disables dragging.
+Icon Morph was added from https://uiarc.dev/r/icon-morph.json after source inspection.
+Only `MenuIcon` is imported; it animates the hamburger into a close icon and
+respects reduced motion. The mobile panel now uses beUI Bottom Sheet. The former
+Arc Drawer source and its Radix Dialog dependency have been removed.

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import MenuButton from "./MenuButton";
-import { Drawer, DrawerContent, DrawerTrigger, DrawerClose } from "../arc/drawer/drawer";
+import { BottomSheet } from "../beui/bottom-sheet";
+import { flushSync } from "react-dom";
 import { MenuIcon } from "../arc/icon-morph/icon-morph";
 import SegmentedControl from "../arc/segmented-control/segmented-control";
 import { SharedLayoutBg } from "../beui/shared-layout-bg";
@@ -36,9 +37,8 @@ export default function Header({ home = false }: { home?: boolean }) {
         <div className={`container ${styles.inner}`}>
           <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home">hj<span>.</span></a>
           <div className={`${styles.controls} arc-controls`}>
-            <Drawer open={open} onOpenChange={setOpen}>
-              <DrawerTrigger asChild>
-                <MenuButton ref={trigger} className={styles.menu} aria-label="Menu"
+
+                <MenuButton ref={trigger} className={styles.menu} aria-label="Menu" aria-expanded={open} aria-haspopup="dialog" aria-controls="mobile-menu" onClick={() => setOpen(!open)}
                   onPointerDown={(event) => {
                     // Focusing a sticky control can scroll Safari/Chromium's page.
                     if (event.button === 0) event.currentTarget.focus({ preventScroll: true });
@@ -46,17 +46,17 @@ export default function Header({ home = false }: { home?: boolean }) {
                   <MenuIcon state={open} size={22} />
                   <span>Menu</span>
                 </MenuButton>
-              </DrawerTrigger>
-              <DrawerContent title="Menu" description="Explore Hairil Johan’s portfolio." side="right"
-                className={`arc-controls ${styles.mobileDrawer}`}
-                onCloseAutoFocus={(event) => {
-                  event.preventDefault();
-                  trigger.current?.focus({ preventScroll: true });
-                }}>
+              <BottomSheet id="mobile-menu" open={open} onOpenChange={setOpen} title="Menu"
+                description="Explore Hairil Johan’s portfolio." snapPoints={["auto"]}
+                className="arc-controls">
                 <nav aria-label="Mobile">
                   <ul className={styles.mobileLinks}>
                     {links.map(([label, hash]) => (
-                      <li key={hash}><DrawerClose asChild><a href={href(hash)}>{label}</a></DrawerClose></li>
+                      <li key={hash}><a href={href(hash)} onClick={(event) => {
+                        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                        // Release the fixed-body scroll lock before the anchor navigates.
+                        flushSync(() => setOpen(false));
+                      }}>{label}</a></li>
                     ))}
                   </ul>
                 </nav>
@@ -64,8 +64,7 @@ export default function Header({ home = false }: { home?: boolean }) {
                   <p>Appearance</p>
                   {themePicker}
                 </div>
-              </DrawerContent>
-            </Drawer>
+              </BottomSheet>
             <nav aria-label="Main" className={styles.nav}>
               <SharedLayoutBg as="ul" className={styles.navLinks} inset={10}>
                 {links.map(([label, hash]) => <li key={hash}><a href={href(hash)}>{label}</a></li>)}
