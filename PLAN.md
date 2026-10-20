@@ -9,12 +9,12 @@ The original plan below has been implemented across the homepage and all five pr
 - Preserved the six public URLs, existing section anchors, project content, metadata, external links, and embedded Launch Console demonstration.
 - Replaced the carousel and decorative cursor with ordinary page flow. Removed Tailwind, obsolete components and helpers, and the unused font.
 - Added an authentic Launch Console screenshot. Replaced the cleanup GIF with a controlled, non-autoplaying MP4 and static poster (approximately 185KB + 14KB versus 2.7MB for one original GIF).
-- Used the plan's local CSS button fallback after inspecting Arc. Its Motion dependency added approximately 54KB gzip for one disclosure control; the final native button provides keyboard access and restrained CSS feedback without that dependency.
+- Integrated Arc UI's source-installed Button for mobile navigation and SegmentedControl for System/Light/Dark theme selection. Both share Motion and retain their upstream reduced-motion behavior. A scoped foundation maps their tokens to the portfolio themes.
 - Reused the requested branch and checkout. Unrelated untracked skill files were excluded from the work. Deployment configuration and legacy demo files were unchanged.
 
 ### Local verification
 
-`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. `npm run test:browser` passes all 34 tests across Chromium and WebKit.
+`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. After the Arc integration, `npm run test:browser` passes all 36 tests across Chromium and WebKit, including theme-segment keyboard navigation.
 
 Browser coverage includes all six routes, both themes, 360/390/768/1024/1440px widths, mobile landscape, 200% text scaling, reduced motion, persisted/system themes, blocked storage, original hashes and browser back, mobile disclosure keyboard traversal and Escape focus restoration, image loading, and the embedded console command flow. Axe checks pass on the portfolio pages in both themes and engines; the unchanged legacy iframe is excluded from automated accessibility scanning. Cleanup video playback was also checked directly.
 
@@ -22,7 +22,7 @@ The final review identified a mobile menu tab-order issue. Moving the trigger be
 
 Visual inspection compared desktop and mobile renders with the supplied references. The implementation retains their quiet hierarchy, generous spacing, neutral surfaces, and image framing while using personal content, accessible muted text, and the agreed blue accent. Native Safari itself has not been separately tested; WebKit engine coverage is included.
 
-Summed gzip sizes across all emitted entry-point chunks decreased from 99.38KB to 79.39KB for JavaScript and from 7.68KB to 4.23KB for CSS. These are build-artifact totals, not initial-page transfer measurements or performance scores.
+Before Arc integration, summed gzip sizes across all emitted entry-point chunks decreased from 99.38KB to 79.39KB for JavaScript and from 7.68KB to 4.23KB for CSS. The later Arc integration adds approximately 54KB of shared gzipped JavaScript and 1.2KB of CSS; this tradeoff is accepted to honor the user's preference for library controls. These are build-artifact totals, not initial-page transfer measurements or performance scores.
 
 Baseline screenshots are in `/tmp/portfolio-baseline`, final screenshots in `/tmp/portfolio-final`, and the baseline Git commit is `b9b6489`. Temporary screenshot files may be removed by the operating system; the source history remains in Git.
 
@@ -31,6 +31,8 @@ Baseline screenshots are in `/tmp/portfolio-baseline`, final screenshots in `/tm
 Run `npm run dev` for local review. Browser testing requires the Playwright Chromium and WebKit binaries. The remaining release work is to inspect an explicitly requested hosted preview and approve production publication. Nothing in this record authorizes a push, deployment, or merge into `main`.
 
 Follow-up: moved About, skills, and interests ahead of Selected projects at the user's request. The introduction remains first and contact remains last. Added a mount-time anchor fallback for WebKit when back navigation restores a hash URL before its target is rendered; existing nonzero scroll positions remain intact.
+
+Follow-up: the user explicitly requested Arc UI or similar React library components. This supersedes the initial native-button fallback. The final implementation retains Arc and Motion, with source provenance and integration notes in `src/components/arc/README.md`. At narrow mobile widths the menu uses its icon and accessible label to leave room for all three visible theme choices.
 
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 

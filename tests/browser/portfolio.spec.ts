@@ -64,18 +64,36 @@ test("theme selection persists across detail pages and follows system", async ({
 }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
-  const select = page.getByLabel("Color theme");
-  await select.selectOption("dark");
+  const themes = page.getByRole("group", { name: "Color theme" });
+  await themes.getByRole("button", { name: "Dark", exact: true }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.goto("/network-checker.html");
   await expect(page.locator("html")).toHaveClass(/dark/);
-  await expect(page.getByLabel("Color theme")).toHaveValue("dark");
-  await page.getByLabel("Color theme").selectOption("system");
+  await expect(themes.getByRole("button", { name: "Dark", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await themes.getByRole("button", { name: "System", exact: true }).click();
   await expect(page.locator("html")).not.toHaveClass(/dark/);
   await page.emulateMedia({ colorScheme: "dark" });
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.reload();
   await expect(page.locator("html")).toHaveClass(/dark/);
+});
+test("theme segments support keyboard selection and a single tab stop", async ({ page }) => {
+  await page.goto("/");
+  const themes = page.getByRole("group", { name: "Color theme" });
+  const system = themes.getByRole("button", { name: "System", exact: true });
+  const light = themes.getByRole("button", { name: "Light", exact: true });
+  const dark = themes.getByRole("button", { name: "Dark", exact: true });
+  await system.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(light).toBeFocused();
+  await expect(light).toHaveAttribute("aria-pressed", "true");
+  await expect(system).toHaveAttribute("tabindex", "-1");
+  await page.keyboard.press("End");
+  await expect(dark).toBeFocused();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await page.keyboard.press("Home");
+  await expect(system).toBeFocused();
+  await expect(system).toHaveAttribute("aria-pressed", "true");
 });
 for (const route of routes)
   test(`direct load and responsive layout ${route}`, async ({ page }) => {
@@ -136,7 +154,7 @@ test("theme initializes before React and handles unavailable storage", async ({
   const context = await browser.newContext({ colorScheme: "light" });
   const page = await context.newPage();
   await page.goto("/");
-  await page.getByLabel("Color theme").selectOption("dark");
+  await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: "Dark", exact: true }).click();
   await page.route("**/*.tsx", (route) => route.abort());
   await page.goto("/network-checker.html");
   await expect(page.locator("html")).toHaveClass(/dark/);
@@ -152,7 +170,7 @@ test("theme initializes before React and handles unavailable storage", async ({
   const p = await blocked.newPage();
   await p.goto("/");
   await expect(p.locator("html")).toHaveClass(/dark/);
-  await p.getByLabel("Color theme").selectOption("light");
+  await p.getByRole("group", { name: "Color theme" }).getByRole("button", { name: "Light", exact: true }).click();
   await expect(p.locator("html")).not.toHaveClass(/dark/);
   await blocked.close();
 });

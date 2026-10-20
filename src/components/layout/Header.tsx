@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import MenuButton from "./MenuButton";
+import SegmentedControl from "../arc/segmented-control/segmented-control";
 import { useTheme, type ThemeMode } from "../../hooks/useTheme";
 import styles from "./Header.module.css";
 export default function Header({ home = false }: { home?: boolean }) {
@@ -41,7 +42,7 @@ export default function Header({ home = false }: { home?: boolean }) {
           >
             hj<span>.</span>
           </a>
-          <div className={styles.controls}>
+          <div className={`${styles.controls} arc-controls`}>
             <MenuButton
               ref={trigger}
               className={styles.menu}
@@ -55,7 +56,7 @@ export default function Header({ home = false }: { home?: boolean }) {
               ) : (
                 <Menu size={18} aria-hidden="true" />
               )}
-              <span>Menu</span>
+              <span className={styles.menuLabel}>Menu</span>
             </MenuButton>
             <nav
               id="main-navigation"
@@ -72,17 +73,16 @@ export default function Header({ home = false }: { home?: boolean }) {
                 </a>
               ))}
             </nav>
-            <label className={styles.theme}>
-              <span className="sr-only">Color theme</span>
-              <select
-                value={theme}
-                onChange={(event) => setTheme(event.target.value as ThemeMode)}
-              >
-                <option value="system">System</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </select>
-            </label>
+            <SegmentedControl
+              label="Color theme"
+              options={[
+                { value: "system", label: "System" },
+                { value: "light", label: "Light" },
+                { value: "dark", label: "Dark" },
+              ]}
+              value={theme}
+              onValueChange={(value) => setTheme(value as ThemeMode)}
+            />
           </div>
         </div>
       </header>

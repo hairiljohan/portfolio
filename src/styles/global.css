@@ -3,5 +3,6 @@
 @import "@fontsource/inter/latin-600.css";
 @import "./reset.css";
 @import "./tokens.css";
+@import "../components/arc/foundation.css";
 @import "./base.css";
 @import "./layout.css";

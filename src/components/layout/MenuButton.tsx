@@ -1,14 +1,13 @@
-import type { ComponentPropsWithRef } from "react";
-import styles from "./MenuButton.module.css";
+import type { Ref } from "react";
+import { Button, type ButtonProps } from "../arc/button/button";
 export default function MenuButton({
-  className = "",
   type = "button",
   ...props
-}: ComponentPropsWithRef<"button">) {
+}: ButtonProps & { ref?: Ref<HTMLButtonElement> }) {
   return (
-    <button
+    <Button
       type={type}
-      className={`${styles.button} ${className}`}
+      variant="ghost"
       {...props}
     />
   );
