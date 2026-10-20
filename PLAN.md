@@ -1,6 +1,6 @@
 # Portfolio redesign and custom CSS migration
 
-Status: implemented and verified locally on `codex/portfolio-redesign`. Hosted preview and production release remain pending explicit instruction.
+Status: implemented and verified locally on `portfolio-redesign`. Hosted preview and production release remain pending explicit instruction.
 
 ## Implementation record — 20 October 2026
 
@@ -36,10 +36,10 @@ The sections below preserve the agreed plan with that updated homepage order; so
 
 ## Branch and deployment workflow
 
-- Work and commit on `codex/portfolio-redesign`.
+- Work and commit on `portfolio-redesign`.
 - `main` is the Vercel production branch. Do not commit redesign work directly to it.
 - Local edits and commits do not trigger Git deployments.
-- Automatic Git deployments are disabled for `codex/portfolio-redesign` in `vercel.json`; pushing this branch with that configuration will not automatically create a preview deployment.
+- Automatic Git deployments are disabled for `portfolio-redesign` in `vercel.json`; pushing this branch with that configuration will not automatically create a preview deployment.
 - Request a manual preview deployment or explicitly re-enable automatic deployments when an online preview is wanted. Other branches, including `main`, retain their existing deployment behavior.
 - Merge into `main` only when the redesign is ready and release is explicitly requested. That merge triggers the production deployment.
 - Creating this branch and committing the plan do not push, merge, or publish anything.

@@ -1,7 +1,7 @@
 {
   "git": {
     "deploymentEnabled": {
-      "codex/portfolio-redesign": false
+      "portfolio-redesign": false
     }
   },
   "builds": [
