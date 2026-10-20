@@ -19,5 +19,5 @@ root.render(
     <App />
     <SpeedInsights />
     <Analytics />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

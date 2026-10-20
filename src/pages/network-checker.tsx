@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import NetworkCheckerPage from "@/components/NetworkCheckerPage";
-import CustomCursor from "@/components/CustomCursor";
 import { applyMeta } from "@/utils/meta";
 import { META } from "@/data/meta";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -17,9 +16,8 @@ applyMeta(META.networkChecker);
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <CustomCursor />
     <NetworkCheckerPage />
     <SpeedInsights />
     <Analytics />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

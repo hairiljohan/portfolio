@@ -1,12 +1,3 @@
-import { GlobeLock, Server, Shield, Smartphone } from "lucide-react";
-import { iconCircleAccent, iconCircleNeutral } from "../utils/tw";
-
-export const pills = [
-  { label: "Homelab" },
-  { label: "Local AI", variant: "accent" as const },
-  { label: "Caddy + Tailscale" },
-];
-
 export const whatList = [
   "Caddy running locally: A lightweight reverse proxy always on, so my apps are reachable by domain instead of port numbers.",
   "Caddyfile routing: Simple rules mapping friendly hostnames to local services (e.g., whydoesthiswork.home → 127.0.0.1), plus other local tools like ComfyUI.",
@@ -24,29 +15,21 @@ export const whyList = [
 
 export const buildingBlocks = [
   {
-    icon: Shield,
-    iconClass: iconCircleAccent,
     title: "Private overlay first",
     description:
       "Tailscale keeps every service behind the tailnet, so the .home domains only exist for devices I trust.",
   },
   {
-    icon: Server,
-    iconClass: iconCircleNeutral,
     title: "Caddy reverse proxy",
     description:
       "Routes whydoesthiswork.home and other hostnames to local ports, letting me forget about 127.0.0.1:3000 entirely.",
   },
   {
-    icon: GlobeLock,
-    iconClass: iconCircleNeutral,
     title: "DNS that follows me",
     description:
       "Pi‑hole holds the DNS records for each .home address and points them to my Tailscale IP so they resolve on any device.",
   },
   {
-    icon: Smartphone,
-    iconClass: iconCircleNeutral,
     title: "No-public deployment",
     description:
       "Caddy, Pi-hole, and Tailscale let me use my local AI models from my mobile devices over a private domain without exposing anything to the public internet.",

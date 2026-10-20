@@ -2,7 +2,7 @@ import { MetaEntry } from "../data/meta";
 
 const ensureTag = (key: "name" | "property", value: string) => {
   let el = document.head.querySelector<HTMLMetaElement>(
-    `meta[${key}="${value}"]`
+    `meta[${key}="${value}"]`,
   );
   if (!el) {
     el = document.createElement("meta");
@@ -43,13 +43,13 @@ export const applyMeta = (meta: MetaEntry) => {
     if (imageWidth) {
       ensureTag("property", "og:image:width").setAttribute(
         "content",
-        imageWidth
+        imageWidth,
       );
     }
     if (imageHeight) {
       ensureTag("property", "og:image:height").setAttribute(
         "content",
-        imageHeight
+        imageHeight,
       );
     }
     if (imageAlt) {
@@ -60,7 +60,7 @@ export const applyMeta = (meta: MetaEntry) => {
   // Twitter
   ensureTag("name", "twitter:card").setAttribute(
     "content",
-    "summary_large_image"
+    "summary_large_image",
   );
   ensureTag("name", "twitter:url").setAttribute("content", url);
   ensureTag("name", "twitter:title").setAttribute("content", title);

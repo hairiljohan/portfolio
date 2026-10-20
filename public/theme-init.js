@@ -1,5 +1,10 @@
 (() => {
-  const stored = localStorage.getItem("theme");
+  let stored;
+  try {
+    stored = localStorage.getItem("theme");
+  } catch {
+    /* Use system preference when storage is unavailable. */
+  }
   const prefersDark =
     typeof window !== "undefined" &&
     window.matchMedia &&
