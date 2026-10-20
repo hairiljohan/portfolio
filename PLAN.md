@@ -14,7 +14,7 @@ The original plan below has been implemented across the homepage and all five pr
 
 ### Local verification
 
-`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. After the Arc integration, `npm run test:browser` passes all 36 tests across Chromium and WebKit, including theme-segment keyboard navigation.
+`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. The browser suite now includes 46 tests across Chromium and WebKit, covering the Arc controls and beUI navigation highlight, reduced-motion hero, and screenshot galleries.
 
 Browser coverage includes all six routes, both themes, 360/390/768/1024/1440px widths, mobile landscape, 200% text scaling, reduced motion, persisted/system themes, blocked storage, original hashes and browser back, mobile disclosure keyboard traversal and Escape focus restoration, image loading, and the embedded console command flow. Axe checks pass on the portfolio pages in both themes and engines; the unchanged legacy iframe is excluded from automated accessibility scanning. Cleanup video playback was also checked directly.
 
@@ -33,6 +33,8 @@ Run `npm run dev` for local review. Browser testing requires the Playwright Chro
 Follow-up: moved About, skills, and interests ahead of Selected projects at the user's request. The introduction remains first and contact remains last. Added a mount-time anchor fallback for WebKit when back navigation restores a hash URL before its target is rendered; existing nonzero scroll positions remain intact.
 
 Follow-up: the user explicitly requested Arc UI or similar React library components. This supersedes the initial native-button fallback. The final implementation retains Arc and Motion, with source provenance and integration notes in `src/components/arc/README.md`. At narrow mobile widths the menu uses its icon and accessible label to leave room for all three visible theme choices.
+
+Follow-up: added all three requested beUI components. Shared Layout Background highlights navigation on hover or focus; Text Reveal animates the hero name once; Project Folder presents four screenshot collections on the Private Local AI and Container Update Helper pages. Existing captions, prominent imagery, project URLs, and section order are preserved. The source is adapted to CSS Modules and both themes, with immediate reduced-motion text and accessible modal focus handling. Source provenance and adaptations are recorded in `src/components/beui/README.md`.
 
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 

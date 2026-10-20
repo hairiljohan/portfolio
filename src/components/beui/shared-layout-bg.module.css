@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+.item,
+.content {
+  position: relative;
+}
+.item {
+  isolation: isolate;
+}
+.content {
+  z-index: 1;
+}
+.pillContainer {
+  position: absolute;
+  inset-block: 0;
+  pointer-events: none;
+}
+.pill {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-surface);
+  pointer-events: none;
+}

@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import styles from "./Home.module.css";
+import { TextReveal } from "./beui/text-reveal";
 export default function Hero() {
   return (
     <section
@@ -8,7 +9,9 @@ export default function Hero() {
       aria-labelledby="introduction"
     >
       <h1 id="introduction">
-        Hairil Johan<span>.</span>
+        <TextReveal text="Hairil Johan" stagger={0.04} blur={2} yOffset={6}>
+          <span className={styles.period}>.</span>
+        </TextReveal>
       </h1>
       <p className={styles.headline}>
         Keeping complex aircraft systems

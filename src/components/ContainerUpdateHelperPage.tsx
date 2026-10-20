@@ -1,9 +1,8 @@
 import ProjectShell, {
   ProjectSection,
-  ProjectFigure,
   ProjectNotes,
-  Gallery,
 } from "./projects/ProjectShell";
+import ScreenshotFolder from "./projects/ScreenshotFolder";
 import { getProject } from "../data/projects";
 import {
   introParagraph,
@@ -32,18 +31,16 @@ export default function ContainerUpdateHelperPage() {
           title={group.id === "owui" ? "Open WebUI updates" : "SearXNG updates"}
         >
           <p>{group.id === "owui" ? owuiCaption : searxngCaption}</p>
-          <Gallery>
-            {group.images.map((image, index) => (
-              <ProjectFigure
-                key={image.file}
-                image={{
-                  ...image,
-                  width: index === 0 ? 904 : 344,
-                  height: index === 0 ? 660 : group.id === "owui" ? 360 : 348,
-                }}
-              />
-            ))}
-          </Gallery>
+          <ScreenshotFolder
+            title={
+              group.id === "owui" ? "Open WebUI updates" : "SearXNG updates"
+            }
+            images={group.images.map((image, index) => ({
+              ...image,
+              width: index === 0 ? 904 : 344,
+              height: index === 0 ? 660 : group.id === "owui" ? 360 : 348,
+            }))}
+          />
         </ProjectSection>
       ))}
     </ProjectShell>

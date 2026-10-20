@@ -1,0 +1,24 @@
+.collection {
+  padding-top: 1rem;
+  margin-block: 1rem 2rem;
+}
+.figure {
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+.figure img {
+  display: block;
+  width: 100%;
+  height: var(--folder-image-height, 100%);
+  max-height: var(--folder-image-max-height, none);
+  object-fit: contain;
+  border-radius: 4px;
+}
+.caption {
+  display: var(--folder-caption-display, none);
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}

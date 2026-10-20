@@ -31,7 +31,19 @@
 .nav {
   gap: 2.2rem;
 }
+.navLinks {
+  flex-direction: row;
+  align-items: center;
+  gap: 2.2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.navLinks li + li {
+  margin: 0;
+}
 .nav a {
+  display: block;
   font-size: 0.875rem;
   color: var(--color-text-muted);
   padding-block: 0.8rem;
@@ -77,5 +89,11 @@
   .nav a {
     padding: 0.85rem 0;
     font-size: 1rem;
+  }
+  .navLinks {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
   }
 }

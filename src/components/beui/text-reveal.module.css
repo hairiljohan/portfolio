@@ -1,0 +1,14 @@
+.root {
+  display: inline-block;
+}
+.line {
+  display: block;
+}
+.singleLine {
+  display: inline;
+}
+.unit,
+.word {
+  display: inline-block;
+  white-space: pre;
+}

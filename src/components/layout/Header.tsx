@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import MenuButton from "./MenuButton";
 import SegmentedControl from "../arc/segmented-control/segmented-control";
+import { SharedLayoutBg } from "../beui/shared-layout-bg";
 import { useTheme, type ThemeMode } from "../../hooks/useTheme";
 import styles from "./Header.module.css";
 export default function Header({ home = false }: { home?: boolean }) {
@@ -63,15 +64,19 @@ export default function Header({ home = false }: { home?: boolean }) {
               aria-label="Main"
               className={`${styles.nav} ${open ? styles.open : ""}`}
             >
-              {[
-                ["Work", "#showcase"],
-                ["About", "#about"],
-                ["Contact", "#contact"],
-              ].map(([label, hash]) => (
-                <a key={hash} href={href(hash)} onClick={() => setOpen(false)}>
-                  {label}
-                </a>
-              ))}
+              <SharedLayoutBg as="ul" className={styles.navLinks} inset={10}>
+                {[
+                  ["Work", "#showcase"],
+                  ["About", "#about"],
+                  ["Contact", "#contact"],
+                ].map(([label, hash]) => (
+                  <li key={hash}>
+                    <a href={href(hash)} onClick={() => setOpen(false)}>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </SharedLayoutBg>
             </nav>
             <SegmentedControl
               label="Color theme"
