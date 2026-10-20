@@ -1,6 +1,15 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("a homepage reload starts at the introduction after scrolling", async ({ page }) => {
+  await page.goto("/");
+  await page.locator("#about").scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => scrollY)).toBeGreaterThan(0);
+  await page.reload();
+  await expect(page.getByRole("heading", { level: 1 })).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+});
+
 test("navigation highlight follows keyboard focus without changing link behavior", async ({
   page,
 }) => {

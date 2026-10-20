@@ -13,7 +13,14 @@ export default function App() {
     // WebKit can restore a hash URL before React has mounted its target.
     // Preserve a restored scroll position, but recover a missed anchor at the top.
     const frame = requestAnimationFrame(() => {
-      if (window.location.hash && window.scrollY === 0) {
+      const navigation = performance.getEntriesByType(
+        "navigation",
+      )[0] as PerformanceNavigationTiming | undefined;
+      if (!window.location.hash && navigation?.type !== "back_forward") {
+        // A fresh visit or reload introduces the page from the hero.
+        // History traversal still retains the browser's saved position.
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      } else if (window.location.hash && window.scrollY === 0) {
         document
           .getElementById(window.location.hash.slice(1))
           ?.scrollIntoView({ behavior: "instant" });

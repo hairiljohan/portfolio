@@ -9,7 +9,14 @@ export default function Hero() {
       aria-labelledby="introduction"
     >
       <h1 id="introduction">
-        <TextReveal text="Hairil Johan" stagger={0.04} blur={2} yOffset={6}>
+        <TextReveal
+          text="Hairil Johan"
+          delay={0.2}
+          duration={1.1}
+          stagger={0.1}
+          blur={2}
+          yOffset={6}
+        >
           <span className={styles.period}>.</span>
         </TextReveal>
       </h1>

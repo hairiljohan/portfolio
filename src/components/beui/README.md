@@ -19,8 +19,9 @@ is used here.
 - Shared Layout Background wraps the navigation's list items, retaining real
   anchor links and keyboard focus feedback. Pointer feedback is gated on a
   hover-capable device. The decorative layer is hidden from assistive technology.
-- Text Reveal animates the hero name once with a 6px offset, a 2px blur and short
-  fades. Reduced motion renders it immediately without a delayed reveal.
+- Text Reveal animates the hero name once with a 6px offset and a 2px blur.
+  The hero uses a 200ms lead-in, a 1.1s fade, and a 100ms word stagger for a
+  roughly 1.4s reveal. Reduced motion renders it immediately without a delay.
 - Project Folder retains beUI's fan, shared-layout transition, focus trap,
   Escape dismissal and focus restoration. The gallery uses larger responsive
   image panels and exposes every image and caption; the closed fan alone is

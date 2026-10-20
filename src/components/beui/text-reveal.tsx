@@ -21,6 +21,7 @@ export interface TextRevealProps {
   split?: SplitMode;
   stagger?: number;
   delay?: number;
+  duration?: number;
   blur?: number;
   yOffset?: string | number;
   spring?: { stiffness?: number; damping?: number; mass?: number };
@@ -55,6 +56,7 @@ export function TextReveal({
   split = "word",
   stagger = 0.09,
   delay = 0,
+  duration = 0.3,
   blur = 12,
   yOffset = "40%",
   spring,
@@ -99,8 +101,8 @@ export function TextReveal({
             ? { duration: 0 }
             : {
                 y: { type: "spring" as const, ...s, delay: d },
-                opacity: { duration: 0.3, ease: EASE_OUT, delay: d },
-                filter: { duration: 0.3, ease: EASE_OUT, delay: d },
+                opacity: { duration, ease: "easeInOut", delay: d },
+                filter: { duration, ease: EASE_OUT, delay: d },
               };
           return (
             <motion.span
