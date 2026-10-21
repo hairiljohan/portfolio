@@ -6,7 +6,7 @@
   --color-text: #202320;
   --color-text-muted: #646962;
   --color-border: #dddfd9;
-  --color-accent: #285cc4;
+  --color-accent: rgb(7, 55, 105);
   --color-on-accent: #fff;
   --color-media: #e4e7e3;
   --font-body:
@@ -25,8 +25,8 @@
   --color-text: #f1f2ef;
   --color-text-muted: #a5aaa5;
   --color-border: #343a35;
-  --color-accent: #8bb4ff;
-  --color-on-accent: #111312;
+  --color-accent: rgb(7, 55, 105);
+  --color-on-accent: #fff;
   --color-media: #252b26;
   --shadow-media: 0 16px 50px -20px rgb(0 0 0 / 65%);
 }

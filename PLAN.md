@@ -42,6 +42,8 @@ Follow-up — 21 October 2026: replaced the mobile disclosure with Arc UI’s ri
 
 Follow-up — 21 October 2026: replaced the Arc mobile Drawer with the requested beUI Bottom Sheet, retaining Arc’s animated hamburger and theme selector. The sheet sizes to its content, supports downward drag dismissal, and provides an explicit close button. Adapted beUI source to CSS Modules, inert background content, dynamic viewport height, safe-area padding, and scroll-safe anchor navigation. Removed the superseded Arc Drawer and Radix Dialog dependency. Browser tests cover drag dismissal and short-screen scrolling in addition to the existing menu flows.
 
+Follow-up — 21 October 2026: changed the shared accent to the user-requested `rgb(7, 55, 105)` in both themes and kept white text on accent-filled hover states. Build and lint pass; light-theme accessibility checks pass in Chromium and WebKit. The exact navy produces known dark-theme text-contrast failures, so the earlier all-accessibility-passing record no longer describes this palette. No lighter dark-theme substitute was introduced.
+
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 
 ## Branch and deployment workflow
