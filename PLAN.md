@@ -44,6 +44,8 @@ Follow-up — 21 October 2026: replaced the Arc mobile Drawer with the requested
 
 Follow-up — 21 October 2026: changed the shared accent to the user-requested `rgb(7, 55, 105)` in both themes and kept white text on accent-filled hover states. Build and lint pass; light-theme accessibility checks pass in Chromium and WebKit. The exact navy produces known dark-theme text-contrast failures, so the earlier all-accessibility-passing record no longer describes this palette. No lighter dark-theme substitute was introduced.
 
+Follow-up — 21 October 2026: changed only the dark-theme accent to the requested `rgb(197, 0, 106)`, retaining `rgb(7, 55, 105)` in light mode. Build and lint pass. Light-theme accessibility checks pass in Chromium and WebKit; small accent text in dark mode still fails contrast checks with this exact magenta.
+
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 
 ## Branch and deployment workflow
