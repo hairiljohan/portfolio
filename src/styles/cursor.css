@@ -1,0 +1,28 @@
+/* Native cursors keep the hotspot exact, without animation or pointer tracking.
+   The contrasting edge remains visible when crossing project imagery. */
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  :root {
+    --cursor-triangle: url("/cursors/triangle-light.svg") 4 4;
+    cursor: var(--cursor-triangle), auto;
+  }
+
+  :root.dark {
+    --cursor-triangle: url("/cursors/triangle-dark.svg") 4 4;
+  }
+
+  body {
+    cursor: var(--cursor-triangle), auto;
+  }
+
+  :root :is(a[href], button, summary, [role="button"]):not(:disabled, [aria-disabled="true"], [aria-busy="true"]) {
+    cursor: var(--cursor-triangle), pointer;
+  }
+
+  :root :is(input, textarea, [contenteditable="true"]) {
+    cursor: auto;
+  }
+
+  :root :is(button, [role="button"]):is(:disabled, [aria-disabled="true"]) {
+    cursor: not-allowed;
+  }
+}

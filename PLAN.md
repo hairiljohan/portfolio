@@ -77,7 +77,7 @@ The repository already has React, TypeScript, and Vite, with six page entry poin
 
 - Retain all six pages, existing content, and public URLs.
 - Use Inter throughout, with a restrained blue accent.
-- Remove the decorative custom cursor.
+- Use the later user-requested rounded triangular native cursor on fine-pointer, hover-capable devices. No circle, trail, or pointer-following animation; preserve native form, disabled-control, touch and forced-colors behavior.
 - Avoid autoplay, scroll hijacking, and continuous background animation.
 - Use authentic project imagery rather than copying imagery from the reference websites.
 
@@ -246,3 +246,5 @@ Approximately **6–9 focused working days** using existing content and assets, 
 This document records the agreed plan and its local implementation results. It does not authorize publishing the site.
 
 Follow-up — 21 October 2026: the carousel Next button and Right Arrow key now return to the first project at the end. Previous remains disabled at the beginning. All six carousel browser checks pass across Chromium/WebKit, mobile/desktop, both themes and reduced/full motion. An initial WebKit resize/Home check failed intermittently; the subsequent run with explicit smooth wraparound coverage passed. Typecheck, lint, unit tests and build pass.
+
+Follow-up — 21 October 2026: added the user-referenced rounded triangular cursor without its circular background. Two 28px SVG assets provide a dark pointer in light mode and a light pointer in dark mode, each with a contrasting outline and a 4px hotspot. Shared CSS covers all six portfolio pages and enabled links/buttons, with normal native fallback cursors. No JavaScript tracking, animation or dependencies. Verified SVG decoding, theme changes, all six routes, reduced motion, disabled controls and touch fallback in Chromium/WebKit; forced-colors fallback checked in Chromium. Inspected both rendered assets at native and enlarged sizes. Build and lint pass.
