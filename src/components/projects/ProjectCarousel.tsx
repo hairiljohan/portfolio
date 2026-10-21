@@ -63,7 +63,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       });
     });
   };
-  const step = (direction: number) => moveTo(range.first - 1 + direction);
+  const step = (direction: number) => moveTo(direction > 0 && range.atEnd ? 0 : range.first - 1 + direction);
 
   return (
     <section className={styles.carousel} aria-label="More projects" aria-roledescription="carousel">
@@ -76,7 +76,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
           <Button type="button" variant="secondary" className={styles.arrow} aria-label="Previous projects" aria-controls={id} aria-disabled={range.atStart} onClick={() => step(-1)}>
             <ArrowLeft size={20} aria-hidden="true" />
           </Button>
-          <Button type="button" variant="secondary" className={styles.arrow} aria-label="Next projects" aria-controls={id} aria-disabled={range.atEnd} onClick={() => step(1)}>
+          <Button type="button" variant="secondary" className={styles.arrow} aria-label="Next projects" aria-controls={id} aria-disabled={range.atStart && range.atEnd} onClick={() => step(1)}>
             <ArrowRight size={20} aria-hidden="true" />
           </Button>
         </div>

@@ -244,3 +244,5 @@ Use semantic variables such as `--color-background`, `--color-text-muted`, `--co
 Approximately **6–9 focused working days** using existing content and assets, including refinement and testing. This is an estimate, not a repository finding. New photography, extensive copywriting, or additional interactive features would increase it.
 
 This document records the agreed plan and its local implementation results. It does not authorize publishing the site.
+
+Follow-up — 21 October 2026: the carousel Next button and Right Arrow key now return to the first project at the end. Previous remains disabled at the beginning. All six carousel browser checks pass across Chromium/WebKit, mobile/desktop, both themes and reduced/full motion. An initial WebKit resize/Home check failed intermittently; the subsequent run with explicit smooth wraparound coverage passed. Typecheck, lint, unit tests and build pass.

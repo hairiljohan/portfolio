@@ -21,8 +21,17 @@ for (const width of [390, 1440]) {
     await expect(previous).toBeEnabled();
     await track.focus();
     await page.keyboard.press("End");
-    await expect(next).toBeDisabled();
     await expect(cards.last()).toBeInViewport({ ratio: 0.9 });
+    await expect.poll(() => track.evaluate(el => el.scrollWidth - el.clientWidth - el.scrollLeft)).toBeLessThan(2);
+    await expect(next).toBeEnabled();
+    await next.click();
+    await expect.poll(() => track.evaluate(el => el.scrollLeft)).toBeLessThan(2);
+    await expect(previous).toBeDisabled();
+    await track.focus();
+    await page.keyboard.press("End");
+    await expect.poll(() => track.evaluate(el => el.scrollWidth - el.clientWidth - el.scrollLeft)).toBeLessThan(2);
+    await page.keyboard.press("ArrowRight");
+    await expect.poll(() => track.evaluate(el => el.scrollLeft)).toBeLessThan(2);
     await page.keyboard.press("Home");
     await expect(previous).toBeDisabled();
     await page.keyboard.press("ArrowRight");
@@ -63,6 +72,11 @@ test("carousel supports native scrolling, full motion, both themes and resizing"
         const left = el.getBoundingClientRect().left;
         return Math.min(...Array.from(el.children).map(slide => Math.abs(slide.getBoundingClientRect().left - left)), Math.abs(el.scrollWidth - el.clientWidth - el.scrollLeft));
       })).toBeLessThan(2);
+      await track.focus();
+      await page.keyboard.press("End");
+      await expect.poll(() => track.evaluate(el => el.scrollWidth - el.clientWidth - el.scrollLeft)).toBeLessThan(2);
+      await carousel.getByRole("button", { name: "Next projects" }).click();
+      await expect.poll(() => track.evaluate(el => el.scrollLeft)).toBeLessThan(2);
       await page.screenshot({ path: test.info().outputPath(`carousel-${colorScheme}-${width}.png`) });
     }
   }
