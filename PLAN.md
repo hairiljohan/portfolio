@@ -250,3 +250,5 @@ Follow-up — 21 October 2026: the carousel Next button and Right Arrow key now 
 Follow-up — 21 October 2026: added the user-referenced rounded triangular cursor without its circular background. Two 28px SVG assets provide a dark pointer in light mode and a light pointer in dark mode, each with a contrasting outline and a 4px hotspot. Shared CSS covers all six portfolio pages and enabled links/buttons, with normal native fallback cursors. No JavaScript tracking, animation or dependencies. Verified SVG decoding, theme changes, all six routes, reduced motion, disabled controls and touch fallback in Chromium/WebKit; forced-colors fallback checked in Chromium. Inspected both rendered assets at native and enlarged sizes. Build and lint pass.
 
 Follow-up — 21 October 2026: reduced both triangle cursor assets from 28px to 24px at the user's request, preserving the shape and theme colors. Adjusted the hotspot from 4px to 3px to match the smaller pointer.
+
+Follow-up — 21 October 2026: reduced both cursor variants from 24px to 22px at the user's request; retained the 3px hotspot and existing shape and colors. Validated both SVG dimensions and syntax.
