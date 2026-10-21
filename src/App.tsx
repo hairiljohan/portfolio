@@ -2,6 +2,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/Hero";
 import ProjectPreview from "./components/projects/ProjectPreview";
+import ProjectCarousel from "./components/projects/ProjectCarousel";
 import { PROJECTS } from "./data/projects";
 import { SKILLS } from "./data/skills";
 import { HOBBIES } from "./data/hobbies";
@@ -104,9 +105,8 @@ export default function App() {
             <h2 id="work-title">Selected projects</h2>
             <p>Experiments, useful tools, and things I’m learning.</p>
           </div>
-          {PROJECTS.map((project, index) => (
-            <ProjectPreview key={project.id} project={project} index={index} />
-          ))}
+          <ProjectPreview project={PROJECTS[0]} index={0} />
+          <ProjectCarousel projects={PROJECTS.slice(1)} />
         </section>
         <section
           id="contact"

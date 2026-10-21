@@ -1,0 +1,15 @@
+.carousel { padding: 0 0 4.5rem; min-width: 0; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-top: 1px solid var(--color-border); }
+.toolbar h3 { margin: 0; font-size: 1.125rem; font-weight: 500; letter-spacing: -0.02em; }
+.controls { display: flex; align-items: center; gap: 0.5rem; }
+.count { color: var(--color-text-muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; margin-right: 0.5rem; white-space: nowrap; }
+.arrow { width: 44px; padding: 0 !important; }
+.arrow[aria-disabled="true"] { opacity: 0.45; cursor: default; }
+.track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 1.5rem) / 2); gap: 1.5rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--color-border) transparent; padding-block: 6px 1.5rem; }
+.track:focus-visible { outline-offset: -2px; }
+.slide { min-width: 0; display: flex; scroll-snap-align: start; }
+@media (max-width: 700px) {
+  .track { grid-auto-columns: 88%; gap: 1rem; }
+  .toolbar { flex-wrap: wrap; }
+  .carousel { padding-bottom: 3rem; }
+}

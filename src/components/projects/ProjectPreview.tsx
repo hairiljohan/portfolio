@@ -4,13 +4,15 @@ import styles from "./ProjectPreview.module.css";
 export default function ProjectPreview({
   project,
   index,
+  compact = false,
 }: {
   project: Project;
   index: number;
+  compact?: boolean;
 }) {
   return (
     <article
-      className={`${styles.preview} ${index === 0 ? styles.featured : ""}`}
+      className={`${styles.preview} ${index === 0 ? styles.featured : ""} ${compact ? styles.card : ""}`}
     >
       <a
         className={styles.media}

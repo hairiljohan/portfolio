@@ -14,7 +14,7 @@ The original plan below has been implemented across the homepage and all five pr
 
 ### Local verification
 
-`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. The browser suite now includes 56 tests across Chromium and WebKit, covering the Arc controls, beUI interactions, and homepage reload position.
+`npm test` passes all 3 theme-initialization tests. `npm run typecheck`, `npm run lint`, and `npm run build` pass. The browser suite now includes 62 tests across Chromium and WebKit, covering the Arc controls, beUI interactions, and homepage reload position.
 
 Browser coverage includes all six routes, both themes, 360/390/768/1024/1440px widths, mobile landscape, 200% text scaling, reduced motion, persisted/system themes, blocked storage, original hashes and browser back, mobile disclosure keyboard traversal and Escape focus restoration, image loading, and the embedded console command flow. Axe checks pass on the portfolio pages in both themes and engines; the unchanged legacy iframe is excluded from automated accessibility scanning. Cleanup video playback was also checked directly.
 
@@ -45,6 +45,8 @@ Follow-up — 21 October 2026: replaced the Arc mobile Drawer with the requested
 Follow-up — 21 October 2026: changed the shared accent to the user-requested `rgb(7, 55, 105)` in both themes and kept white text on accent-filled hover states. Build and lint pass; light-theme accessibility checks pass in Chromium and WebKit. The exact navy produces known dark-theme text-contrast failures, so the earlier all-accessibility-passing record no longer describes this palette. No lighter dark-theme substitute was introduced.
 
 Follow-up — 21 October 2026: changed only the dark-theme accent to the requested `rgb(197, 0, 106)`, retaining `rgb(7, 55, 105)` in light mode. Build and lint pass. Light-theme accessibility checks pass in Chromium and WebKit; small accent text in dark mode still fails contrast checks with this exact magenta.
+
+Follow-up — 21 October 2026: retained Launch Console as the full-width featured project and placed the remaining four in a carousel below it, following the user's approved recommendation. Desktop shows two cards; mobile shows one with a preview of the next. Native scroll snapping supports touch and trackpad scrolling, previous/next buttons, keyboard arrows/Home/End, and focus-driven scrolling to off-screen project links. Existing Arc buttons provide subtle control motion; reduced motion makes programmatic scrolling immediate. No autoplay, new dependencies, or Animate UI conversions were added. Updated the earlier carousel-removal decision for this limited project section. Verified an emulated Chromium touch swipe in addition to the browser suite. Carousel checks passed 18/18 repeated runs across Chromium and WebKit after fixing pending scroll/snap navigation immediately following resize. Build, typecheck, lint, and unit tests pass. The existing requested dark accent's contrast failures remain a separate known issue.
 
 The sections below preserve the agreed plan with that updated homepage order; source line references describe the pre-redesign baseline.
 
@@ -142,7 +144,7 @@ Keep npm and its lockfile. Do not install beUI alerts or OTP inputs without a re
 
 ### 7. Rebuild the homepage around real work
 
-- Present the existing five projects as spacious image-and-text previews rather than a fixed-height carousel.
+- Keep Launch Console as the spacious featured project. Present the other four as a manually controlled, responsive carousel using native CSS scroll snapping.
 - Stack previews on mobile.
 - Include a title, concise purpose, relevant technologies, and a clear project link in each preview.
 - Remove the “future ideas” placeholder from the main showcase.
