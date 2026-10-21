@@ -58,6 +58,7 @@ The sections below preserve the agreed plan with that updated homepage order; so
 - Automatic Git deployments are disabled for `portfolio-redesign` in `vercel.json`; pushing this branch with that configuration will not automatically create a preview deployment.
 - Request a manual preview deployment or explicitly re-enable automatic deployments when an online preview is wanted. Other branches, including `main`, retain their existing deployment behavior.
 - Merge into `main` only when the redesign is ready and release is explicitly requested. That merge triggers the production deployment.
+- **Merge method: choose “Create a merge commit” when merging `portfolio-redesign` into `main`. Do not use “Squash and merge” or “Rebase and merge”.** The user wants to preserve the individual commits and their original history. Remind the user of this choice when preparing the release PR. This preference does not authorize merging or deploying.
 - Creating this branch and committing the plan do not push, merge, or publish anything.
 
 ## Direction and decisions
