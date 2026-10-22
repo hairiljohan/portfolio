@@ -1,5 +1,21 @@
 import { test, expect } from "@playwright/test";
 
+test("the contact title reveals at the page bottom when its normal trigger is unreachable", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1600 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  for (const route of ["/", "/#contact"]) {
+    await page.goto(route);
+    const title = page.locator("#contact-title");
+    await expect(title).toBeAttached();
+    // Let the app's initial scroll restoration finish before simulating the user.
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+    await expect(title).toBeInViewport();
+    expect(await title.evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThan(1600 * 2 / 3);
+    await expect(title.locator("span").last()).toHaveCSS("opacity", "1");
+  }
+});
+
 for (const [width, height] of [[390, 900], [1440, 900], [844, 390]]) {
   test(`section titles wait until further into view before fading at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height });

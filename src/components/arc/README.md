@@ -47,3 +47,7 @@ third of the viewport height and requires 80% of the heading wrapper to enter.
 The inset follows window resizing and mobile orientation changes. Reveals
 wait 250ms before their word stagger; the default blur settles over 1s with a
 650ms opacity fade. Reduced-motion and late-render fallbacks remain immediate.
+
+At the document bottom, a heading that is at least 80% visible may reveal even
+if it cannot reach the normal inset trigger. This preserves the delayed fade for
+short final sections such as Contact, including direct hashes and window resizing.

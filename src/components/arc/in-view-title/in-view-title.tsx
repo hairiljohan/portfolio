@@ -42,22 +42,31 @@ export function InViewTitle({ text, variant = "blur", as = "h2", lines, classNam
   // Use height-based pixels: IntersectionObserver percentage margins use viewport width.
   // Exclude the bottom third so headings reach the reading area before revealing.
   const inView = useInView(ref, { once, amount: .8, margin: `0px 0px ${-Math.round(height / 3)}px 0px` });
-  const [passed, setPassed] = useState(false);
+  const [reachedBoundary, setReachedBoundary] = useState(false);
   useEffect(() => {
-    if (inView || passed) return;
-    const revealPassedTitle = () => {
-      if (ref.current && ref.current.getBoundingClientRect().top < 0) setPassed(true);
+    if (inView || reachedBoundary) return;
+    const revealAtBoundary = () => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (!rect) return;
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+      // The final heading may never reach the inset trigger before scrolling ends.
+      if (rect.top < 0 || (atBottom && rect.height > 0 && visibleHeight >= rect.height * .8)) setReachedBoundary(true);
     };
-    revealPassedTitle();
-    window.addEventListener("scroll", revealPassedTitle, { passive: true });
-    return () => window.removeEventListener("scroll", revealPassedTitle);
-  }, [inView, passed]);
+    revealAtBoundary();
+    window.addEventListener("scroll", revealAtBoundary, { passive: true });
+    window.addEventListener("resize", revealAtBoundary);
+    return () => {
+      window.removeEventListener("scroll", revealAtBoundary);
+      window.removeEventListener("resize", revealAtBoundary);
+    };
+  }, [inView, reachedBoundary]);
   const prefersReduced = useReducedMotion();
   const hydrated = useSyncExternalStore(subscribeHydration, clientSnapshot, serverSnapshot);
   const [serverRendered] = useState(!hydrated);
   const reduced = hydrated && prefersReduced;
   const late = hydrated && serverRendered && lateBoot;
-  const visible = reduced || late || inView || passed;
+  const visible = reduced || late || inView || reachedBoundary;
   const instant = Boolean(reduced || late);
   const Tag = as;
   const wrapperClass = [styles.wrap, hydrated ? "" : styles.pending, className].filter(Boolean).join(" ");
