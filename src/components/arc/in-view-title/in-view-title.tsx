@@ -23,16 +23,17 @@ const standard = [...motionTokens.ease.standard] as [number, number, number, num
 const TRACK_EM = .06;
 
 /** Transform settles longest, blur clears sooner, and opacity leads, so text is readable before it has fully arrived. Hiding is a quick fade with no stagger. */
-function reveal(instant: boolean, visible: boolean, delay: number, settle = .8): Transition {
+function reveal(instant: boolean, visible: boolean, delay: number, settle = 1): Transition {
   if (instant) return { duration: 0 };
   if (!visible) return { duration: motionTokens.duration.exit, ease: standard };
-  const track = (duration: number, ease = enter) => ({ duration, delay, ease });
-  return { y: track(settle), x: track(settle), "--wipe": track(settle, standard), filter: track(settle * .78), opacity: track(settle * .56, standard) };
+  const track = (duration: number, ease = enter) => ({ duration, delay: .25 + delay, ease });
+  return { y: track(settle), x: track(settle), "--wipe": track(settle, standard), filter: track(settle * .78), opacity: track(settle * .65, standard) };
 }
 
 export function InViewTitle({ text, variant = "blur", as = "h2", lines, className, id, once = true }: InViewTitleProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once, amount: .45 });
+  // Wait beyond the bottom edge, so the reveal is still visible as the reader reaches it.
+  const inView = useInView(ref, { once, amount: .8, margin: "0px 0px -80px 0px" });
   const [passed, setPassed] = useState(false);
   useEffect(() => {
     if (inView || passed) return;

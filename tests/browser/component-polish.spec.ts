@@ -1,5 +1,25 @@
 import { test, expect } from "@playwright/test";
 
+for (const width of [390, 1440]) {
+  test(`section titles wait until further into view before fading at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("/");
+    const title = page.locator("#skills-title");
+    const firstWord = title.locator("span").first();
+    await title.evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().bottom - innerHeight + 20, behavior: "instant" }));
+    // Merely entering the bottom edge must not consume the reveal.
+    await page.waitForTimeout(650);
+    await expect(firstWord).toHaveCSS("opacity", "0");
+    await title.evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight / 2, behavior: "instant" }));
+    await page.waitForTimeout(100);
+    await expect(firstWord).toHaveCSS("opacity", "0");
+    await expect(title.locator("span").last()).toHaveCSS("opacity", "1");
+    await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+    await expect(firstWord).toHaveCSS("opacity", "1");
+  });
+}
+
 test("paper plane flies on activation while navigating immediately, and respects reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/#contact");
