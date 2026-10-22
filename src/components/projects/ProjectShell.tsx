@@ -1,3 +1,4 @@
+import { InViewTitle } from "../arc/in-view-title/in-view-title";
 import type { ReactNode } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Header from "../layout/Header";
@@ -81,7 +82,7 @@ export function ProjectSection({
 }) {
   return (
     <section className={styles.section}>
-      <h2>{title}</h2>
+      <InViewTitle text={title} />
       <div className={styles.prose}>{children}</div>
     </section>
   );

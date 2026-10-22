@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ExpandingArrowLink } from "./beui/expanding-arrow-link";
+import { ArrowUpRight } from "lucide-react";
 import styles from "./Home.module.css";
 import { TextReveal } from "./beui/text-reveal";
 export default function Hero() {
@@ -27,10 +28,7 @@ export default function Hero() {
       </p>
       <p className={styles.role}>Aircraft Systems Engineering undergraduate.</p>
       <div className={styles.actions}>
-        <a className="action-link" href="#showcase">
-          View projects
-          <ArrowDown aria-hidden="true" />
-        </a>
+        <ExpandingArrowLink href="#showcase">View projects</ExpandingArrowLink>
         <a className="text-link" href="#contact">
           Get in touch
           <ArrowUpRight aria-hidden="true" />

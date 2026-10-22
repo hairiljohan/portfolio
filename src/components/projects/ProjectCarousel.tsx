@@ -1,3 +1,4 @@
+import { Tooltip } from "../arc/tooltip/tooltip";
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "../arc/button/button";
@@ -63,7 +64,18 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       });
     });
   };
-  const step = (direction: number) => moveTo(direction > 0 && range.atEnd ? 0 : range.first - 1 + direction);
+  const step = (direction: number) => {
+    const node = track.current;
+    if (!node) return;
+    // Read the current position: a keypress can precede the scheduled range update.
+    const viewport = node.getBoundingClientRect();
+    const first = Array.from(node.children).findIndex(slide => {
+      const rect = slide.getBoundingClientRect();
+      return rect.left + rect.width / 2 >= viewport.left - 1;
+    });
+    const atEnd = node.scrollLeft >= node.scrollWidth - node.clientWidth - 2;
+    moveTo(direction > 0 && atEnd ? 0 : Math.max(0, first) + direction);
+  };
 
   return (
     <section className={styles.carousel} aria-label="More projects" aria-roledescription="carousel">
@@ -73,12 +85,16 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
           <span className={styles.count} aria-live="polite" aria-atomic="true">
             {range.first === range.last ? range.first : `${range.first}–${range.last}`} of {projects.length}
           </span>
-          <Button type="button" variant="secondary" className={styles.arrow} aria-label="Previous projects" aria-controls={id} aria-disabled={range.atStart} onClick={() => step(-1)}>
-            <ArrowLeft size={20} aria-hidden="true" />
-          </Button>
-          <Button type="button" variant="secondary" className={styles.arrow} aria-label="Next projects" aria-controls={id} aria-disabled={range.atStart && range.atEnd} onClick={() => step(1)}>
-            <ArrowRight size={20} aria-hidden="true" />
-          </Button>
+          <Tooltip content="Previous projects">
+            <Button type="button" variant="secondary" className={styles.arrow} aria-label="Previous projects" aria-controls={id} aria-disabled={range.atStart} onClick={() => step(-1)}>
+              <ArrowLeft size={20} aria-hidden="true" />
+            </Button>
+          </Tooltip>
+          <Tooltip content="Next projects">
+            <Button type="button" variant="secondary" className={styles.arrow} aria-label="Next projects" aria-controls={id} aria-disabled={range.atStart && range.atEnd} onClick={() => step(1)}>
+              <ArrowRight size={20} aria-hidden="true" />
+            </Button>
+          </Tooltip>
         </div>
       </div>
       <div id={id} ref={track} className={styles.track} role="group" aria-label="Project cards" tabIndex={0}

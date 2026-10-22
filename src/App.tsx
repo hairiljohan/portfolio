@@ -1,3 +1,4 @@
+import { InViewTitle } from "./components/arc/in-view-title/in-view-title";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/Hero";
@@ -40,7 +41,7 @@ export default function App() {
           className={`container section ${styles.about}`}
           aria-labelledby="about-title"
         >
-          <h2 id="about-title">A little about me.</h2>
+          <InViewTitle id="about-title" text="A little about me." />
           <div>
             <p className={styles.lead}>
               I am an Aircraft Systems Engineering undergraduate interested in
@@ -65,7 +66,7 @@ export default function App() {
           className={`container section ${styles.skills}`}
           aria-labelledby="skills-title"
         >
-          <h2 id="skills-title">Engineering, in practice.</h2>
+          <InViewTitle id="skills-title" text="Engineering, in practice." />
           <p className={styles.sectionIntro}>
             The tools I use to explore, model, and understand how things work.
           </p>
@@ -83,7 +84,7 @@ export default function App() {
           className={`container section ${styles.interests}`}
           aria-labelledby="interests-title"
         >
-          <h2 id="interests-title">Curiosity carries on.</h2>
+          <InViewTitle id="interests-title" text="Curiosity carries on." />
           <p className={styles.sectionIntro}>
             Outside the classroom, I learn by building and experimenting.
           </p>
@@ -102,7 +103,7 @@ export default function App() {
           aria-labelledby="work-title"
         >
           <div className={styles.workHeading}>
-            <h2 id="work-title">Selected projects</h2>
+            <InViewTitle id="work-title" text="Selected projects" />
             <p>Experiments, useful tools, and things I’m learning.</p>
           </div>
           <ProjectPreview project={PROJECTS[0]} index={0} />
@@ -114,7 +115,7 @@ export default function App() {
           aria-labelledby="contact-title"
         >
           <div className="container">
-            <h2 id="contact-title">Let’s connect.</h2>
+            <InViewTitle id="contact-title" text="Let’s connect." />
             <p>
               Whether it is a quick hello or an idea you have, I am always up
               for a conversation.

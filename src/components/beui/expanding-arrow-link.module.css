@@ -1,0 +1,22 @@
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 56px;
+  min-width: min(15rem, 100%);
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--color-text);
+  color: var(--color-background);
+  text-decoration: none;
+  user-select: none;
+}
+.link:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+.accent { position: absolute; inset: 6px auto 6px 6px; z-index: 1; overflow: hidden; background: var(--color-accent); color: white; }
+.single { position: absolute; inset: 0; display: grid; place-items: center; }
+.chevron { height: 28px; width: 20px; }
+.trail { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-around; padding-inline: 12px; }
+.arrow { display: inline-grid; place-items: center; }
+.label { position: relative; min-width: 0; margin-inline: 64px 18px; padding-block: 15px; font-size: .9375rem; font-weight: 500; line-height: 1.4; letter-spacing: -.02em; overflow-wrap: anywhere; }

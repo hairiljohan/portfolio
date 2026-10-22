@@ -25,3 +25,19 @@ Icon Morph was added from https://uiarc.dev/r/icon-morph.json after source inspe
 Only `MenuIcon` is imported; it animates the hamburger into a close icon and
 respects reduced motion. The mobile panel now uses beUI Bottom Sheet. The former
 Arc Drawer source and its Radix Dialog dependency have been removed.
+
+## Section titles and tooltips — 22 October 2026
+
+- In-view Title: https://uiarc.dev/r/in-view-title.json
+- Tooltip: https://uiarc.dev/r/tooltip.json
+
+Complete registry sources were inspected and copied. Section headings use the
+default once-only blur reveal, retaining their h2 semantics and anchor IDs.
+The wrapper uses portfolio colors and aligns to the start of grid sections so
+the observer measures the heading rather than the adjacent text column.
+
+Carousel arrow buttons use the Radix-backed Tooltip, including hover/focus
+activation and Escape dismissal. Portal styles map Arc tokens locally to the
+portfolio palette. Both components retain upstream reduced-motion behavior.
+The existing native scroll-snap carousel remains in place; arrow stepping now
+reads the current scroll position to avoid stale state during rapid keypresses.

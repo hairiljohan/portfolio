@@ -49,3 +49,16 @@ The fixed-body scroll lock runs in a layout effect and restores the position
 instantly; same-page links flush closing before native anchor navigation so the
 lock cannot overwrite their destination. Focus returns without scrolling.
 The backdrop and sheet use a short opacity fade with reduced motion.
+
+## Expanding Arrow Link — 22 October 2026
+
+Source: https://beui.dev/components/motion/expanding-arrow-button, obtained as
+complete source from the public MCP. Adapted from a button to a typed motion
+anchor for the hero and selected-project links, preserving native navigation,
+modifier clicks, accessible link names and ref forwarding.
+
+Tailwind styles were translated to CSS Modules using navy/magenta accent tokens.
+The spring expansion, dotted-chevron trail and press feedback are retained.
+Labels wrap for long project names on mobile. Expansion responds to a hover-
+capable pointer or visible keyboard focus; reduced motion retains the static
+label and icon. Existing easing, hover and utility helpers are reused.
