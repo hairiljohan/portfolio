@@ -2,16 +2,15 @@
   <style>
     .tile { fill: #fafaf9; }
     .letters { fill: #202320; }
-    .dot { fill: #073769; }
+    .wing { fill: #073769; }
     @media (prefers-color-scheme: dark) {
       .tile { fill: #111312; }
       .letters { fill: #f1f2ef; }
-      .dot { fill: #c5006a; }
+      .wing { fill: #c5006a; }
     }
   </style>
   <rect class="tile" width="64" height="64" rx="14"/>
-  <!-- Outlined letterforms keep the mark independent of installed fonts. -->
-  <path class="letters" d="M12 15h6v15c1.7-2.8 4.2-4.2 7.4-4.2 5.8 0 9.1 3.8 9.1 10.1V46h-6V36.6c0-3.8-1.7-5.7-4.8-5.7-3.5 0-5.7 2.5-5.7 6.4V46h-6V15Zm28 12h6v20c0 6-3.3 9-9.1 9H35v-5h1.6c2.3 0 3.4-1.2 3.4-3.8V27Z"/>
-  <circle class="letters" cx="43" cy="19" r="3.4"/>
-  <circle class="dot" cx="54" cy="43" r="3.5"/>
+  <!-- Hairil's initial with a swept wing; no font dependency. -->
+  <path class="letters" d="M16 17h7v15c2.1-3.2 5.2-4.8 9-4.8 7 0 11 4.5 11 12V51h-7V40.2c0-4.4-2.2-6.6-6-6.6-4.4 0-7 2.9-7 7.4v10h-7V17Z"/>
+  <path class="wing" d="m16 21 35-11-15 16-13 3v-8Z"/>
 </svg>
