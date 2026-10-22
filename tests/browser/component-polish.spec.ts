@@ -15,7 +15,7 @@ test("carousel arrows show keyboard and hover tooltips without changing navigati
   await expect(carousel.getByRole("button", { name: "Previous projects", exact: true })).toBeEnabled();
 });
 
-test("expanding project links preserve navigation and fit narrow cards", async ({ page }) => {
+test("hero CTA and simple project links preserve navigation and fit narrow cards", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto("/");
   const cta = page.getByRole("link", { name: "View projects", exact: true });
@@ -26,8 +26,7 @@ test("expanding project links preserve navigation and fit narrow cards", async (
     const bounds = await link.evaluate(el => ({ link: el.getBoundingClientRect().width, card: el.closest("article")!.getBoundingClientRect().width, overflow: el.scrollWidth - el.clientWidth }));
     expect(bounds.link).toBeLessThanOrEqual(bounds.card + 1);
     expect(bounds.overflow).toBeLessThanOrEqual(1);
-    // Reduced motion keeps each visible label intact, even on focus.
-    await expect(link.locator(":scope > span").last()).toHaveCSS("opacity", "1");
+    await expect(link).toHaveClass("text-link");
     await expect(link).toHaveAttribute("href", /\.html$/);
   }
   await expect(page.getByRole("heading", { name: "A little about me.", level: 2 })).toHaveAttribute("id", "about-title");

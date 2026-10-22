@@ -1,4 +1,4 @@
-import { ExpandingArrowLink } from "../beui/expanding-arrow-link";
+import { ArrowUpRight } from "lucide-react";
 import type { Project } from "../../types";
 import styles from "./ProjectPreview.module.css";
 export default function ProjectPreview({
@@ -39,9 +39,10 @@ export default function ProjectPreview({
             <li key={tag}>{tag}</li>
           ))}
         </ul>
-        <ExpandingArrowLink href={project.link}>
+        <a className="text-link" href={project.link}>
           View {project.title}
-        </ExpandingArrowLink>
+          <ArrowUpRight aria-hidden="true" />
+        </a>
       </div>
     </article>
   );
