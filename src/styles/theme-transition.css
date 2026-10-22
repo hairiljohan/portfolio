@@ -1,0 +1,53 @@
+/* Interpolate the inherited palette once at the root so page surfaces and
+   portalled controls share the same fade without replacing hover/press motion.
+   Older browsers that ignore @property still switch themes normally. */
+@property --color-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fafaf9;
+}
+@property --color-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f0f1ee;
+}
+@property --color-surface-raised {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fff;
+}
+@property --color-text {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #202320;
+}
+@property --color-text-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #646962;
+}
+@property --color-border {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #dddfd9;
+}
+@property --color-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #073769;
+}
+@property --color-media {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e4e7e3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    transition-property: --color-background, --color-surface,
+      --color-surface-raised, --color-text, --color-text-muted,
+      --color-border, --color-accent, --color-media;
+    transition-duration: 320ms;
+    transition-timing-function: ease-in-out;
+  }
+}
