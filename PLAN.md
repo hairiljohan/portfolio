@@ -255,3 +255,5 @@ Follow-up — 21 October 2026: reduced both triangle cursor assets from 28px to 
 Follow-up — 21 October 2026: reduced both cursor variants from 24px to 22px at the user's request; retained the 3px hotspot and existing shape and colors. Validated both SVG dimensions and syntax.
 
 Follow-up — 22 October 2026: replaced the legacy serif HJ/orange favicon with an outlined lowercase hj. mark matching the redesign. SVG follows browser color preference using the portfolio neutral colors and navy/magenta dot. Regenerated 16px/32px PNG fallbacks and the 180px Apple touch icon; all six HTML entries use versioned URLs with SVG preferred. Added scripts/generate-favicons.mjs for reproducible PNG generation from the SVG source. Inspected the 16px mark, enlarged dark icon and touch icon; verified both SVG themes and PNG decoding/dimensions in Chromium and WebKit and icon references in all built pages. Build and lint pass.
+
+Follow-up — 22 October 2026: reduced both cursor variants from 22px to 20px at the user's request, retaining the 3px hotspot, shape and theme colors. Validated both SVG dimensions and syntax.
