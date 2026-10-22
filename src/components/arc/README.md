@@ -43,6 +43,7 @@ The existing native scroll-snap carousel remains in place; arrow stepping now
 reads the current scroll position to avoid stale state during rapid keypresses.
 
 Title timing adjustment — 23 October 2026: the observer excludes the bottom
-80px of the viewport and requires 80% of the heading wrapper to enter. Reveals
+third of the viewport height and requires 80% of the heading wrapper to enter.
+The inset follows window resizing and mobile orientation changes. Reveals
 wait 250ms before their word stagger; the default blur settles over 1s with a
 650ms opacity fade. Reduced-motion and late-render fallbacks remain immediate.

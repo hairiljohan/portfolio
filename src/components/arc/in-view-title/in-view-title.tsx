@@ -14,6 +14,12 @@ export interface InViewTitleProps { text: string; variant?: InViewTitleVariant; 
 const subscribeHydration = () => () => {};
 const clientSnapshot = () => true;
 const serverSnapshot = () => false;
+const subscribeViewport = (listener: () => void) => {
+  window.addEventListener("resize", listener);
+  return () => window.removeEventListener("resize", listener);
+};
+const viewportHeight = () => window.innerHeight;
+const serverHeight = () => 0;
 /** Matches the delay of the stylesheet fallback: when scripts arrive later than this, the fallback has already shown the title, so it stays put instead of animating again. */
 const FALLBACK_MS = 2400;
 const lateBoot = typeof window !== "undefined" && performance.now() > FALLBACK_MS;
@@ -32,8 +38,10 @@ function reveal(instant: boolean, visible: boolean, delay: number, settle = 1): 
 
 export function InViewTitle({ text, variant = "blur", as = "h2", lines, className, id, once = true }: InViewTitleProps) {
   const ref = useRef<HTMLDivElement>(null);
-  // Wait beyond the bottom edge, so the reveal is still visible as the reader reaches it.
-  const inView = useInView(ref, { once, amount: .8, margin: "0px 0px -80px 0px" });
+  const height = useSyncExternalStore(subscribeViewport, viewportHeight, serverHeight);
+  // Use height-based pixels: IntersectionObserver percentage margins use viewport width.
+  // Exclude the bottom third so headings reach the reading area before revealing.
+  const inView = useInView(ref, { once, amount: .8, margin: `0px 0px ${-Math.round(height / 3)}px 0px` });
   const [passed, setPassed] = useState(false);
   useEffect(() => {
     if (inView || passed) return;

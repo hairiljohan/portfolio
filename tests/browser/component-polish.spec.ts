@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 
-for (const width of [390, 1440]) {
+for (const [width, height] of [[390, 900], [1440, 900], [844, 390]]) {
   test(`section titles wait until further into view before fading at ${width}px`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 900 });
+    await page.setViewportSize({ width, height });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto("/");
     const title = page.locator("#skills-title");
     const firstWord = title.locator("span").first();
-    await title.evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().bottom - innerHeight + 20, behavior: "instant" }));
-    // Merely entering the bottom edge must not consume the reveal.
+    await title.evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().bottom - innerHeight * .8, behavior: "instant" }));
+    // Even 20% up from the bottom is too early to consume the reveal.
     await page.waitForTimeout(650);
     await expect(firstWord).toHaveCSS("opacity", "0");
     await title.evaluate(el => scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight / 2, behavior: "instant" }));
