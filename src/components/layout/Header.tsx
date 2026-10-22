@@ -17,6 +17,7 @@ const themeOptions = [
 
 export default function Header({ home = false }: { home?: boolean }) {
   const [open, setOpen] = useState(false);
+  const [logoFlight, setLogoFlight] = useState(0);
   const trigger = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useTheme();
   const href = (hash: string) => (home ? hash : `/${hash}`);
@@ -35,7 +36,14 @@ export default function Header({ home = false }: { home?: boolean }) {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
-          <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home"><span aria-hidden="true" /></a>
+          <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home"
+            onClick={(event) => {
+              if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              // Restart only the decorative mark; preserve native anchor navigation and focus handling.
+              setLogoFlight(flight => flight + 1);
+            }}>
+            <span key={logoFlight} className={logoFlight ? styles.logoFlight : undefined} aria-hidden="true" />
+          </a>
           <div className={`${styles.controls} arc-controls`}>
 
                 <MenuButton ref={trigger} className={styles.menu} aria-label="Menu" aria-expanded={open} aria-haspopup="dialog" aria-controls="mobile-menu" onClick={() => setOpen(!open)}

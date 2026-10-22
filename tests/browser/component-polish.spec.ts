@@ -1,5 +1,45 @@
 import { test, expect } from "@playwright/test";
 
+test("paper plane flies on activation while navigating immediately, and respects reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/#contact");
+  const home = page.getByRole("link", { name: "Hairil Johan, home", exact: true });
+  await home.click();
+  await expect(page).toHaveURL(/#hero$/);
+  await expect.poll(() => home.locator("span").evaluate(el => el.getAnimations().some(animation => animation.playState === "running"))).toBe(true);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(150);
+  await expect(home.locator("span")).toHaveCSS("transform", "none");
+  await expect(home.locator("span")).toHaveCSS("opacity", "1");
+  // Enter can replay the flight, including repeated activation mid-animation.
+  await home.focus();
+  await expect(home).toBeFocused();
+  await page.keyboard.press("Enter");
+  // Native hash navigation may move focus to the destination.
+  await home.focus();
+  await page.keyboard.press("Enter");
+  await expect.poll(() => home.locator("span").evaluate(el => el.getAnimations().some(animation => animation.playState === "running"))).toBe(true);
+  await expect(home.locator("span")).toHaveCSS("transform", "none");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#contact");
+  await home.click();
+  await expect(page).toHaveURL(/#hero$/);
+  expect(await home.locator("span").evaluate(el => el.getAnimations().length)).toBe(0);
+  await expect(home.locator("span")).toHaveCSS("opacity", "1");
+});
+
+test("paper plane also flies on touch in the dark theme", async ({ browser }) => {
+  const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: "no-preference", colorScheme: "dark" });
+  const page = await context.newPage();
+  await page.goto("/#contact");
+  const home = page.getByRole("link", { name: "Hairil Johan, home", exact: true });
+  await home.tap();
+  await expect(page).toHaveURL(/#hero$/);
+  await expect.poll(() => home.locator("span").evaluate(el => el.getAnimations().some(animation => animation.playState === "running"))).toBe(true);
+  await expect(home.locator("span")).toHaveCSS("transform", "none");
+  await expect(home.locator("span")).toHaveCSS("background-color", "rgb(197, 0, 106)");
+  await context.close();
+});
+
 test("carousel arrows show keyboard and hover tooltips without changing navigation", async ({ page }) => {
   await page.goto("/#showcase");
   const carousel = page.getByRole("region", { name: "More projects" });
