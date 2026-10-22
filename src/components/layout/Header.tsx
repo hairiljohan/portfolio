@@ -35,7 +35,7 @@ export default function Header({ home = false }: { home?: boolean }) {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
-          <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home">hj<span>.</span></a>
+          <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home"><span aria-hidden="true" /></a>
           <div className={`${styles.controls} arc-controls`}>
 
                 <MenuButton ref={trigger} className={styles.menu} aria-label="Menu" aria-expanded={open} aria-haspopup="dialog" aria-controls="mobile-menu" onClick={() => setOpen(!open)}

@@ -1,8 +1,23 @@
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 
 // Run from the repository root: node scripts/generate-favicons.mjs
-const source = await readFile("public/favicon.svg", "utf8");
+// The header mask and every favicon share this exact paper-plane geometry.
+const mark = (await readFile("public/paper-plane.svg", "utf8"))
+  .replace(/<svg[^>]*>/, "").replace("</svg>", "").trim();
+const source = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <style>
+    .tile { fill: #fafaf9; }
+    .plane { fill: #073769; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #111312; }
+      .plane { fill: #c5006a; }
+    }
+  </style>
+  <rect class="tile" width="64" height="64" rx="14"/>
+  <g class="plane">${mark}</g>
+</svg>\n`;
+await writeFile("public/favicon.svg", source);
 const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ colorScheme: "light", deviceScaleFactor: 1 });
