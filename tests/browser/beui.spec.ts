@@ -15,7 +15,7 @@ test("navigation highlight follows keyboard focus without changing link behavior
 }) => {
   await page.goto("/");
   const nav = page.getByRole("navigation", { name: "Main", exact: true });
-  const work = nav.getByRole("link", { name: "Work", exact: true });
+  const work = nav.getByRole("link", { name: "Projects", exact: true });
   const about = nav.getByRole("link", { name: "About", exact: true });
   await work.focus();
   await expect(

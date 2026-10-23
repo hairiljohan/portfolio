@@ -8,7 +8,7 @@ import { SharedLayoutBg } from "../beui/shared-layout-bg";
 import { useTheme, type ThemeMode } from "../../hooks/useTheme";
 import styles from "./Header.module.css";
 
-const links = [["About", "#about"], ["Work", "#showcase"], ["Contact", "#contact"]];
+const links = [["About", "#about"], ["Projects", "#showcase"], ["Contact", "#contact"]];
 const themeOptions = [
   { value: "system", label: "System" },
   { value: "light", label: "Light" },

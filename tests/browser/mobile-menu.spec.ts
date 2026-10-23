@@ -25,7 +25,7 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
       expect((await new AxeBuilder({ page }).include('[role="dialog"]').analyze()).violations).toEqual([]);
       await page.screenshot({ path: test.info().outputPath(`menu-${theme}.png`) });
     }
-    await dialog.getByRole("link", { name: "Work", exact: true }).click();
+    await dialog.getByRole("link", { name: "Projects", exact: true }).click();
     await expect(dialog).toHaveCount(0);
     await expect(page).toHaveURL(/#showcase$/);
     await expect(page.locator("#showcase")).toBeInViewport();
