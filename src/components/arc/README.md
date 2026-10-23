@@ -31,8 +31,9 @@ Arc Drawer source and its Radix Dialog dependency have been removed.
 - In-view Title: https://uiarc.dev/r/in-view-title.json
 - Tooltip: https://uiarc.dev/r/tooltip.json
 
-Complete registry sources were inspected and copied. Section headings use the
-default once-only blur reveal, retaining their h2 semantics and anchor IDs.
+Complete registry sources were inspected and copied. Homepage section headings use the
+once-only blur reveal, retaining their h2 semantics and anchor IDs. Project detail
+pages use plain h2 headings without reveal animation.
 The wrapper uses portfolio colors and aligns to the start of grid sections so
 the observer measures the heading rather than the adjacent text column.
 
