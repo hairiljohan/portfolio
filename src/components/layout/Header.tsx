@@ -15,12 +15,31 @@ const themeOptions = [
   { value: "dark", label: "Dark" },
 ];
 
+const pendingLogoFlight = "portfolio:pending-logo-flight";
+function hasArrivalFlight(home: boolean) {
+  if (!home || window.location.hash !== "#hero") return false;
+  const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+  if (navigation && navigation.type !== "navigate") return false;
+  try {
+    const timestamp = Number(sessionStorage.getItem(pendingLogoFlight));
+    const age = Date.now() - timestamp;
+    return timestamp > 0 && age >= 0 && age < 30_000;
+  } catch {
+    return false;
+  }
+}
+
 export default function Header({ home = false }: { home?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [logoFlight, setLogoFlight] = useState(0);
+  const [logoFlight, setLogoFlight] = useState(() => hasArrivalFlight(home) ? 1 : 0);
   const trigger = useRef<HTMLButtonElement>(null);
   const [theme, setTheme] = useTheme();
   const href = (hash: string) => (home ? hash : `/${hash}`);
+  useEffect(() => {
+    if (!home) return;
+    // Consume after initialization so Strict Mode's repeated initializer reads agree.
+    try { sessionStorage.removeItem(pendingLogoFlight); } catch { /* Navigation still works without storage. */ }
+  }, [home]);
   useEffect(() => {
     const media = matchMedia("(min-width: 701px)");
     const onResize = () => { if (media.matches) setOpen(false); };
@@ -39,6 +58,10 @@ export default function Header({ home = false }: { home?: boolean }) {
           <a className={styles.logo} href={href("#hero")} aria-label="Hairil Johan, home"
             onClick={(event) => {
               if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              if (!home) {
+                // A new document would cut off this animation; replay it on arrival.
+                try { sessionStorage.setItem(pendingLogoFlight, String(Date.now())); } catch { /* Keep the native home link working. */ }
+              }
               // Restart only the decorative mark; preserve native anchor navigation and focus handling.
               setLogoFlight(flight => flight + 1);
             }}>
