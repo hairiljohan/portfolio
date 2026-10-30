@@ -1,0 +1,40 @@
+.demo {
+  margin-block: 1rem 3rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-media);
+  background: var(--color-surface);
+}
+.heading h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.2; max-width: 32rem; }
+.heading p { color: var(--color-text-muted); max-width: 42rem; margin-top: 1rem; }
+.scenarios { border: 0; padding: 0; margin: 2rem 0 1.25rem; min-width: 0; }
+.scenarios legend { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; }
+.options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.option { display: flex; gap: 0.6rem; align-items: center; position: relative; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: 7px; font-size: 0.875rem; cursor: pointer; background: var(--color-background); transition: background 180ms, color 180ms, border-color 180ms; }
+.option:has(input:checked) { background: var(--color-text); color: var(--color-background); border-color: var(--color-text); }
+.option:has(input:focus-visible) { outline: 2px solid var(--color-text); outline-offset: 4px; }
+.option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.option svg { flex-shrink: 0; }
+.toggles { display: flex; flex-wrap: wrap; gap: 0.75rem 1.75rem; font-size: 0.875rem; }
+.toggles label { display: flex; align-items: center; gap: 0.65rem; cursor: pointer; min-height: 32px; }
+.toggles input { width: 18px; height: 18px; accent-color: var(--color-text); flex-shrink: 0; }
+.result { margin-top: 2rem; border-top: 1px solid var(--color-border); }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1.4fr; align-items: center; gap: 1.5rem; padding-block: 2.5rem; animation: arrive 260ms ease-out; }
+.source, .agent { display: flex; flex-direction: column; align-items: center; gap: 0.55rem; text-align: center; }
+.source strong, .agent strong { font-size: 1.05rem; }
+.source span, .agent span { color: var(--color-text-muted); font-size: 0.8125rem; }
+.arrow { color: var(--color-text-muted); width: 22px; }
+.outputs { display: grid; gap: 1.2rem; margin: 0; padding-left: 1.5rem; border-left: 1px solid var(--color-border); }
+.outputs dt { color: var(--color-text-muted); font-size: 0.8125rem; margin-bottom: 0.25rem; }
+.outputs dd { margin: 0; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; letter-spacing: -0.025em; }
+.explanation { padding-top: 1.25rem; border-top: 1px solid var(--color-border); min-height: 5rem; max-width: 52rem; }
+.note { color: var(--color-text-muted); font-size: 0.75rem; margin-top: 1.25rem; max-width: 48rem; line-height: 1.7; }
+@keyframes arrive { from { opacity: 0.4; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  .options { display: grid; grid-template-columns: 1fr 1fr; }
+  .option { padding: 0.7rem; font-size: 0.8125rem; }
+  .flow { grid-template-columns: 1fr auto 1fr; gap: 1rem; padding-block: 2rem; }
+  .flow > .arrow:nth-of-type(2) { display: none; }
+  .outputs { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; border-left: 0; border-top: 1px solid var(--color-border); padding: 1.25rem 0 0; margin-top: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } .option { transition: none; } }

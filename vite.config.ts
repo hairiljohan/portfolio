@@ -15,12 +15,15 @@ export default defineConfig(() => {
         input: {
           main: path.resolve(__dirname, "index.html"),
           launchConsole: path.resolve(__dirname, "launch-console.html"),
+          dockSense: path.resolve(__dirname, "docksense.html"),
           networkChecker: path.resolve(__dirname, "network-checker.html"),
           containerUpdateHelper: path.resolve(
             __dirname,
             "container-update-helper.html",
           ),
+          theaterView: path.resolve(__dirname, "theaterview.html"),
           uninstallCleanup: path.resolve(__dirname, "uninstall-cleanup.html"),
+          netSwitch: path.resolve(__dirname, "netswitch.html"),
           privateLocalAI: path.resolve(__dirname, "private-local-ai.html"),
         },
         output: {

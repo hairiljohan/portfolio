@@ -57,7 +57,7 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
 test("touch menu links work from project pages", async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 360, height: 780 }, hasTouch: true, isMobile: true, reducedMotion: "reduce" });
   const page = await context.newPage();
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   await page.getByRole("button", { name: "Menu", exact: true }).tap();
   await page.getByRole("dialog").getByRole("link", { name: "About", exact: true }).tap();
   await expect(page).toHaveURL(/\/#about$/);

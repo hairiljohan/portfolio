@@ -5,6 +5,7 @@ import Footer from "../layout/Footer";
 import { PROJECTS } from "../../data/projects";
 import type { Project, ProjectImage } from "../../types";
 import styles from "./ProjectShell.module.css";
+import ProjectImageView from "./ProjectImage";
 export default function ProjectShell({
   project,
   summary,
@@ -59,11 +60,8 @@ export function ProjectFigure({
   return (
     <figure className={styles.figure}>
       <div className={styles.image}>
-        <img
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
+        <ProjectImageView
+          image={image}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
         />

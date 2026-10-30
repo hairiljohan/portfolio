@@ -50,7 +50,7 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
   }) => {
     await page.emulateMedia({ reducedMotion });
     for (const [route, titles] of [
-      ["/private-local-ai.html", ["Everyday access", "Routing and DNS"]],
+      ["/netswitch.html", ["Networks and Tailscale"]],
       [
         "/container-update-helper.html",
         ["Open WebUI updates", "SearXNG updates"],
@@ -101,14 +101,14 @@ test.describe("touch galleries", () => {
   }) => {
     for (const theme of ["light", "dark"] as const) {
       await page.emulateMedia({ colorScheme: theme });
-      await page.goto("/private-local-ai.html");
+      await page.goto("/netswitch.html");
       const trigger = page.getByRole("button", {
-        name: "Open Everyday access gallery",
+        name: "Open Networks and Tailscale gallery",
         exact: true,
       });
       await trigger.tap();
       const dialog = page.getByRole("dialog", {
-        name: "Everyday access",
+        name: "Networks and Tailscale",
         exact: true,
       });
       await expect(dialog).toBeVisible();
@@ -122,7 +122,7 @@ test.describe("touch galleries", () => {
         .analyze();
       expect(results.violations).toEqual([]);
       await dialog
-        .getByRole("button", { name: "Close Everyday access", exact: true })
+        .getByRole("button", { name: "Close Networks and Tailscale", exact: true })
         .tap();
       await expect(dialog).toHaveCount(0);
       await expect(trigger).toBeFocused();

@@ -44,6 +44,7 @@ export interface ProjectFolderProps {
   disabled?: boolean;
   ariaLabel?: string;
   className?: string;
+  stacked?: boolean;
 }
 
 const MAX_PREVIEWS = 5;
@@ -87,6 +88,7 @@ export function ProjectFolder({
   disabled = false,
   ariaLabel,
   className,
+  stacked = false,
 }: ProjectFolderProps) {
   const reduce = useReducedMotion();
   const canHover = useHoverCapable();
@@ -269,7 +271,7 @@ export function ProjectFolder({
               ) : null}
             </AnimatePresence>
 
-            <div className={styles.grid}>
+            <div className={cn(styles.grid, stacked && styles.stacked)}>
               {isExpanded
                 ? previews.map((preview) => (
                     <motion.div

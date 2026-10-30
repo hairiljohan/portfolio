@@ -34,10 +34,10 @@ const SOCIAL_IMAGE_HEIGHT = "630";
 export const META: Record<
   | "home"
   | "launchConsole"
-  | "networkChecker"
+  | "dockSense"
   | "containerUpdateHelper"
-  | "uninstallCleanup"
-  | "privateLocalAI",
+  | "theaterView"
+  | "netSwitch",
   MetaEntry
 > = {
   home: {
@@ -62,11 +62,11 @@ export const META: Record<
     imageWidth: SOCIAL_IMAGE_WIDTH,
     imageHeight: SOCIAL_IMAGE_HEIGHT,
   },
-  networkChecker: {
-    title: "Network Checker - Hairil Johan",
+  dockSense: {
+    title: "DockSense - Hairil Johan",
     description:
-      "A macOS utility to check network link speeds instantly using shell script and Automator. Detects if Mac is on gigabit Ethernet or Wi‑Fi without running a speedtest.",
-    url: `${SITE_URL}/network-checker.html`,
+      "DockSense is a personal macOS menu bar app that detects a docking station over USB, adjusts Dock and menu-bar visibility, and remembers keyboard backlight brightness.",
+    url: `${SITE_URL}/docksense.html`,
     author: AUTHOR,
     image: SOCIAL_IMAGE,
     imageAlt: SOCIAL_IMAGE_ALT,
@@ -84,22 +84,22 @@ export const META: Record<
     imageWidth: SOCIAL_IMAGE_WIDTH,
     imageHeight: SOCIAL_IMAGE_HEIGHT,
   },
-  uninstallCleanup: {
-    title: "Uninstall Cleanup Tool - Hairil Johan",
+  theaterView: {
+    title: "TheaterView - Hairil Johan",
     description:
-      "A macOS helper that wraps deep system searches to tidy leftover files after uninstalling apps, keeping the system clean.",
-    url: `${SITE_URL}/uninstall-cleanup.html`,
+      "TheaterView automates YouTube theater mode, highest non-Premium quality, and the Public filter on channel Videos tabs.",
+    url: `${SITE_URL}/theaterview.html`,
     author: AUTHOR,
     image: SOCIAL_IMAGE,
     imageAlt: SOCIAL_IMAGE_ALT,
     imageWidth: SOCIAL_IMAGE_WIDTH,
     imageHeight: SOCIAL_IMAGE_HEIGHT,
   },
-  privateLocalAI: {
-    title: "Private Local AI with Custom Domains - Hairil Johan",
+  netSwitch: {
+    title: "NetSwitch - Hairil Johan",
     description:
-      "Caddy, Pi-hole, and Tailscale combine to give my local AI services clean .home domains and private access from any device on my tailnet.",
-    url: `${SITE_URL}/private-local-ai.html`,
+      "NetSwitch is a personal macOS menu bar app that switches DNS profiles between networks, with optional Tailscale automation and app-based overrides.",
+    url: `${SITE_URL}/netswitch.html`,
     author: AUTHOR,
     image: SOCIAL_IMAGE,
     imageAlt: SOCIAL_IMAGE_ALT,

@@ -1,0 +1,27 @@
+.demo { padding: clamp(1rem, 3vw, 2.5rem); margin-block: 1rem 3rem; border: 1px solid var(--color-border); border-radius: var(--radius-media); background: var(--color-surface); }
+.heading h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.2; max-width: 32rem; }
+.heading p { margin-top: 1rem; max-width: 44rem; color: var(--color-text-muted); }
+.controls { border: 0; padding: 0; margin: 2rem 0 1rem; }
+.controls legend { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.75rem; }
+.options { display: flex; gap: 0.75rem; }
+.options label { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; background: var(--color-background); border: 1px solid var(--color-border); border-radius: 7px; cursor: pointer; }
+.options label:has(input:checked) { border-color: var(--color-text); }
+.options input, .toggle input, .brightness input { accent-color: var(--color-text); }
+.toggle { display: flex; gap: 0.65rem; align-items: center; min-height: 44px; font-size: 0.875rem; }
+.toggle input { width: 18px; height: 18px; }
+.brightness { display: grid; gap: 1rem; max-width: 28rem; margin-top: 1rem; font-size: 0.875rem; }
+.brightness span { display: flex; justify-content: space-between; gap: 1rem; }
+.brightness input { width: 100%; min-height: 24px; }
+.hint, .note { color: var(--color-text-muted); font-size: 0.8125rem; margin-top: 0.75rem; }
+.result { margin-top: 2rem; border-top: 1px solid var(--color-border); }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 1rem; padding-block: 2rem; }
+.flow > div { display: flex; flex-direction: column; align-items: center; gap: 0.65rem; text-align: center; }
+.flow strong { font-size: 1rem; }
+.flow span { font-size: 0.8125rem; color: var(--color-text-muted); }
+.arrow { width: 20px; color: var(--color-text-muted); }
+.meter { height: 8px; border-radius: 4px; background: var(--color-border); overflow: hidden; margin-bottom: 1.5rem; }
+.meter div { height: 100%; background: var(--color-text); border-radius: inherit; transition: width 350ms ease; }
+.result > p { min-height: 3.5rem; max-width: 48rem; }
+.note { margin-top: 1.5rem; max-width: 48rem; }
+@media (max-width: 600px) { .flow { grid-template-columns: 1fr; gap: 1.25rem; } .arrow { justify-self: center; transform: rotate(90deg); } }
+@media (prefers-reduced-motion: reduce) { .meter div { transition: none; } }

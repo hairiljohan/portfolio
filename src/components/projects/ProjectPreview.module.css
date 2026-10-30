@@ -141,3 +141,31 @@
 .card .description { font-size: 1rem; }
 .card .tags { margin-block: 1rem; }
 .card .copy > a { margin-top: auto; padding-block: 0.4rem; align-self: flex-start; }
+
+.pixelCover .media { position: relative; padding: 0; background: #202822; }
+.pixelCover .media img { width: 100%; height: 100%; max-height: none; object-fit: cover; border-radius: 0; box-shadow: none; transform: none; transition: none; }
+.signal { position: absolute; width: 1%; aspect-ratio: 1; background: #ffcf70; opacity: 0; pointer-events: none; box-shadow: 0 0 0 2px rgb(255 207 112 / 18%); }
+.pixelCover[data-project="netswitch"] { --signal-animation: homeSignal; }
+.pixelCover[data-project="docksense"] { --signal-animation: dockSignal; }
+.pixelCover:focus-within .signal { animation: var(--signal-animation) 1100ms steps(18, end) 1; }
+@media (hover: hover) and (pointer: fine) {
+  .pixelCover:hover .signal { animation: var(--signal-animation) 1100ms steps(18, end) 1; }
+}
+@keyframes homeSignal {
+  0% { left: 41%; top: 61%; opacity: 0; }
+  10% { opacity: 1; }
+  40% { left: 50%; top: 66%; }
+  65% { left: 57%; top: 59%; }
+  80% { left: 61%; top: 61%; opacity: 1; }
+  100% { left: 68%; top: 57%; opacity: 0; }
+}
+@keyframes dockSignal {
+  0% { left: 61%; top: 65%; opacity: 0; }
+  10% { opacity: 1; }
+  50% { left: 70%; top: 70%; }
+  80% { left: 74%; top: 68%; opacity: 1; }
+  100% { left: 76%; top: 65%; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixelCover .signal { animation: none !important; }
+}

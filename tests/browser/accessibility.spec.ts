@@ -6,9 +6,9 @@ for (const theme of ["light", "dark"] as const)
     for (const route of [
       "/",
       "/launch-console.html",
-      "/private-local-ai.html",
-      "/network-checker.html",
-      "/uninstall-cleanup.html",
+      "/netswitch.html",
+      "/docksense.html",
+      "/theaterview.html",
       "/container-update-helper.html",
     ]) {
       await page.goto(route);

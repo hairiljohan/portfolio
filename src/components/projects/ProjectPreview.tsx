@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "../../types";
 import styles from "./ProjectPreview.module.css";
+import ProjectImage from "./ProjectImage";
 export default function ProjectPreview({
   project,
   index,
@@ -12,7 +13,8 @@ export default function ProjectPreview({
 }) {
   return (
     <article
-      className={`${styles.preview} ${index === 0 ? styles.featured : ""} ${compact ? styles.card : ""}`}
+      className={`${styles.preview} ${index === 0 ? styles.featured : ""} ${compact ? styles.card : ""} ${project.cover ? styles.pixelCover : ""}`}
+      data-project={project.id}
     >
       <a
         className={styles.media}
@@ -20,15 +22,14 @@ export default function ProjectPreview({
         tabIndex={-1}
         aria-hidden="true"
       >
-        <img
-          src={project.image.src}
+        <ProjectImage
+          image={project.cover ?? project.image}
           alt=""
-          width={project.image.width}
-          height={project.image.height}
           loading={index === 0 ? "eager" : "lazy"}
           fetchPriority={index === 0 ? "high" : "auto"}
           decoding="async"
         />
+        {project.cover && <span className={styles.signal} aria-hidden="true" />}
       </a>
       <div className={styles.copy}>
         <p className={styles.category}>{project.category}</p>

@@ -2,9 +2,9 @@ import { test, expect } from "@playwright/test";
 const routes = [
   "/",
   "/launch-console.html",
-  "/private-local-ai.html",
-  "/network-checker.html",
-  "/uninstall-cleanup.html",
+  "/netswitch.html",
+  "/docksense.html",
+  "/theaterview.html",
   "/container-update-helper.html",
 ];
 test("homepage exposes five project links and preserves section anchors", async ({
@@ -67,7 +67,7 @@ test("theme selection persists across detail pages and follows system", async ({
   const themes = page.getByRole("group", { name: "Color theme" });
   await themes.getByRole("button", { name: "Dark", exact: true }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   await expect(page.locator("html")).toHaveClass(/dark/);
   await expect(themes.getByRole("button", { name: "Dark", exact: true })).toHaveAttribute("aria-pressed", "true");
   await themes.getByRole("button", { name: "System", exact: true }).click();
@@ -118,13 +118,6 @@ for (const route of routes)
     }
     expect(errors).toEqual([]);
   });
-test("cleanup recording is user controlled", async ({ page }) => {
-  await page.goto("/uninstall-cleanup.html");
-  const video = page.locator("video");
-  await expect(video).toHaveAttribute("controls", "");
-  await expect(video).not.toHaveAttribute("autoplay");
-  expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBeTruthy();
-});
 test("legacy anchors work on direct load and browser back", async ({
   page,
 }) => {
@@ -142,7 +135,7 @@ test("legacy anchors work on direct load and browser back", async ({
   }
   await page.goto("/#showcase");
   await page
-    .getByRole("link", { name: "View Network Checker", exact: true })
+    .getByRole("link", { name: "View DockSense", exact: true })
     .click();
   await page.goBack();
   await expect(page).toHaveURL(/#showcase$/);
@@ -156,7 +149,7 @@ test("theme initializes before React and handles unavailable storage", async ({
   await page.goto("/");
   await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: "Dark", exact: true }).click();
   await page.route("**/*.tsx", (route) => route.abort());
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   await expect(page.locator("html")).toHaveClass(/dark/);
   await context.close();
   const blocked = await browser.newContext({ colorScheme: "dark" });

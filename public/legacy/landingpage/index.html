@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>whydoesthiswork.com</title>
+    <title>whydoesthiswork.localhost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
 
@@ -20,6 +20,8 @@
       name="description"
       content="local ai control surface. it runs. somehow."
     />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="shortcut icon" type="image/svg+xml" href="./favicon.svg" />
 
     <!-- Preload & stylesheet (small perf nudge via fetchpriority) -->
     <link rel="preload" href="./styles.min.css" as="style" />
@@ -48,7 +50,7 @@
            ============================================ -->
       <header class="top-bar" role="banner">
         <div class="site-id">
-          <h1 class="site-name">whydoesthiswork.com</h1>
+          <h1 class="site-name">whydoesthiswork.localhost</h1>
           <span class="site-sub">local AI stack console</span>
         </div>
 
@@ -56,11 +58,11 @@
           id="themeToggle"
           class="top-btn"
           type="button"
-          aria-label="Toggle theme"
-          aria-pressed="true"
+          aria-label="Theme mode: system. Activate to cycle dark, light, and system."
+          aria-pressed="mixed"
           aria-controls="console-root"
         >
-          mode: dark
+          mode: system
         </button>
       </header>
 

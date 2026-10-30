@@ -20,7 +20,7 @@ test("keyboard home navigation replays the flight but a normal homepage visit do
   const home = page.getByRole("link", { name: "Hairil Johan, home", exact: true });
   await expect(home).toBeAttached();
   expect(await home.locator("span").evaluate(el => el.getAnimations().length)).toBe(0);
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   await home.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/#hero$/);
@@ -30,7 +30,7 @@ test("keyboard home navigation replays the flight but a normal homepage visit do
 test("touch home navigation respects reduced motion", async ({ browser }) => {
   const context = await browser.newContext({ hasTouch: true, viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
   const page = await context.newPage();
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   const home = page.getByRole("link", { name: "Hairil Johan, home", exact: true });
   await home.tap();
   await expect(page).toHaveURL(/\/#hero$/);
@@ -43,7 +43,7 @@ test("home navigation survives unavailable session storage", async ({ page }) =>
   await page.addInitScript(() => Object.defineProperty(window, "sessionStorage", { get() { throw new Error("Storage unavailable"); } }));
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
-  await page.goto("/network-checker.html");
+  await page.goto("/docksense.html");
   await page.getByRole("link", { name: "Hairil Johan, home", exact: true }).click();
   await expect(page).toHaveURL(/\/#hero$/);
   await expect(page.getByRole("heading", { name: "Hairil Johan", exact: false, level: 1 })).toBeVisible();

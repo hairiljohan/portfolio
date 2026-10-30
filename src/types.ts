@@ -8,6 +8,7 @@ export interface Hobby {
 }
 export interface ProjectImage {
   src: string;
+  dark?: { src: string; width: number; height: number };
   alt: string;
   width: number;
   height: number;
@@ -21,6 +22,7 @@ export interface Project {
   description: string;
   tags: string[];
   image: ProjectImage;
+  cover?: ProjectImage;
 }
 export interface NavItem {
   label: string;
