@@ -31,10 +31,10 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "macOS", "DNS", "Tailscale"],
     image: {
       src: "/projects/netswitch/dns-profiles.webp",
-      dark: { src: "/projects/netswitch/dns-profiles-dark.webp", width: 2936, height: 1788 },
+      dark: { src: "/projects/netswitch/dns-profiles-dark.webp", width: 3004, height: 1856 },
       alt: "NetSwitch DNS Profiles settings with Home DNS, Public DNS, and an app whitelist",
-      width: 2936,
-      height: 1788,
+      width: 3004,
+      height: 1856,
     },
   },
   {
@@ -53,10 +53,10 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "macOS", "USB"],
     image: {
       src: "/projects/docksense/menu.webp",
-      dark: { src: "/projects/docksense/menu-dark.webp", width: 866, height: 666 },
+      dark: { src: "/projects/docksense/menu-dark.webp", width: 938, height: 734 },
       alt: "DockSense menu showing a connected CalDigit TS4, visibility controls, and keyboard backlight settings",
-      width: 866,
-      height: 666,
+      width: 932,
+      height: 728,
     },
   },
   {
@@ -75,10 +75,10 @@ export const PROJECTS: Project[] = [
     tags: ["JavaScript", "Safari", "Web Extension"],
     image: {
       src: "/projects/theaterview/settings.png",
-      dark: { src: "/projects/theaterview/settings-dark.png", width: 476, height: 342 },
+      dark: { src: "/projects/theaterview/settings-dark.png", width: 512, height: 364 },
       alt: "TheaterView settings with Enable TheaterView, Auto highest quality, and Auto Public switched on",
-      width: 472,
-      height: 336,
+      width: 512,
+      height: 368,
     },
   },
   {

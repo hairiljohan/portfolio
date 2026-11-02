@@ -63,7 +63,7 @@ test("screenshots follow explicit and system themes across card, page, and galle
   await expect(hero).toHaveAttribute("src", "/projects/netswitch/dns-profiles-dark.webp");
   const menu = page.getByRole("img", { name: /^NetSwitch menu showing/ });
   await expect(menu).toHaveAttribute("src", "/projects/netswitch/menu-dark.webp");
-  await expect(menu).toHaveAttribute("width", "576");
+  await expect(menu).toHaveAttribute("width", "644");
   await page.getByRole("button", { name: "Open Networks and Tailscale gallery" }).click();
   const dialog = page.getByRole("dialog", { name: "Networks and Tailscale", exact: true });
   for (const img of await dialog.getByRole("img").all()) {

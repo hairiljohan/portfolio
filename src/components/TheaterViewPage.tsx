@@ -1,5 +1,10 @@
 import ProjectShell, { ProjectSection, ProjectNotes, ProjectFigure } from "./projects/ProjectShell";
 import { getProject } from "../data/projects";
+import styles from "./TheaterViewPage.module.css";
+
+// Add the recording to public/projects/theaterview/ and set its URL here.
+// Example: "/projects/theaterview/demo.mp4"
+const demoVideoSrc: string = "";
 
 export default function TheaterViewPage() {
   const project = getProject("theaterview");
@@ -9,6 +14,22 @@ export default function TheaterViewPage() {
       media={<ProjectFigure image={project.cover ?? project.image} priority />}
       summary="I got annoyed with pressing the same YouTube toggles over and over, so I built TheaterView to do it for me: theater mode, the highest available non-Premium quality, and Public videos on channel pages."
     >
+      <ProjectSection title="See it in action">
+        <figure className={styles.videoFigure}>
+          {demoVideoSrc ? (
+            <video className={styles.video} src={demoVideoSrc} controls playsInline preload="metadata" aria-label="TheaterView YouTube walkthrough" />
+          ) : (
+            <div className={styles.videoPlaceholder}>
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <rect x="4" y="8" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="1.5" />
+                <path d="m28 16 8-5v18l-8-5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+              <span>Video walkthrough coming soon</span>
+            </div>
+          )}
+          <figcaption>A look at TheaterView in everyday use: theater mode, automatic quality selection, and the Public filter on channel Videos tabs.</figcaption>
+        </figure>
+      </ProjectSection>
       <ProjectSection title="Fewer repeat clicks">
         <p>Every time I sat down to watch YouTube, I found myself making the same adjustments again. They were small clicks, but repeating them got annoying. I built this personal extension so my preferred viewing setup would be ready without that routine.</p>
         <p>TheaterView handles a few familiar adjustments when opening YouTube. It enables theater mode on watch pages, can select the highest non-Premium quality, and selects the Public filter on a channel’s Videos tab when that option is available.</p>

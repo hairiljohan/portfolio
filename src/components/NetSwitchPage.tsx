@@ -23,13 +23,13 @@ export default function NetSwitchPage() {
         ]} />
       </ProjectSection>
       <ScreenshotFolder title="Networks and Tailscale" stacked images={[
-        { src: "/projects/netswitch/networks.webp", dark: { src: "/projects/netswitch/networks-dark.webp", width: 2936, height: 1788 }, alt: "NetSwitch Networks settings for home Wi-Fi networks and the home Ethernet router", width: 2936, height: 1788, caption: "Define home once: save Wi-Fi names and the Ethernet router that should select Home DNS." },
-        { src: "/projects/netswitch/tailscale.webp", dark: { src: "/projects/netswitch/tailscale-dark.webp", width: 2936, height: 1788 }, alt: "NetSwitch Tailscale settings with automation enabled and a separate trusted network list", width: 2936, height: 1788, caption: "Tailscale automation has its own trusted-network list, independent of the DNS profile." },
+        { src: "/projects/netswitch/networks.webp", dark: { src: "/projects/netswitch/networks-dark.webp", width: 3004, height: 1856 }, alt: "NetSwitch Networks settings for home Wi-Fi networks and the home Ethernet router", width: 3004, height: 1856, caption: "Define home once: save Wi-Fi names and the Ethernet router that should select Home DNS." },
+        { src: "/projects/netswitch/tailscale.webp", dark: { src: "/projects/netswitch/tailscale-dark.webp", width: 3004, height: 1856 }, alt: "NetSwitch Tailscale settings with automation enabled and a separate trusted network list", width: 3004, height: 1856, caption: "Tailscale automation has its own trusted-network list, independent of the DNS profile." },
       ]} />
       <ProjectSection title="Automatic, with an off switch">
         <p>Pause stops automatic DNS changes and leaves the current settings in place. Apply Now explicitly reevaluates the policy, even while paused.</p>
         <p>Use Automatic DNS restores DHCP-provided DNS, or uses the router as DNS for a manually configured IPv4 service. A later network change, wake, settings reload, or explicit apply can resume the selected profile.</p>
-        <ProjectFigure image={{ src: "/projects/netswitch/menu.webp", dark: { src: "/projects/netswitch/menu-dark.webp", width: 576, height: 648 }, alt: "NetSwitch menu showing network and DNS status, Pause, Apply Now, Use Automatic DNS, and Settings", width: 582, height: 646, caption: "The real menu bar interface: current state first, manual controls within reach." }} />
+        <ProjectFigure image={{ src: "/projects/netswitch/menu.webp", dark: { src: "/projects/netswitch/menu-dark.webp", width: 644, height: 702 }, alt: "NetSwitch menu showing network and DNS status, Pause, Apply Now, Use Automatic DNS, and Settings", width: 638, height: 702, caption: "The real menu bar interface: current state first, manual controls within reach." }} />
       </ProjectSection>
       <ProjectSection title="Behind the menu bar">
         <ProjectNotes items={[

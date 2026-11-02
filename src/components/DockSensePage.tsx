@@ -48,8 +48,8 @@ export default function DockSensePage() {
         <p>My screenshots show a CalDigit TS4 setup. The saved USB signature is the docking signal; the app does not rely on a network speed check.</p>
       </ProjectSection>
       <ScreenshotFolder title="USB setup" stacked images={[
-        { src: "/projects/docksense/usb-signature.webp", dark: { src: "/projects/docksense/usb-signature-dark.webp", width: 1328, height: 940 }, alt: "DockSense Configure USB Signature dialog with a CalDigit TS4 hub selected", width: 1328, height: 940, caption: "Choose a dock-only USB device and give the signature a recognizable label." },
-        { src: "/projects/docksense/usb-devices.webp", dark: { src: "/projects/docksense/usb-devices-dark.webp", width: 1648, height: 1436 }, alt: "DockSense USB Devices window listing attached devices and their technical identifiers", width: 1648, height: 1436, caption: "Inspect connected USB devices before choosing the one that identifies your dock." },
+        { src: "/projects/docksense/usb-signature.webp", dark: { src: "/projects/docksense/usb-signature-dark.webp", width: 1384, height: 996 }, alt: "DockSense Configure USB Signature dialog with a FiiO K5 Pro selected", width: 1384, height: 996, caption: "Choose a dock-only USB device and give the signature a recognizable label." },
+        { src: "/projects/docksense/usb-devices.webp", dark: { src: "/projects/docksense/usb-devices-dark.webp", width: 1704, height: 1492 }, alt: "DockSense USB Devices window listing attached devices and their technical identifiers", width: 1616, height: 1404, caption: "Inspect connected USB devices before choosing the one that identifies your dock." },
       ]} />
       <ProjectSection title="Bring back the right brightness">
         <ProjectNotes items={[
