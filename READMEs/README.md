@@ -1,4 +1,4 @@
-# Portfolio 2
+# Portfolio
 
 Documentation of the project layout and what lives in each folder.
 
