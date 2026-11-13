@@ -10,9 +10,32 @@ lerna-debug.log*
 # Dependencies
 node_modules
 
+# Tool caches
+.npm/
+.cache/
+.eslintcache
+.stylelintcache
+.vite/
+vite.config.*.timestamp-*
+
 # Build output
 dist
 dist-ssr
+
+# Test results and coverage
+coverage/
+*.lcov
+.nyc_output/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/blob-report/
+
+# Node runtime diagnostics
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+*.pid
+*.pid.lock
+.node_repl_history
 
 # Local-only files
 *.local
@@ -27,6 +50,9 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+._*
+Thumbs.db
+Desktop.ini
 *.suo
 *.ntvs*
 *.njsproj
@@ -41,3 +67,9 @@ dist-ssr
 
 # Instructions
 READMEs/PUSH.md
+
+# Local assistant tooling (not part of the site)
+/.agents/
+/.claude/
+/.superpowers/
+/skills-lock.json
