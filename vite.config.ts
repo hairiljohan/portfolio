@@ -18,10 +18,6 @@ export default defineConfig(() => {
           dockSense: path.resolve(__dirname, "docksense.html"),
           networkChecker: path.resolve(__dirname, "network-checker.html"),
           tabula: path.resolve(__dirname, "tabula.html"),
-          containerUpdateHelper: path.resolve(
-            __dirname,
-            "container-update-helper.html",
-          ),
           theaterView: path.resolve(__dirname, "theaterview.html"),
           uninstallCleanup: path.resolve(__dirname, "uninstall-cleanup.html"),
           netSwitch: path.resolve(__dirname, "netswitch.html"),

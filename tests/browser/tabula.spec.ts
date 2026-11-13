@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("Tabula replaces the showcase and retains the legacy URL", async ({ page }) => {
+test("Tabula showcase links to its own page", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "View Tabula", exact: true }).click();
   await expect(page).toHaveURL(/tabula.html$/);
@@ -15,7 +15,7 @@ test("Tabula replaces the showcase and retains the legacy URL", async ({ page })
     await page.setViewportSize({ width: 390, height: 844 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   }
-  await page.goto("/container-update-helper.html");
+  await page.goto("/tabula.html");
   await expect(page.getByRole("heading", { name: "Tabula", exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://hairiljohan.me/tabula.html");
 });

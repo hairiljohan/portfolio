@@ -50,6 +50,11 @@
   ],
   "redirects": [
     {
+      "source": "/container-update-helper.html",
+      "destination": "/tabula.html",
+      "permanent": true
+    },
+    {
       "source": "/landingpage/:path*",
       "destination": "/legacy/landingpage/:path*",
       "permanent": true
