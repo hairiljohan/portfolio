@@ -9,7 +9,7 @@ for (const theme of ["light", "dark"] as const)
       "/netswitch.html",
       "/docksense.html",
       "/theaterview.html",
-      "/container-update-helper.html",
+      "/tabula.html",
     ]) {
       await page.goto(route);
       const results = await new AxeBuilder({ page })

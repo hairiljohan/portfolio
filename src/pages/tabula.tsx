@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ContainerUpdateHelperPage from "@/components/ContainerUpdateHelperPage";
+import TabulaPage from "@/components/TabulaPage";
 import { applyMeta } from "@/utils/meta";
 import { META } from "@/data/meta";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -11,12 +11,12 @@ if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
 
-applyMeta(META.containerUpdateHelper);
+applyMeta(META.tabula);
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <ContainerUpdateHelperPage />
+    <TabulaPage />
     <SpeedInsights />
     <Analytics />
   </React.StrictMode>,

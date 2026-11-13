@@ -35,7 +35,7 @@ export const META: Record<
   | "home"
   | "launchConsole"
   | "dockSense"
-  | "containerUpdateHelper"
+  | "tabula"
   | "theaterView"
   | "netSwitch",
   MetaEntry
@@ -73,11 +73,11 @@ export const META: Record<
     imageWidth: SOCIAL_IMAGE_WIDTH,
     imageHeight: SOCIAL_IMAGE_HEIGHT,
   },
-  containerUpdateHelper: {
-    title: "Container Update Helper - Hairil Johan",
+  tabula: {
+    title: "Tabula - Hairil Johan",
     description:
-      "A macOS utility that simplifies Docker container updates into guided steps—stop, remove, pull, and run—without retyping commands.",
-    url: `${SITE_URL}/container-update-helper.html`,
+      "Tabula is a personal start page for favourite sites. Built to make them easy to reach and pleasant to look at.",
+    url: `${SITE_URL}/tabula.html`,
     author: AUTHOR,
     image: SOCIAL_IMAGE,
     imageAlt: SOCIAL_IMAGE_ALT,

@@ -17,6 +17,7 @@ export default defineConfig(() => {
           launchConsole: path.resolve(__dirname, "launch-console.html"),
           dockSense: path.resolve(__dirname, "docksense.html"),
           networkChecker: path.resolve(__dirname, "network-checker.html"),
+          tabula: path.resolve(__dirname, "tabula.html"),
           containerUpdateHelper: path.resolve(
             __dirname,
             "container-update-helper.html",

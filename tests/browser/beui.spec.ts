@@ -52,8 +52,8 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
     for (const [route, titles] of [
       ["/netswitch.html", ["Networks and Tailscale"]],
       [
-        "/container-update-helper.html",
-        ["Open WebUI updates", "SearXNG updates"],
+        "/docksense.html",
+        ["USB setup"],
       ],
     ] as const) {
       await page.goto(route);

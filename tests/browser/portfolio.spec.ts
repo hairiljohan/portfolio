@@ -5,7 +5,7 @@ const routes = [
   "/netswitch.html",
   "/docksense.html",
   "/theaterview.html",
-  "/container-update-helper.html",
+  "/tabula.html",
 ];
 test("homepage exposes five project links and preserves section anchors", async ({
   page,

@@ -37,10 +37,10 @@ for (const width of [390, 1440]) {
     await page.keyboard.press("ArrowRight");
     await expect(previous).toBeEnabled();
     // Focusing a link in an off-screen card brings its whole card into view.
-    await cards.last().getByRole("link", { name: "View Container Update Helper" }).focus();
+    await cards.last().getByRole("link", { name: "View Tabula" }).focus();
     await expect(cards.last()).toBeInViewport({ ratio: 0.9 });
-    await cards.last().getByRole("link", { name: "View Container Update Helper" }).click();
-    await expect(page).toHaveURL(/container-update-helper.html$/);
+    await cards.last().getByRole("link", { name: "View Tabula" }).click();
+    await expect(page).toHaveURL(/tabula.html$/);
     await page.goBack();
     await expect(page.locator("#showcase")).toBeInViewport();
   });
