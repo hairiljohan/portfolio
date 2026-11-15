@@ -105,6 +105,12 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "tabula",
+    cover: {
+      src: "/projects/tabula/cover-pixel.webp",
+      alt: "Pixel-art desktop browser with a search bar and colourful favourite-site tiles",
+      width: 1448,
+      height: 1086,
+    },
     title: "Tabula",
     category: "Personal project",
     link: "/tabula.html",
@@ -121,6 +127,12 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "logit",
+    cover: {
+      src: "/projects/logit/cover-pixel.webp",
+      alt: "Pixel-art MacBook with startup app icons heading through an exit doorway",
+      width: 1448,
+      height: 1086,
+    },
     title: "LogIt",
     category: "macOS app",
     link: "/logit.html",
