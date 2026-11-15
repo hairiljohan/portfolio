@@ -6,15 +6,16 @@ const routes = [
   "/docksense.html",
   "/theaterview.html",
   "/tabula.html",
+  "/logit.html",
 ];
-test("homepage exposes five project links and preserves section anchors", async ({
+test("homepage exposes six project links and preserves section anchors", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(
     page.getByRole("link", { name: "View projects", exact: true }),
   ).toHaveAttribute("href", "#showcase");
-  await expect(page.locator("#showcase article")).toHaveCount(5);
+  await expect(page.locator("#showcase article")).toHaveCount(6);
   for (const id of [
     "hero",
     "showcase",

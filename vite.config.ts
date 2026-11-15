@@ -17,6 +17,7 @@ export default defineConfig(() => {
           launchConsole: path.resolve(__dirname, "launch-console.html"),
           dockSense: path.resolve(__dirname, "docksense.html"),
           networkChecker: path.resolve(__dirname, "network-checker.html"),
+          logit: path.resolve(__dirname, "logit.html"),
           tabula: path.resolve(__dirname, "tabula.html"),
           theaterView: path.resolve(__dirname, "theaterview.html"),
           uninstallCleanup: path.resolve(__dirname, "uninstall-cleanup.html"),

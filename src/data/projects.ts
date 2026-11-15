@@ -97,6 +97,22 @@ export const PROJECTS: Project[] = [
       height: 1326,
     },
   },
+  {
+    id: "logit",
+    title: "LogIt",
+    category: "macOS app",
+    link: "/logit.html",
+    description:
+      "I like quitting my startup apps before restarting my Mac. Whether that helps is unclear. LogIt makes the ritual less work.",
+    tags: ["Swift", "macOS", "Login items"],
+    image: {
+      src: "/projects/logit/login-items.webp",
+      dark: { src: "/projects/logit/login-items-dark.webp", width: 2840, height: 1632 },
+      alt: "LogIt Open at Login page listing startup apps, running indicators, and batch quit and launch controls",
+      width: 2840,
+      height: 1632,
+    },
+  },
 ];
 export function getProject(id: string): Project {
   const project = PROJECTS.find((item) => item.id === id);

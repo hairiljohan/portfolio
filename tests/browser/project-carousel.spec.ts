@@ -7,7 +7,7 @@ for (const width of [390, 1440]) {
     const carousel = page.getByRole("region", { name: "More projects" });
     const track = carousel.getByRole("group", { name: "Project cards", exact: true });
     const cards = track.locator("[data-project-slide]");
-    await expect(cards).toHaveCount(4);
+    await expect(cards).toHaveCount(5);
     await expect(page.locator("#showcase > article h3")).toHaveText("Launch Console");
     await carousel.scrollIntoViewIfNeeded();
     const geometry = await track.evaluate(el => ({ width: el.clientWidth, card: el.children[0].getBoundingClientRect().width, overflow: el.scrollWidth > el.clientWidth }));
@@ -37,10 +37,10 @@ for (const width of [390, 1440]) {
     await page.keyboard.press("ArrowRight");
     await expect(previous).toBeEnabled();
     // Focusing a link in an off-screen card brings its whole card into view.
-    await cards.last().getByRole("link", { name: "View Tabula" }).focus();
+    await cards.last().getByRole("link", { name: "View LogIt" }).focus();
     await expect(cards.last()).toBeInViewport({ ratio: 0.9 });
-    await cards.last().getByRole("link", { name: "View Tabula" }).click();
-    await expect(page).toHaveURL(/tabula.html$/);
+    await cards.last().getByRole("link", { name: "View LogIt" }).click();
+    await expect(page).toHaveURL(/logit.html$/);
     await page.goBack();
     await expect(page.locator("#showcase")).toBeInViewport();
   });
