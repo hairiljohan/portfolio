@@ -2,9 +2,7 @@ import ProjectShell, { ProjectSection, ProjectNotes, ProjectFigure } from "./pro
 import { getProject } from "../data/projects";
 import styles from "./TheaterViewPage.module.css";
 
-// Add the recording to public/projects/theaterview/ and set its URL here.
-// Example: "/projects/theaterview/demo.mp4"
-const demoVideoSrc: string = "";
+const demoVideoSrc = "/projects/theaterview/demo.mp4";
 
 export default function TheaterViewPage() {
   const project = getProject("theaterview");

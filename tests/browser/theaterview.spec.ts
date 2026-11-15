@@ -5,6 +5,14 @@ test("TheaterView replaces the showcase and retains the legacy URL", async ({ pa
   await page.getByRole("link", { name: "View TheaterView", exact: true }).click();
   await expect(page).toHaveURL(/theaterview.html$/);
   await expect(page.getByRole("heading", { name: "TheaterView", exact: true })).toBeVisible();
+  const video = page.getByLabel("TheaterView YouTube walkthrough");
+  await expect(video).toHaveAttribute("src", "/projects/theaterview/demo.mp4");
+  await expect(page.getByText("Video walkthrough coming soon")).toHaveCount(0);
+  await video.scrollIntoViewIfNeeded();
+  await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.readyState)).toBeGreaterThanOrEqual(1);
+  await video.evaluate(async (el: HTMLVideoElement) => { el.muted = true; await el.play(); });
+  await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.currentTime)).toBeGreaterThan(0);
+  await video.evaluate((el: HTMLVideoElement) => el.pause());
   for (const theme of ["Light", "Dark"] as const) {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: theme, exact: true }).click();
