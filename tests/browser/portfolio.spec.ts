@@ -7,15 +7,16 @@ const routes = [
   "/theaterview.html",
   "/tabula.html",
   "/logit.html",
+  "/repowatch.html",
 ];
-test("homepage exposes six project links and preserves section anchors", async ({
+test("homepage exposes seven project links and preserves section anchors", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(
     page.getByRole("link", { name: "View projects", exact: true }),
   ).toHaveAttribute("href", "#showcase");
-  await expect(page.locator("#showcase article")).toHaveCount(6);
+  await expect(page.locator("#showcase article")).toHaveCount(7);
   for (const id of [
     "hero",
     "showcase",

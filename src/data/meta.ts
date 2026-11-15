@@ -37,6 +37,7 @@ export const META: Record<
   | "dockSense"
   | "tabula"
   | "logit"
+  | "repoWatch"
   | "theaterView"
   | "netSwitch",
   MetaEntry
@@ -79,6 +80,16 @@ export const META: Record<
     description:
       "Tabula is a personal start page for favourite sites. Built to make them easy to reach and pleasant to look at.",
     url: `${SITE_URL}/tabula.html`,
+    author: AUTHOR,
+    image: SOCIAL_IMAGE,
+    imageAlt: SOCIAL_IMAGE_ALT,
+    imageWidth: SOCIAL_IMAGE_WIDTH,
+    imageHeight: SOCIAL_IMAGE_HEIGHT,
+  },
+  repoWatch: {
+    title: "RepoWatch - Hairil Johan",
+    description: "RepoWatch is a personal macOS dashboard that brings GitHub repositories, latest releases, commits, and refresh status into one central view.",
+    url: `${SITE_URL}/repowatch.html`,
     author: AUTHOR,
     image: SOCIAL_IMAGE,
     imageAlt: SOCIAL_IMAGE_ALT,

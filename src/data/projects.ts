@@ -113,6 +113,28 @@ export const PROJECTS: Project[] = [
       height: 1632,
     },
   },
+  {
+    id: "repowatch",
+    title: "RepoWatch",
+    category: "macOS app",
+    link: "/repowatch.html",
+    description:
+      "One place for the GitHub repos I want to keep an eye on. Releases, commits, and fewer tabs to check. A small dashboard for a growing list.",
+    tags: ["Swift", "macOS", "GitHub"],
+    cover: {
+      src: "/projects/repowatch/cover-pixel.webp",
+      alt: "Pixel-art repository nodes connected to one central monitoring dashboard",
+      width: 1448,
+      height: 1086,
+    },
+    image: {
+      src: "/projects/repowatch/dashboard.webp",
+      dark: { src: "/projects/repowatch/dashboard-dark.webp", width: 2840, height: 1632 },
+      alt: "RepoWatch dashboard with a repository sidebar, latest release, latest commit, and last-checked status",
+      width: 2840,
+      height: 1632,
+    },
+  },
 ];
 export function getProject(id: string): Project {
   const project = PROJECTS.find((item) => item.id === id);
