@@ -37,10 +37,10 @@ for (const width of [390, 1440]) {
     await page.keyboard.press("ArrowRight");
     await expect(previous).toBeEnabled();
     // Focusing a link in an off-screen card brings its whole card into view.
-    await cards.last().getByRole("link", { name: "View RepoWatch" }).focus();
+    await cards.last().getByRole("link", { name: "View LogIt" }).focus();
     await expect(cards.last()).toBeInViewport({ ratio: 0.9 });
-    await cards.last().getByRole("link", { name: "View RepoWatch" }).click();
-    await expect(page).toHaveURL(/repowatch.html$/);
+    await cards.last().getByRole("link", { name: "View LogIt" }).click();
+    await expect(page).toHaveURL(/logit.html$/);
     await page.goBack();
     await expect(page.locator("#showcase")).toBeInViewport();
   });

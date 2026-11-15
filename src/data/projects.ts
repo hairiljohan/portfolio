@@ -60,6 +60,28 @@ export const PROJECTS: Project[] = [
     },
   },
   {
+    id: "repowatch",
+    title: "RepoWatch",
+    category: "macOS app",
+    link: "/repowatch.html",
+    description:
+      "One place for the GitHub repos I want to keep an eye on. Releases, commits, and fewer tabs to check. A small dashboard for a growing list.",
+    tags: ["Swift", "macOS", "GitHub"],
+    cover: {
+      src: "/projects/repowatch/cover-pixel.webp",
+      alt: "Pixel-art repository nodes connected to one central monitoring dashboard",
+      width: 1448,
+      height: 1086,
+    },
+    image: {
+      src: "/projects/repowatch/dashboard.webp",
+      dark: { src: "/projects/repowatch/dashboard-dark.webp", width: 2840, height: 1632 },
+      alt: "RepoWatch dashboard with a repository sidebar, latest release, latest commit, and last-checked status",
+      width: 2840,
+      height: 1632,
+    },
+  },
+  {
     id: "theaterview",
     cover: {
       src: "/projects/theaterview/cover-pixel.webp",
@@ -109,28 +131,6 @@ export const PROJECTS: Project[] = [
       src: "/projects/logit/login-items.webp",
       dark: { src: "/projects/logit/login-items-dark.webp", width: 2840, height: 1632 },
       alt: "LogIt Open at Login page listing startup apps, running indicators, and batch quit and launch controls",
-      width: 2840,
-      height: 1632,
-    },
-  },
-  {
-    id: "repowatch",
-    title: "RepoWatch",
-    category: "macOS app",
-    link: "/repowatch.html",
-    description:
-      "One place for the GitHub repos I want to keep an eye on. Releases, commits, and fewer tabs to check. A small dashboard for a growing list.",
-    tags: ["Swift", "macOS", "GitHub"],
-    cover: {
-      src: "/projects/repowatch/cover-pixel.webp",
-      alt: "Pixel-art repository nodes connected to one central monitoring dashboard",
-      width: 1448,
-      height: 1086,
-    },
-    image: {
-      src: "/projects/repowatch/dashboard.webp",
-      dark: { src: "/projects/repowatch/dashboard-dark.webp", width: 2840, height: 1632 },
-      alt: "RepoWatch dashboard with a repository sidebar, latest release, latest commit, and last-checked status",
       width: 2840,
       height: 1632,
     },
