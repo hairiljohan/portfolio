@@ -104,20 +104,6 @@
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-border);
 }
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-block: 2rem;
-}
-.gallery .image {
-  height: 360px;
-  padding: 1.5rem;
-}
-.gallery img {
-  max-height: 100%;
-  max-width: 100%;
-}
 .next {
   display: flex;
   align-items: center;
@@ -138,12 +124,6 @@
 }
 .next svg {
   flex: none;
-}
-.video {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: var(--radius-media);
-  background: #151515;
 }
 .demo {
   border: 1px solid var(--color-border);
@@ -178,17 +158,6 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
     padding-block: 2.5rem;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .gallery .image {
-    height: auto;
-    min-height: 220px;
-  }
-  .gallery img {
-    max-height: 480px;
   }
   .next {
     align-items: start;

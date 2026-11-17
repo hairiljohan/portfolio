@@ -1,7 +1,7 @@
 # Launch Console source
 
-Edit `index.html`, `styles.css`, and `main.js` here. These are the readable source
-files imported from `project-dump/landingpagenew`; the dump folder is not required.
+Edit `index.html`, `styles.css`, and `main.js` here. This directory is the single
+maintained source for the standalone demo.
 
 Run `npm run build:demo` from the repository root to regenerate the runnable demo
 in `public/legacy/landingpage/`. The portfolio build also runs this step automatically.

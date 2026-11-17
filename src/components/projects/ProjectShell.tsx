@@ -105,6 +105,3 @@ export function ProjectNotes({
     </div>
   );
 }
-export function Gallery({ children }: { children: ReactNode }) {
-  return <div className={styles.gallery}>{children}</div>;
-}

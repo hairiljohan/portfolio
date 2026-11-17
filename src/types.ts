@@ -24,7 +24,3 @@ export interface Project {
   image: ProjectImage;
   cover?: ProjectImage;
 }
-export interface NavItem {
-  label: string;
-  href: string;
-}
