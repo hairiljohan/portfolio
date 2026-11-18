@@ -21,7 +21,7 @@ Documentation of the project layout and what lives in each folder.
 - `public/` – Static assets served as-is.
   - `projects/` – Current project screenshots, cover artwork, and recordings.
   - `legacy/landingpage/` – Generated Launch Console demo; edit its source under `demos/` instead.
-  - Favicons, robots, sitemap, theme initialization, social image, and compatibility assets.
+  - Favicons, robots, sitemap, theme initialization, social image, and cursor icons.
 - `demos/launch-console/` – Maintained standalone demo source.
 - `scripts/` – Demo build and favicon generation tools.
 - `tests/` – Node theme-initialization tests and Playwright browser tests.

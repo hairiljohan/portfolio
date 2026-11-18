@@ -58,11 +58,6 @@
       "source": "/landingpage/:path*",
       "destination": "/legacy/landingpage/:path*",
       "permanent": true
-    },
-    {
-      "source": "/network%20checker/:path*",
-      "destination": "/assets/network-checker/:path*",
-      "permanent": true
     }
   ]
 }
