@@ -8,7 +8,6 @@ export default tseslint.config(
       "dist/**",
       "public/legacy/**",
       "demos/launch-console/**",
-      "project-dump/**",
       ".agents/**",
       ".claude/**",
       ".superpowers/**",
