@@ -4,7 +4,7 @@ Documentation of the project layout and what lives in each folder.
 
 ## Project structure
 
-- Root HTML files – Vite's multi-page build entries, including legacy URL aliases.
+- Root HTML files – Vite's entry points for the homepage and current project pages. Old project URLs redirect via `vercel.json`.
 - `src/` – React and TypeScript source with custom CSS and CSS Modules.
   - `pages/` – Small entry files that select a page component and metadata key.
   - `mountPage.tsx` – Shared React mounting, metadata application, Analytics, and Speed Insights setup.

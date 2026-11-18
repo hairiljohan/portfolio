@@ -1,6 +1,19 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, type PreviewServer, type ViteDevServer } from "vite";
 import react from "@vitejs/plugin-react";
+
+import { redirects } from "./vercel.json";
+
+function servePageRedirects(server: ViteDevServer | PreviewServer) {
+  const pages = redirects.filter(rule => rule.source.endsWith(".html"));
+  server.middlewares.use((req, res, next) => {
+    const url = new URL(req.url ?? "/", "http://localhost");
+    const rule = pages.find(page => page.source === url.pathname);
+    if (!rule) return next();
+    res.writeHead(rule.permanent ? 308 : 307, { Location: rule.destination + url.search });
+    res.end();
+  });
+}
 
 export default defineConfig(() => {
   return {
@@ -8,7 +21,10 @@ export default defineConfig(() => {
       port: 3000,
       host: "0.0.0.0",
     },
-    plugins: [react()],
+    plugins: [
+      react(),
+      { name: "page-redirects", configureServer: servePageRedirects, configurePreviewServer: servePageRedirects },
+    ],
     build: {
       target: "es2020",
       rollupOptions: {
@@ -16,14 +32,11 @@ export default defineConfig(() => {
           main: path.resolve(__dirname, "index.html"),
           launchConsole: path.resolve(__dirname, "launch-console.html"),
           dockSense: path.resolve(__dirname, "docksense.html"),
-          networkChecker: path.resolve(__dirname, "network-checker.html"),
           repoWatch: path.resolve(__dirname, "repowatch.html"),
           logit: path.resolve(__dirname, "logit.html"),
           tabula: path.resolve(__dirname, "tabula.html"),
           theaterView: path.resolve(__dirname, "theaterview.html"),
-          uninstallCleanup: path.resolve(__dirname, "uninstall-cleanup.html"),
           netSwitch: path.resolve(__dirname, "netswitch.html"),
-          privateLocalAI: path.resolve(__dirname, "private-local-ai.html"),
         },
         output: {
           manualChunks: {

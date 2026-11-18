@@ -24,6 +24,7 @@ test("TheaterView replaces the showcase and retains the legacy URL", async ({ pa
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   }
   await page.goto("/uninstall-cleanup.html");
+  await expect(page).toHaveURL(/\/theaterview\.html$/);
   await expect(page.getByRole("heading", { name: "TheaterView", exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://hairiljohan.me/theaterview.html");
 });

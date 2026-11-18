@@ -50,6 +50,21 @@
   ],
   "redirects": [
     {
+      "source": "/network-checker.html",
+      "destination": "/docksense.html",
+      "permanent": true
+    },
+    {
+      "source": "/private-local-ai.html",
+      "destination": "/netswitch.html",
+      "permanent": true
+    },
+    {
+      "source": "/uninstall-cleanup.html",
+      "destination": "/theaterview.html",
+      "permanent": true
+    },
+    {
       "source": "/container-update-helper.html",
       "destination": "/tabula.html",
       "permanent": true
