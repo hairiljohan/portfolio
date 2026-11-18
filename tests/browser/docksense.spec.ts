@@ -6,6 +6,14 @@ test("Homepage links to the DockSense project page", async ({ page }) => {
   await page.getByRole("link", { name: "View DockSense", exact: true }).click();
   await expect(page).toHaveURL(/docksense.html$/);
   await expect(page.getByRole("heading", { name: "DockSense", exact: true })).toBeVisible();
+  const video = page.getByLabel("DockSense docking and undocking demonstration");
+  await video.scrollIntoViewIfNeeded();
+  await video.evaluate(async (el: HTMLVideoElement) => {
+    el.muted = true;
+    await el.play();
+  });
+  await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.currentTime)).toBeGreaterThan(0);
+  await video.evaluate((el: HTMLVideoElement) => el.pause());
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://hairiljohan.me/docksense.html");
 });
 

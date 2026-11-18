@@ -4,9 +4,7 @@ import DockSenseDemo from "./projects/DockSenseDemo";
 import { getProject } from "../data/projects";
 import styles from "./DockSensePage.module.css";
 
-// Add the recording to public/projects/docksense/, then set its URL here.
-// Example: "/projects/docksense/demo.mp4"
-const demoVideoSrc: string = "";
+const demoVideoSrc = "/projects/docksense/demo.mp4";
 
 export default function DockSensePage() {
   return (
