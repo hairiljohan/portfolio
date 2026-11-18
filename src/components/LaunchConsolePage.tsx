@@ -62,7 +62,7 @@ export default function LaunchConsolePage() {
           <span>Interactive demo · simulated data</span>
           <a
             className="text-link"
-            href="/legacy/landingpage/index.html"
+            href="/interactive/launch-console/index.html"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -71,7 +71,7 @@ export default function LaunchConsolePage() {
           </a>
         </div>
         <iframe
-          src="/legacy/landingpage/index.html"
+          src="/interactive/launch-console/index.html"
           title="Launch Console Embed"
           sandbox="allow-scripts allow-same-origin"
           loading="lazy"

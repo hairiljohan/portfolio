@@ -6,7 +6,7 @@ export default tseslint.config(
   {
     ignores: [
       "dist/**",
-      "public/legacy/**",
+      "public/interactive/launch-console/**",
       "demos/launch-console/**",
       ".agents/**",
       ".claude/**",

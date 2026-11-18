@@ -6,7 +6,7 @@ import { minify } from "terser";
 
 const require = createRequire(import.meta.url);
 const source = new URL("../demos/launch-console/", import.meta.url);
-const output = new URL("../public/legacy/landingpage/", import.meta.url);
+const output = new URL("../public/interactive/launch-console/", import.meta.url);
 const [html, javascript, css] = await Promise.all(
   ["index.html", "main.js", "styles.css"].map((name) => readFile(new URL(name, source), "utf8")),
 );

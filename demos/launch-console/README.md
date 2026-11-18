@@ -4,11 +4,11 @@ Edit `index.html`, `styles.css`, and `main.js` here. This directory is the singl
 maintained source for the standalone demo.
 
 Run `npm run build:demo` from the repository root to regenerate the runnable demo
-in `public/legacy/landingpage/`. The portfolio build also runs this step automatically.
+in `public/interactive/launch-console/`. The portfolio build also runs this step automatically.
 
 JavaScript is minified with Terser and CSS with CSSO, using the existing installed
 dependencies. The generated HTML references `main.min.js` and `styles.min.css`.
 The favicon is copied unchanged. Do not edit the generated files directly.
 
-Preview at `/legacy/landingpage/index.html`, or embedded in `/launch-console.html`.
+Preview at `/interactive/launch-console/index.html`, or embedded in `/launch-console.html`.
 The demo is a simulation and its launch code is part of the public source, not a secret.

@@ -4,7 +4,7 @@ test("updated standalone console loads minified assets and responds to commands"
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.emulateMedia({ colorScheme: "light" });
-  await page.goto("/legacy/landingpage/index.html");
+  await page.goto("/interactive/launch-console/index.html");
   await expect(page.locator('script[src="./main.min.js"]')).toHaveCount(1);
   await expect(page.locator('link[rel="stylesheet"]')).toHaveAttribute("href", "./styles.min.css");
   await expect(page.locator("#console-root")).toHaveAttribute("data-theme", "light");

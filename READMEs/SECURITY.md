@@ -72,4 +72,4 @@ After deployment, you can verify headers are correctly set using:
 - Inline scripts are disallowed by default. If you introduce one, prefer nonces/hashes; use `'unsafe-inline'` only if you must.
 - Inline styles are allowed to support React/Tailwind style attributes.
 - If you need to load external resources or call third-party APIs, update the relevant CSP directives and `connect-src`.
-- **frame-src 'self'** allows embedding the Launch Console iframe from `public/legacy/landingpage/`
+- **frame-src 'self'** allows embedding the Launch Console iframe from `public/interactive/launch-console/`

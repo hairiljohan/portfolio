@@ -56,7 +56,7 @@
     },
     {
       "source": "/landingpage/:path*",
-      "destination": "/legacy/landingpage/:path*",
+      "destination": "/interactive/launch-console/:path*",
       "permanent": true
     }
   ]
