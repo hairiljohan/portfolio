@@ -18,10 +18,16 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
       if (theme === "Dark") await expect(page.locator("html")).toHaveClass(/dark/);
       else await expect(page.locator("html")).not.toHaveClass(/dark/);
       await expect(dialog).toBeInViewport();
-      // Audit the settled theme, not intermediate transition colors.
-      await page.evaluate(async () => {
-        await Promise.all(document.getAnimations().filter(a => a.effect?.getComputedTiming().iterations !== Infinity).map(a => a.finished.catch(() => {})));
-      });
+      const picker = dialog.getByRole("group", { name: "Color theme" });
+      const palette = theme === "Dark"
+        ? { surface: "rgb(28, 32, 29)", text: "rgb(241, 242, 239)", muted: "rgb(165, 170, 165)" }
+        : { surface: "rgb(240, 241, 238)", text: "rgb(32, 35, 32)", muted: "rgb(100, 105, 98)" };
+      await expect(picker).toHaveCSS("background-color", palette.surface);
+      for (const label of ["System", "Light", "Dark"]) {
+        await expect(picker.getByText(label, { exact: true })).toHaveCSS(
+          "color", label === theme ? palette.text : palette.muted,
+        );
+      }
       expect((await new AxeBuilder({ page }).include('[role="dialog"]').analyze()).violations).toEqual([]);
       await page.screenshot({ path: test.info().outputPath(`menu-${theme}.png`) });
     }
