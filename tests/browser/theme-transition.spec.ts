@@ -43,3 +43,18 @@ test("reduced motion switches immediately and saved dark mode loads without a fa
   await expect(page.locator("body")).toHaveCSS("background-color", "rgb(17, 19, 18)");
   expect(await page.locator("html").evaluate(el => el.getAnimations().length)).toBe(0);
 });
+
+test("changing the theme updates an already open project tab", async ({ page, context }) => {
+  const project = await context.newPage();
+  await project.emulateMedia({ colorScheme: "light" });
+  await project.goto("/tabula.html");
+  const projectThemes = project.getByRole("group", { name: "Color theme" });
+  await expect(projectThemes.getByRole("button", { name: "System" })).toHaveAttribute("aria-pressed", "true");
+  await expect(project.locator("body")).toHaveCSS("background-color", "rgb(250, 250, 249)");
+
+  await page.goto("/");
+  await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: "Dark" }).click();
+
+  await expect(projectThemes.getByRole("button", { name: "Dark" })).toHaveAttribute("aria-pressed", "true");
+  await expect(project.locator("body")).toHaveCSS("background-color", "rgb(17, 19, 18)");
+});
