@@ -34,8 +34,14 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
     await dialog.getByRole("link", { name: "Projects", exact: true }).click();
     await expect(dialog).toHaveCount(0);
     await expect(page).toHaveURL(/#showcase$/);
-    await expect(page.locator("#showcase")).toBeInViewport();
-    await expect.poll(() => page.locator("#showcase").evaluate(el => Math.round(el.getBoundingClientRect().top))).toBe(112);
+    const showcase = page.locator("#showcase");
+    await expect(showcase).toBeInViewport();
+    await expect.poll(() => showcase.evaluate(section => {
+      const targetTop = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+      return Math.abs(section.getBoundingClientRect().top - targetTop);
+    })).toBeLessThanOrEqual(4);
+    const headerBottom = await page.getByRole("banner").evaluate(header => header.getBoundingClientRect().bottom);
+    expect(await showcase.evaluate(section => section.getBoundingClientRect().top)).toBeGreaterThanOrEqual(headerBottom);
     const position = await page.evaluate(() => scrollY);
     // Use the visible sticky trigger's coordinates; locator.click's automatic
     // scrollIntoView itself moves this sticky header in browser automation.

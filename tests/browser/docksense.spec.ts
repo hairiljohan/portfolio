@@ -37,8 +37,11 @@ test("DockSense media follows themes and setup screenshots are stacked", async (
     await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: theme, exact: true }).click();
     const suffix = theme === "Dark" ? "-dark" : "";
     await expect(page.locator("main img").first()).toHaveAttribute("src", `/projects/docksense/menu${suffix}.webp`);
-    await page.getByRole("button", { name: "Open USB setup gallery", exact: true }).click();
+    const trigger = page.getByRole("button", { name: "Open USB setup gallery", exact: true });
+    await trigger.scrollIntoViewIfNeeded();
+    await trigger.click();
     const dialog = page.getByRole("dialog", { name: "USB setup", exact: true });
+    await expect(dialog).toBeVisible();
     const images = dialog.getByRole("img");
     await expect(images).toHaveCount(2);
     for (const img of await images.all()) {
@@ -49,6 +52,7 @@ test("DockSense media follows themes and setup screenshots are stacked", async (
     const second = await images.nth(1).boundingBox();
     expect(second!.y).toBeGreaterThan(first!.y + first!.height);
     await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
     expect((await new AxeBuilder({ page }).include("#docksense-demo").analyze()).violations).toEqual([]);
   }
 });

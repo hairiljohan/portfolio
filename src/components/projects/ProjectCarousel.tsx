@@ -64,6 +64,16 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       });
     });
   };
+  const jumpToEdge = (edge: "start" | "end") => {
+    const node = track.current;
+    if (!node) return;
+    cancelAnimationFrame(navigationFrame.current);
+    node.scrollTo({
+      left: edge === "start" ? 0 : node.scrollWidth - node.clientWidth,
+      behavior: "instant",
+    });
+  };
+
   const step = (direction: number) => {
     const node = track.current;
     if (!node) return;
@@ -74,7 +84,8 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       return rect.left + rect.width / 2 >= viewport.left - 1;
     });
     const atEnd = node.scrollLeft >= node.scrollWidth - node.clientWidth - 2;
-    moveTo(direction > 0 && atEnd ? 0 : Math.max(0, first) + direction);
+    if (direction > 0 && atEnd) jumpToEdge("start");
+    else moveTo(Math.max(0, first) + direction);
   };
 
   return (
@@ -102,8 +113,8 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
           if (event.target !== event.currentTarget) return;
           if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
           event.preventDefault();
-          if (event.key === "Home") moveTo(0);
-          else if (event.key === "End") moveTo(projects.length - 1);
+          if (event.key === "Home") jumpToEdge("start");
+          else if (event.key === "End") jumpToEdge("end");
           else step(event.key === "ArrowRight" ? 1 : -1);
         }}
         onFocusCapture={event => {

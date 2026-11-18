@@ -18,6 +18,7 @@
 }
 .back,
 .front {
+  pointer-events: none;
   position: absolute;
   border: 1px solid var(--color-border);
   border-radius: 16px;
