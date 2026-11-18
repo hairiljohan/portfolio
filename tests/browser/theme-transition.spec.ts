@@ -12,15 +12,18 @@ for (const width of [390, 1440]) {
       const colors = await themes.getByRole("button", { name, exact: true }).evaluate(button => {
         const before = getComputedStyle(document.body).backgroundColor;
         (button as HTMLButtonElement).click();
-        return new Promise<{ before: string; during: string; header: string }>(resolve => {
-          const start = performance.now();
-          const sample = () => {
-            if (performance.now() - start < 100) { requestAnimationFrame(sample); return; }
-            resolve({ before, during: getComputedStyle(document.body).backgroundColor,
-              header: getComputedStyle(document.querySelector("header")!).backgroundColor });
-          };
-          requestAnimationFrame(sample);
-        });
+        // Sample the actual CSS transition halfway through, even on a slow frame.
+        const transition = document.documentElement.getAnimations().find(
+          animation => animation instanceof CSSTransition && animation.transitionProperty === "--color-background",
+        );
+        if (!transition?.effect) throw new Error("Missing background colour transition");
+        const duration = Number(transition.effect.getComputedTiming().duration);
+        transition.pause();
+        transition.currentTime = duration / 2;
+        const during = getComputedStyle(document.body).backgroundColor;
+        const header = getComputedStyle(document.querySelector("header")!).backgroundColor;
+        transition.play();
+        return { before, during, header };
       });
       expect(colors.during).not.toBe(colors.before);
       expect(colors.during).not.toBe(target);
