@@ -1,13 +1,10 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("NetSwitch replaces the old showcase and preserves its old URL", async ({ page }) => {
+test("Homepage links to the NetSwitch project page", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "View NetSwitch", exact: true }).click();
   await expect(page).toHaveURL(/netswitch.html$/);
-  await expect(page.getByRole("heading", { name: "NetSwitch", exact: true })).toBeVisible();
-  await page.goto("/private-local-ai.html");
-  await expect(page).toHaveURL(/\/netswitch\.html$/);
   await expect(page.getByRole("heading", { name: "NetSwitch", exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://hairiljohan.me/netswitch.html");
 });

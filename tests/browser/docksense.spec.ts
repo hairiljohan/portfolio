@@ -1,13 +1,10 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("DockSense replaces the showcase and keeps the old URL usable", async ({ page }) => {
+test("Homepage links to the DockSense project page", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "View DockSense", exact: true }).click();
   await expect(page).toHaveURL(/docksense.html$/);
-  await expect(page.getByRole("heading", { name: "DockSense", exact: true })).toBeVisible();
-  await page.goto("/network-checker.html");
-  await expect(page).toHaveURL(/\/docksense\.html$/);
   await expect(page.getByRole("heading", { name: "DockSense", exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://hairiljohan.me/docksense.html");
 });

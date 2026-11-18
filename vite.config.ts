@@ -1,19 +1,6 @@
 import path from "path";
-import { defineConfig, type PreviewServer, type ViteDevServer } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-
-import { redirects } from "./vercel.json";
-
-function servePageRedirects(server: ViteDevServer | PreviewServer) {
-  const pages = redirects.filter(rule => rule.source.endsWith(".html"));
-  server.middlewares.use((req, res, next) => {
-    const url = new URL(req.url ?? "/", "http://localhost");
-    const rule = pages.find(page => page.source === url.pathname);
-    if (!rule) return next();
-    res.writeHead(rule.permanent ? 308 : 307, { Location: rule.destination + url.search });
-    res.end();
-  });
-}
 
 export default defineConfig(() => {
   return {
@@ -21,10 +8,7 @@ export default defineConfig(() => {
       port: 3000,
       host: "0.0.0.0",
     },
-    plugins: [
-      react(),
-      { name: "page-redirects", configureServer: servePageRedirects, configurePreviewServer: servePageRedirects },
-    ],
+    plugins: [react()],
     build: {
       target: "es2020",
       rollupOptions: {
