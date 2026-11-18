@@ -32,9 +32,9 @@ export default function TheaterViewPage() {
         <p>Every time I sat down to watch YouTube, I found myself making the same adjustments again. They were small clicks, but repeating them got annoying. I built this personal extension so my preferred viewing setup would be ready without that routine.</p>
         <p>TheaterView handles a few familiar adjustments when opening YouTube. It enables theater mode on watch pages, can select the highest non-Premium quality, and selects the Public filter on a channel’s Videos tab when that option is available.</p>
       </ProjectSection>
-      <ProjectSection title="Three switches, my defaults">
+      <ProjectSection title="My TheaterView settings">
         <ProjectFigure image={project.image} />
-        <p>Enable TheaterView controls the extension as a whole. Auto highest quality and Auto Public can be turned off independently. All three default to on, and settings are saved locally.</p>
+        <p>Enable TheaterView controls the extension as a whole. I also have Auto highest quality, Auto Public, and Auto PiP on scroll switched on. The last option puts the video in Picture in Picture when I scroll past the player.</p>
       </ProjectSection>
       <ProjectSection title="What changes">
         <ProjectNotes items={[

@@ -97,10 +97,10 @@ export const PROJECTS: Project[] = [
     tags: ["JavaScript", "Safari", "Web Extension"],
     image: {
       src: "/projects/theaterview/settings.png",
-      dark: { src: "/projects/theaterview/settings-dark.png", width: 512, height: 364 },
-      alt: "TheaterView settings with Enable TheaterView, Auto highest quality, and Auto Public switched on",
-      width: 512,
-      height: 368,
+      dark: { src: "/projects/theaterview/settings-dark.png", width: 491, height: 451 },
+      alt: "TheaterView settings with Enable TheaterView, Auto highest quality, Auto Public, and Auto PiP on scroll switched on",
+      width: 501,
+      height: 456,
     },
   },
   {

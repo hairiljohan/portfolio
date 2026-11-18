@@ -16,7 +16,7 @@ test("TheaterView replaces the showcase and retains the legacy URL", async ({ pa
   for (const theme of ["Light", "Dark"] as const) {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.getByRole("group", { name: "Color theme" }).getByRole("button", { name: theme, exact: true }).click();
-    const img = page.getByRole("img", { name: "TheaterView settings with Enable TheaterView, Auto highest quality, and Auto Public switched on", exact: true });
+    const img = page.getByRole("img", { name: "TheaterView settings with Enable TheaterView, Auto highest quality, Auto Public, and Auto PiP on scroll switched on", exact: true });
     await expect(img).toHaveAttribute("src", `/projects/theaterview/settings${theme === "Dark" ? "-dark" : ""}.png`);
     await img.scrollIntoViewIfNeeded();
     await img.evaluate((el: HTMLImageElement) => el.decode());
